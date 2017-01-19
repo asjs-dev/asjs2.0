@@ -1,7 +1,7 @@
 EmptyClass = function() {
-	return createSingletonClass( EmptyClass, this, Object, null | [p1, p2, pn], 
+	return createSingletonClass( EmptyClass, this, [Object | parentClass ], [null | [p1, p2, pn]], 
 	// OR //
-	return createClass( this, Object, null | [p1, p2, pn], 
+	return createClass( this, [Object | parentClass ], [null | [p1, p2, pn]], 
 		function( _scope, _super ) {
 			// private object
 			
@@ -50,9 +50,9 @@ EmptyClass = function() {
 
 // ---------------------------------------------------------------------- //
 BaseClass = function() {
-	return createSingletonClass( BaseClass, this, Object, null | [p1, p2, pn], 
+	return createSingletonClass( BaseClass, this, [Object | parentClass ], [null | [p1, p2, pn]], 
 	// OR //
-	return createClass( this, Object, null | [p1, p2, pn], 
+	return createClass( this, [Object | parentClass ], [null | [p1, p2, pn]], 
 		function( _scope, _super ) {
 			// private object
 			var priv = {};
@@ -110,9 +110,9 @@ BaseClass = function() {
 			
 			// internal classes
 			var InternalClass = function() {
-				return createSingletonClass( InternalClass, this, Object, null | [p1, p2, pn],
+				return createSingletonClass( InternalClass, this, [Object | parentClass], [null | [p1, p2, pn]],
 				// OR //
-				return createClass( this, Object, null | [p1, p2, pn],
+				return createClass( this, [Object | parentClass ], [null | [p1, p2, pn]],
 					function( _scope, _super ) {
 						_scope.construct = function() {}
 					}

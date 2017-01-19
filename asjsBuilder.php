@@ -5,7 +5,7 @@
 	
 	/* Common config */
 	$config[ "minimize" ] 			= true; // optional (boolean)
-	$config[ "obfuscating" ]		= true; // optional (boolean)
+	$config[ "obfuscation" ]		= true; // optional (boolean)
 	$config[ "watching" ] 			= true; // optional (boolean)
 	
 	/* Watcher config */

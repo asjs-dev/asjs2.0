@@ -6,7 +6,7 @@
 		private $sourcePath			= "";
 		private $includedClasses	= array();
 		private $packages			= array();
-		private $obfuscating		= true;
+		private $obfuscation		= true;
 		
 		public function __construct() {}
 		
@@ -24,12 +24,12 @@
 			));
 		}
 		
-		public function build( $projectFolder, $baseClass, $minimize = true, $obfuscating = true ) {
+		public function build( $projectFolder, $baseClass, $minimize = true, $obfuscation = true ) {
 			if ( !isset( $baseClass ) || $baseClass == "" ) {
 				throw new Exception( "Missing Parameter: baseClass" );
 			}
 			
-			$this->obfuscating = $obfuscating;
+			$this->obfuscation = $obfuscation;
 			
 			$this->includeJS( $projectFolder, $baseClass, "baseClass", 0 );
 			
@@ -107,15 +107,12 @@
 				} else $out .= $line;
 			}
 			
-			if ( $this->obfuscating ) $out = $this->obfuscation( $out );
+			if ( $this->obfuscation ) $out = $this->obfuscation( $out );
 			
 			$this->output .= ";" . $out;
 		}
 		
 		private function obfuscation( $src ) {
-			//preg_match_all( "/(?<!\.)(?<!\w)_\w+/", $src, $matches );
-			//$results = $matches[ 0 ];
-			
 			preg_match_all( "/\t(var|function) (?<!\.)(?<!\w)(\w+)/", $src, $matches );
 			$results = $matches[ 2 ];
 			
@@ -135,8 +132,7 @@
 			$i = 0;
 			foreach ( $variables as $key => $value ) {
 				$newKey = "_v" . $i;
-				//preg_match( "/(?:g(‌​?:im?|m)?|i(?:gm?|m)‌​?|m(?:gi?|i)?)/", $key, $m );
-				if ( strlen( $key ) >= strlen( $newKey ) /*&& count( $m ) > 0*/ ) {
+				if ( strlen( $key ) >= strlen( $newKey ) ) {
 					$src = preg_replace( "/(?<!\.)(?<!\")\b" . $key . "\b/", $newKey, $src );
 					$i++;
 				}

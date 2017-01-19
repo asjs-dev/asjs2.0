@@ -22,9 +22,9 @@
 				$this->config[ "minimize" ] = $minimizeCL == "true";
 			}
 			
-			if ( !isset( $this->config[ "obfuscating" ] ) ) {
-				$obfuscatingCL = readline( "obfuscating script: " );
-				$this->config[ "obfuscating" ] = $obfuscatingCL == "true";
+			if ( !isset( $this->config[ "obfuscation" ] ) ) {
+				$obfuscationCL = readline( "obfuscation: " );
+				$this->config[ "obfuscation" ] = $obfuscationCL == "true";
 			}
 			
 			if ( !isset( $this->config[ "watching" ] ) ) {
@@ -54,7 +54,7 @@
 					$this->buildJS->addPackage( $jsConfig[ "packages" ][ $i ][ "path" ], $jsConfig[ "packages" ][ $i ][ "relativePath" ] );
 				}
 				
-				$this->buildJS->build( $jsConfig[ "sourcePath" ], $jsConfig[ "baseClass" ], $this->config[ "minimize" ], $this->config[ "obfuscating" ] );
+				$this->buildJS->build( $jsConfig[ "sourcePath" ], $jsConfig[ "baseClass" ], $this->config[ "minimize" ], $this->config[ "obfuscation" ] );
 				$this->buildJS->save( $jsConfig[ "output" ] );
 			
 				$i = -1;

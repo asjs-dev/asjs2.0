@@ -6,10 +6,8 @@ ASJS.Loader = function() {
 	return createClass( this, ASJS.EventDispatcher, null, 
 		function( _scope, _super ) {
 			// private object
-			var priv = {};
 			
 			// private const
-			cnst( priv, "PRIVATE_CONST", 0 );
 			
 			// public variable
 			
