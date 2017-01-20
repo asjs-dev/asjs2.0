@@ -35,8 +35,7 @@ var ASJS = {
 			"asjstc";
 			if ( !t.$c ) t.$c = [];
 			t.$c.push( f );
-			
-			if ( a.callee.caller.toString().indexOf( "asjstcc" ) == -1 ) {
+			if ( a.callee.caller == null || a.callee.caller.toString().indexOf( "asjstcc" ) == -1 ) {
 				while ( t.$c.length > 0 ) {
 					var fnc = t.$c.shift();
 					if ( typeof fnc == "function" ) fnc.call( t );
@@ -60,13 +59,13 @@ var ASJS = {
 
 function createClass( t, p, oa, b ) {
 	var h = arguments.callee.caller;
-	var a = h.toString().indexOf( "createSingletonClass" ) > -1 ? h.arguments.callee.caller.arguments : h.arguments;
+	var a = h && h.name == "createSingletonClass" ? h.arguments.callee.caller.arguments : h.arguments;
 	return ASJS.t.c( t, ASJS.t.bc( t, p, a, oa, b ), a, t.construct );
 };
 
 function createSingletonClass( o, t, p, oa, b ) {
 	var a = arguments.callee.caller.arguments.callee.caller;
-	if ( a.toString().indexOf( "createClass" ) > -1 ) return createClass( t, p, oa, b );
+	if ( a && a.name == "createClass" ) return createClass( t, p, oa, b );
 	return o.$i || ( o.$i = createClass( t, p, oa, b ) );
 };
 
