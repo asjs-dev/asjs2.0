@@ -2,16 +2,13 @@ includeOnce( "org/asjs/display/asjs.PrimitiveDisplayObject.js" );
 includeOnce( "org/asjs/utils/asjs.Mouse.js" );
 includeOnce( "org/asjs/geom/asjs.GeomUtils.js" );
 includeOnce( "org/asjs/geom/asjs.Rectangle.js" );
-includeOnce( "org/asjs/geom/asjs.Point.js" );
 
 ASJS.DisplayObject = function( tag ) {
 	return createClass( this, ASJS.PrimitiveDisplayObject, null, 
 		function( _scope, _super ) {
 			// private object
-			var priv = {};
 			
 			// private const
-			cnst( priv, "CREATED", "created" );
 			
 			// public variable
 			
@@ -19,25 +16,20 @@ ASJS.DisplayObject = function( tag ) {
 			
 			// private variable
 			var _mouse = new ASJS.Mouse();
-			var _state = priv.CREATED;
 			var _filters = [];
 			var _rotation = 0;
 			var _scaleX = 1;
 			var _scaleY = 1;
-			var _parent = null;
 			var _cssDisplay = "block";
 			
 			// constructor
 			_scope.construct = function() {
-				_scope.id = "intance_" + ASJS.DisplayObject.instanceId;
 				_scope.tabindex = -1;
 				_scope.setCSS( "pointer-events", "auto" );
 				_scope.setCSS( "position", "absolute" );
 				_scope.setCSS( "display", _cssDisplay );
 				_scope.setSize( 0, 0 );
 				_scope.move( 0, 0 );
-		
-				ASJS.DisplayObject.instanceId++;
 			}
 			
 			// public property
@@ -73,10 +65,6 @@ ASJS.DisplayObject = function( tag ) {
 				}
 			});
 	
-			prop( _scope, "stage", {
-				get: function() { return _scope.parent ? _scope.parent.stage : null; }
-			});
-	
 			prop( _scope, "mouse", {
 				get: function() { return _mouse.getRelativePosition( _scope ); }
 			});
@@ -104,35 +92,12 @@ ASJS.DisplayObject = function( tag ) {
 				}
 			});
 	
-			prop( _scope, "id", {
-				get: function() { return _scope.getAttr( "id" ); },
-				set: function( v ) { _scope.setAttr( "id", v ); }
-			});
-	
-			prop( _scope, "enabled", {
-				get: function() { return _scope.getAttr( "disabled" ) != "disabled"; },
-				set: function( v ) {
-					if ( v ) {
-						_scope.removeAttr( "disabled" );
-						_scope.setCSS( "pointer-events", "auto" );
-					} else {
-						_scope.setAttr( "disabled", "disabled" );
-						_scope.setCSS( "pointer-events", "none" );
-					}
-				}
-			});
-	
 			prop( _scope, "display", {
 				get: function() { return _cssDisplay; },
 				set: function( v ) {
 					_cssDisplay = v;
 					_scope.setCSS( "display", _cssDisplay );
 				}
-			});
-	
-			prop( _scope, "html", {
-				get: function() { return _scope.jQuery.html(); },
-				set: function( v ) { _scope.jQuery.html( v ); }
 			});
 	
 			prop( _scope, "visible", {
@@ -192,16 +157,6 @@ ASJS.DisplayObject = function( tag ) {
 					drawTransform();
 				}
 			});
-	
-			prop( _scope, "parent", {
-				get: function() { return _parent; },
-				set: function( v ) {
-					if ( v == null || v.getChildIndex( _scope ) > -1 ) {
-						_parent = v;
-						_scope._sendParentChangeEvent();
-					}
-				}
-			});
 			
 			// protected property
 			
@@ -233,33 +188,6 @@ ASJS.DisplayObject = function( tag ) {
 			_scope.scale = function( scaleX, scaleY ) {
 				_scope.scaleX = scaleX;
 				_scope.scaleY = scaleY;
-			};
-	
-			_scope.clear = function() {
-				_scope.html = "";
-				_scope.text = "";
-			};
-	
-			_scope._sendParentChangeEvent = function() {
-				var state = _scope.stage ? ASJS.Stage.ADDED_TO_STAGE : ASJS.Stage.REMOVED_FROM_STAGE;
-				if ( _state != priv.CREATED || state != ASJS.Stage.REMOVED_FROM_STAGE ) _scope.dispatchEvent( state, null, false );
-				_state = state;
-			};
-	
-			_scope.getCSS = function( k ) {
-				return _scope.jQuery.css( k );
-			};
-	
-			_scope.setCSS = function( k, v ) {
-				_scope.jQuery.css( k, v );
-			};
-	
-			_scope.addClass = function( v ) {
-				return _scope.jQuery.addClass( v );
-			};
-	
-			_scope.removeClass = function( v ) {
-				_scope.jQuery.removeClass( v );
 			};
 	
 			_scope.move = function( x, y ) {
@@ -301,7 +229,6 @@ ASJS.DisplayObject = function( tag ) {
 cnst( ASJS.DisplayObject, "FULLSCREEN_ENABLED", document.fullscreenEnabled || document.webkitFullscreenEnabled || document.mozFullScreenEnabled || document.msFullscreenEnabled );
 
 // public static variable
-ASJS.DisplayObject.instanceId = 0;
 
 // public static property
 

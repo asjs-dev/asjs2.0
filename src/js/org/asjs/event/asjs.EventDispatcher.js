@@ -1,7 +1,4 @@
-includeOnce( "org/asjs/event/asjs.MouseEvent.js" );
-includeOnce( "org/asjs/window/asjs.Window.js" );
-
-ASJS.EventDispatcher = function( tag ) {
+ASJS.EventDispatcher = function() {
 	return createClass( this, Object, null, 
 		function( _scope, _super ) {
 			// private object
@@ -9,19 +6,16 @@ ASJS.EventDispatcher = function( tag ) {
 			// private const
 			
 			// public variable
-			_scope.jQuery = $( tag || "<div />" );
 			
 			// protected variable
 			
 			// private variable
+			var _handlers = {};
 			
 			// constructor
 			_scope.construct = function() {}
 			
 			// public property
-			prop( _scope, "el", {
-				get: function() { return _scope.jQuery[ 0 ]; }
-			});
 			
 			// protected property
 			
@@ -31,39 +25,43 @@ ASJS.EventDispatcher = function( tag ) {
 			
 			// public function
 			_scope.dispatchEvent = function( type, data, bubble ) {
-				var eventBubble = bubble == undefined ? true : bubble;
-		
-				if ( eventBubble ) _scope.jQuery.trigger( type, data );
-				else _scope.jQuery.triggerHandler( type, data );
+				var eb = bubble == undefined ? true : bubble;
+				
+				var ev = new $.Event( type, data, eb );
+				
+				if ( !_scope.hasEventListener( type ) ) return;
+				var handlers = _handlers[ type ];
+				var i = -1;
+				var l = handlers.length;
+				while ( ++i < l ) {
+					handlers[ i ]( ev );
+				}
 			};
 	
-			_scope.addEventListener = function( type, callback ) {
-				if ( type == ASJS.MouseEvent.SCROLL && _scope.jQuery == new ASJS.Window().jQuery ) _scope.jQuery.scroll( callback );
-				else _scope.jQuery.on( type, callback );
+			_scope.addEventListener = function( type, handler ) {
+				if ( _scope.hasEventListener( type, handler ) ) return;
+				if ( !_handlers[ type ] ) _handlers[ type ] = [];
+				_handlers[ type ].push( handler );
 			};
 	
 			_scope.removeEventListeners = function() {
-				_scope.jQuery.off();
+				_handlers = {};
 			};
 	
-			_scope.removeEventListener = function( type, callback ) {
-				_scope.jQuery.off( type, null, callback );
+			_scope.removeEventListener = function( type, handler ) {
+				if ( !_scope.hasEventListener( type, handler ) ) return;
+				_handlers[ type ].slice( _handlers[ type ].indexOf( handler ), 1 );
 			};
 	
-			_scope.hasEventListener = function( which, handler ) {
-				var events = $._data( _scope.el, "events" );
-				if ( events == undefined ) return false;
-				var w = which.indexOf( " " ) > -1 ? which.split( " " ) : [ which ];
-				var i = -1;
-				var l = w.length;
-				while ( ++i < l ) {
-					var event = events[ w[ i ] ];
-					if ( event != undefined ) {
-						var j = -1;
-						var k = event.length;
-						while ( ++j < k ) {
-							if ( event[ j ].handler == handler ) return true;
-						}
+			_scope.hasEventListener = function( type, handler ) {
+				var handlers = _handlers[ type ];
+				if ( handlers ) {
+					if ( !handler ) return true;
+					
+					var i = -1;
+					var l = handlers.length;
+					while ( ++i < l ) {
+						if ( handlers[ i ] == handler ) return true;
 					}
 				}
 				return false;

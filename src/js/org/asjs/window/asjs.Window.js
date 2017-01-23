@@ -1,8 +1,8 @@
-includeOnce( "org/asjs/event/asjs.EventDispatcher.js" );
+includeOnce( "org/asjs/display/asjs.PrimitiveDisplayObject.js" );
 includeOnce( "org/asjs/event/asjs.WindowEvent.js" );
 
 ASJS.Window = function() {
-	return createSingletonClass( ASJS.Window, this, ASJS.EventDispatcher, [ window ], 
+	return createSingletonClass( ASJS.Window, this, ASJS.PrimitiveDisplayObject, [ window ], 
 		function( _scope, _super ) {
 			// private object
 			
@@ -145,7 +145,7 @@ ASJS.Window = function() {
 			};
 	
 			_scope.requestAnimationFrame = function( callback ) {
-				_requestAnimationFrame( callback );
+				return _requestAnimationFrame( callback );
 			};
 			
 			_scope.cancelAnimationFrame = function( id ) {
