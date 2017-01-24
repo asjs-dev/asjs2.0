@@ -18,7 +18,6 @@ Geolocation = function() {
 			var _location = new GeolocationData();
 			
 			// constructor
-			_scope.construct = function() {}
 			
 			// public property
 			prop( _scope, "location", {

@@ -17,7 +17,6 @@ ASJS.Sprite = function( tag ) {
 			var _mouseChildren = true;
 			
 			// constructor
-			_scope.construct = function() {}
 			
 			// public property
 			prop( _scope, "bounds", {

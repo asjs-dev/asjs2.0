@@ -19,7 +19,6 @@ function WS() {
 			var _ws;
 			
 			// constructor
-			_scope.construct = function() {}
 			
 			// public property
 			prop( _scope, "url", {

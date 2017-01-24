@@ -16,7 +16,6 @@ ASJS.PixelateBitmapFilter = function( value ) {
 			var _value = Math.max( 1, value || 1 );
 			
 			// constructor
-			_scope.construct = function() {}
 			
 			// public property
 			

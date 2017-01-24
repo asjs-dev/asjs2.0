@@ -17,7 +17,6 @@ ASJS.AbstractModel = function() {
 			var _data = {};
 			
 			// constructor
-			_scope.construct = function() {}
 			
 			// public property
 			prop( _scope, "data", {

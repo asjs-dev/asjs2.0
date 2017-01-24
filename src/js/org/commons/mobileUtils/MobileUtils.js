@@ -18,7 +18,7 @@ function MobileUtils() {
 			var _useScreenSize;
 			
 			// constructor
-			_scope.construct = function() {
+			_scope.new = function() {
 				_dpi = 1;
 		
 				_baseSize = 0;

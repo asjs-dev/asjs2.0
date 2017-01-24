@@ -16,7 +16,6 @@ ASJS.AbstractConvoluteBitmapFilter = function( opaque ) {
 			var _opaque = opaque;
 			
 			// constructor
-			_scope.construct = function() {}
 			
 			// public property
 			

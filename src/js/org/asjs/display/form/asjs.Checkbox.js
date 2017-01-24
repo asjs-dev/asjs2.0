@@ -17,7 +17,7 @@ ASJS.Checkbox = function() {
 			var _label = new ASJS.DisplayObject();
 			
 			// constructor
-			_scope.construct = function() {
+			_scope.new = function() {
 				_checkbox.setAttr( "type", "checkbox" );
 				_checkbox.visible = false;
 				_scope.addChild( _checkbox );

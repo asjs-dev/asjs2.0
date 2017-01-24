@@ -25,7 +25,6 @@ function ContentMediator( view ) {
 			var _contentView = new ContentView();
 			
 			// constructor
-			_scope.construct = function() {}
 			
 			// public property
 			

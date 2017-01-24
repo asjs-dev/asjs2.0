@@ -14,7 +14,7 @@ ASJS.Button = function() {
 			// private variable
 			
 			// constructor
-			_scope.construct = function() {
+			_scope.new = function() {
 				_scope.setAttr( "type", "button" );
 			}
 			

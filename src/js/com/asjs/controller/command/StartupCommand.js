@@ -19,7 +19,6 @@ function StartupCommand() {
 			var _app;
 			
 			// constructor
-			_scope.construct = function() {}
 			
 			// public property
 			
@@ -55,7 +54,7 @@ function StartupCommand() {
 			function initApplication() {
 				( new EnvironmentCommand() ).execute();
 				( new ViewPrepCommand() ).execute( _app );
-		
+				
 				_scope.sendNotification( ContentMediator.SHOW );
 			}
 		}

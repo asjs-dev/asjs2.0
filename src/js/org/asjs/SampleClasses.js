@@ -14,7 +14,6 @@ EmptyClass = function() {
 			// private variable
 			
 			// constructor
-			_scope.construct = function() {}
 			
 			// public property
 			
@@ -70,7 +69,9 @@ BaseClass = function() {
 			var _privateVar;
 			
 			// constructor
-			_scope.construct = function() {}
+			_scope.new = function() {
+				trace( "new BaseClass()" );
+			}
 			
 			// public property
 			prop( _scope, "val", {
@@ -114,7 +115,7 @@ BaseClass = function() {
 				// OR //
 				return createClass( this, [Object | parentClass ], [null | [p1, p2, pn]],
 					function( _scope, _super ) {
-						_scope.construct = function() {}
+						_scope.new = function() {}
 					}
 				);
 			};

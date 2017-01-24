@@ -18,7 +18,6 @@ ASJS.RadialGradientData = function( x0, y0, r0, x1, y1, r1 ) {
 			// private variable
 			
 			// constructor
-			_scope.construct = function() {}
 			
 			// public property
 			

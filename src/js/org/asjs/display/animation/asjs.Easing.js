@@ -27,7 +27,7 @@ ASJS.Easing = function() {
 			var _completeCallback;
 			
 			// constructor
-			_scope.construct = function() {
+			_scope.new = function() {
 				_scope.stop();
 			}
 			

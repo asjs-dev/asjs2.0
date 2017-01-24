@@ -17,7 +17,7 @@ ASJS.RadioButton = function() {
 			var _label = new ASJS.DisplayObject();
 			
 			// constructor
-			_scope.construct = function() {
+			_scope.new = function() {
 				_radio.setAttr( "type", "radio" );
 				_radio.visible = false;
 				_scope.addChild( _radio );

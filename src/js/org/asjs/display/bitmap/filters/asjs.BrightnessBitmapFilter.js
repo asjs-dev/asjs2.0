@@ -15,7 +15,6 @@ ASJS.BrightnessBitmapFilter = function( adjustment ) {
 			var _adjustment = adjustment;
 			
 			// constructor
-			_scope.construct = function() {}
 			
 			// public property
 			

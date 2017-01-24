@@ -14,7 +14,7 @@ ASJS.MediaSource = function( src, type ) {
 			// private variable
 			
 			// constructor
-			_scope.construct = function() {
+			_scope.new = function() {
 				_scope.src = src;
 				_scope.type = type;
 			}

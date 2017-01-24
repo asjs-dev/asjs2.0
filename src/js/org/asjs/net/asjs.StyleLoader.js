@@ -18,7 +18,6 @@ ASJS.StyleLoader = function() {
 			var _style;
 			
 			// constructor
-			_scope.construct = function() {}
 			
 			// public property
 			

@@ -20,7 +20,6 @@ ASJS.Keyboard = function() {
 			var _upCallback;
 			
 			// constructor
-			_scope.construct = function() {}
 			
 			// public property
 			

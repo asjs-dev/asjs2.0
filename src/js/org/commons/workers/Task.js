@@ -12,7 +12,7 @@ function Task() {
 			// private variable
 			
 			// constructor
-			_scope.construct = function() {
+			_scope.new = function() {
 				self.addEventListener( 'message', _scope._onMessage, false);
 			}
 			

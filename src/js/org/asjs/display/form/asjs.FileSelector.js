@@ -19,7 +19,7 @@ ASJS.FileSelector = function() {
 			var _preview = new ASJS.Sprite();
 			
 			// constructor
-			_scope.construct = function() {
+			_scope.new = function() {
 				_scope._fileInput.setAttr( "type", "file" );
 				_scope._fileInput.addEventListener( ASJS.Event.CHANGE, _scope._onChange );
 				_scope._fileInput.visible = false;

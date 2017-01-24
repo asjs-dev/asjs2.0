@@ -15,7 +15,6 @@ ASJS.ThresholdBitmapFilter = function( threshold ) {
 			var _threshold = threshold;
 			
 			// constructor
-			_scope.construct = function() {}
 			
 			// public property
 			

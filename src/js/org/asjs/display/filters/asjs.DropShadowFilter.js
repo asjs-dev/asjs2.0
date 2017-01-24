@@ -14,7 +14,6 @@ ASJS.DropShadowFilter = function( h, v, blur, spread, color ) {
 			// private variable
 			
 			// constructor
-			_scope.construct = function() {}
 			
 			// public property
 			

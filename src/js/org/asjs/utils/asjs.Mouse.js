@@ -20,7 +20,6 @@ ASJS.Mouse = function() {
 			var _mousePos = new ASJS.Point();
 			
 			// constructor
-			_scope.construct = function() {}
 			
 			// public property
 			prop( _scope, "mouseX", {

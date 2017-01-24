@@ -12,10 +12,9 @@ ASJS.CutoutBitmapFilter = function( adjustment ) {
 			// protected variable
 			
 			// private variable
-			var _adjustment = adjustment || 255;;
+			var _adjustment = adjustment || 255;
 			
 			// constructor
-			_scope.construct = function() {}
 			
 			// public property
 			

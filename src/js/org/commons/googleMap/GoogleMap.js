@@ -17,7 +17,7 @@ function GoogleMap() {
 			var _map;
 			
 			// constructor
-			_scope.construct = function() {
+			_scope.new = function() {
 				_scope.addEventListener( ASJS.Stage.ADDED_TO_STAGE, addedToStage );
 		
 				_scope.options = {

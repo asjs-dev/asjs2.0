@@ -14,7 +14,6 @@ ASJS.Head = function() {
 			var _head = $( "head" );
 			
 			// constructor
-			_scope.construct = function() {}
 			
 			// public property
 			prop( _scope, "el", {

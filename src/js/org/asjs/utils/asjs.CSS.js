@@ -20,7 +20,7 @@ ASJS.CSS = function() {
 			var _merged;
 			
 			// constructor
-			_scope.construct = function() {
+			_scope.new = function() {
 				updateMergedList();
 			}
 			
@@ -139,7 +139,6 @@ ASJS.CSS = function() {
 						// private variable
 			
 						// constructor
-						_scope.construct = function() {}
 			
 						// public property
 			

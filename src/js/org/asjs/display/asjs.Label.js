@@ -14,7 +14,6 @@ ASJS.Label = function() {
 			// private variable
 			
 			// constructor
-			_scope.construct = function() {}
 			
 			// public property
 			prop( _scope, "for", {

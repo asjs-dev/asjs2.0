@@ -18,7 +18,6 @@ ASJS.Matrix = function( a, b, c, d, e, f ) {
 			// private variable
 			
 			// constructor
-			_scope.construct = function() {}
 			
 			// public property
 			

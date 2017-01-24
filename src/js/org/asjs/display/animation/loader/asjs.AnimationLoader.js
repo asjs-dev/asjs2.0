@@ -23,7 +23,6 @@ ASJS.AnimationLoader = function() {
 			var _loader;
 			
 			// constructor
-			_scope.construct = function() {}
 			
 			// public property
 			

@@ -16,7 +16,6 @@ ASJS.Rectangle = function( x, y, width, height ) {
 			// private variable
 			
 			// constructor
-			_scope.construct = function() {}
 			
 			// public property
 			

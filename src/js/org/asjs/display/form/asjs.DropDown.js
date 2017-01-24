@@ -17,7 +17,7 @@ ASJS.DropDown = function() {
 			var _select = new ASJS.Sprite( "<select />" );
 			
 			// constructor
-			_scope.construct = function() {
+			_scope.new = function() {
 				_scope.setCSS( "overflow", "hidden" );
 				_scope.addChild( _select );
 			}

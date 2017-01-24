@@ -15,7 +15,6 @@ ASJS.AlphaBitmapFilter = function( type ) {
 			var _isDarkness = type == ASJS.AlphaBitmapFilter.TYPE_DARKNESS;
 			
 			// constructor
-			_scope.construct = function() {}
 			
 			// public property
 			

@@ -18,7 +18,6 @@ ASJS.TintBitmapFilter = function( r, g, b, a ) {
 			var _a = a || 0;
 			
 			// constructor
-			_scope.construct = function() {}
 			
 			// public property
 			

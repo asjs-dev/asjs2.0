@@ -15,7 +15,6 @@ function Language() {
 			var _selectedLanguage;
 			
 			// constructor
-			_scope.construct = function() {}
 			
 			// public property
 			prop( _scope, "supportedLanguages", {

@@ -13,7 +13,6 @@ ASJS.EventDispatcher = function() {
 			var _handlers = {};
 			
 			// constructor
-			_scope.construct = function() {}
 			
 			// public property
 			

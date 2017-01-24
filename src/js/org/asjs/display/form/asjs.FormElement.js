@@ -14,7 +14,7 @@ ASJS.FormElement = function( tag ) {
 			// private variable
 			
 			// constructor
-			_scope.construct = function() {
+			_scope.new = function() {
 				_scope.tabIndex = "auto";
 			}
 			

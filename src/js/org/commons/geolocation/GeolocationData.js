@@ -19,7 +19,7 @@ GeolocationData = function( data ) {
 			// private variable
 			
 			// constructor
-			_scope.construct = function() {
+			_scope.new = function() {
 				var d = data || {};
 				
 				_scope.latitude = d.latitude || 0;

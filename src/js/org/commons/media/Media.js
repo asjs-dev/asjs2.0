@@ -13,7 +13,6 @@ function Media() {
 			var _window = new ASJS.Window();
 			
 			// constructor
-			_scope.construct = function() {}
 			
 			// public property
 			

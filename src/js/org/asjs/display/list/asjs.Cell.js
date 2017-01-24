@@ -17,7 +17,7 @@ ASJS.Cell = function( tag ) {
 			var _checked = false;
 			
 			// constructor
-			_scope.construct = function() {
+			_scope.new = function() {
 				_scope.setCSS( "position", "relative" );
 				_scope.mouseChildren = false;
 				_scope.addEventListener( ASJS.MouseEvent.CLICK, onClick );

@@ -14,7 +14,7 @@ function AbstractView() {
 			var _easing = new ASJS.Easing();
 			
 			// constructor
-			_scope.construct = function() {
+			_scope.new = function() {
 				_scope.addEventListener( ASJS.Stage.ADDED_TO_STAGE, addedToStage );
 			}
 			

@@ -44,7 +44,7 @@ ASJS.AbstractTextElement = function( tag ) {
 			var _restrict;
 			
 			// constructor
-			_scope.construct = function() {
+			_scope.new = function() {
 				_scope.addEventListener( ASJS.KeyboardEvent.KEY_PRESS, onKeyPress );
 				_scope.addEventListener( ASJS.KeyboardEvent.KEY_UP, onKeyUp );
 				_scope.addEventListener( ASJS.Event.CHANGE, onChange );

@@ -19,7 +19,6 @@ ASJS.AnimationDescriptor = function( name, spriteSheet, size, frameDelay, sequen
 			// private variable
 			
 			// constructor
-			_scope.construct = function() {}
 			
 			// public property
 			

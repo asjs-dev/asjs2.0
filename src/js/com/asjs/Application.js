@@ -18,7 +18,7 @@ function Application() {
 			var _notificationWindowView = new ASJS.Sprite();
 			
 			// constructor
-			_scope.construct = function() {
+			_scope.new = function() {
 				trace( "<AS/JS> 2.0 Application" );
 				
 				stage.addChild( _scope.contentView );

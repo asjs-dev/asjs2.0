@@ -14,7 +14,6 @@ ASJS.InvertBitmapFilter = function() {
 			// private variable
 			
 			// constructor
-			_scope.construct = function() {}
 			
 			// public property
 			

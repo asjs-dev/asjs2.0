@@ -15,7 +15,6 @@ ASJS.BlurBitmapFilter = function( opaque, value ) {
 			var _blurValue = Math.max( 1, value || 1 );
 			
 			// constructor
-			_scope.construct = function() {}
 			
 			// public property
 			

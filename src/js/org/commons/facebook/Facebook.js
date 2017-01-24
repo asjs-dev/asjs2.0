@@ -13,7 +13,7 @@ function Facebook( facebookAppId, version ) {
 			var _window = new ASJS.Window();
 			
 			// constructor
-			_scope.construct = function() {
+			_scope.new = function() {
 				_scope.setAttr( "id", "fb-root" );
 				stage.addChild( _scope );
 				

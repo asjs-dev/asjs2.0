@@ -13,7 +13,7 @@ ASJS.CellDataVo = function( data ) {
 			// private variable
 			
 			// constructor
-			_scope.construct = function() {
+			_scope.new = function() {
 				var d = data || {};
 				
 				_scope.id = d.id || null;

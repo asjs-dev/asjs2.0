@@ -20,7 +20,6 @@ ASJS.Cycler = function() {
 			var _timeoutId;
 			
 			// constructor
-			_scope.construct = function() {}
 			
 			// public property
 			prop( _scope, "isPlaying", {

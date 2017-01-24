@@ -23,7 +23,7 @@ Oscillator = function() {
 			var _rafID;
 			
 			// constructor
-			_scope.construct = function() {
+			_scope.new = function() {
 				_scope.stepInterval = 200;
 				_audioContext = new _window.audioContext();
 				_analyser = _audioContext.createAnalyser();

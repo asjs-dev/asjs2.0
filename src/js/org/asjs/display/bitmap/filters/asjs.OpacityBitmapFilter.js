@@ -15,7 +15,6 @@ ASJS.OpacityBitmapFilter = function( adjustment ) {
 			var _adjustment = adjustment || 1;
 			
 			// constructor
-			_scope.construct = function() {}
 			
 			// public property
 			

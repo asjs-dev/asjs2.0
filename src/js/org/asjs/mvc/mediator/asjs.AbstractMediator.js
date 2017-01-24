@@ -15,7 +15,6 @@ ASJS.AbstractMediator = function( view ) {
 			// private variable
 			
 			// constructor
-			_scope.construct = function() {}
 			
 			// public property
 			

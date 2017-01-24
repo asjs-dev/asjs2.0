@@ -14,7 +14,6 @@ ASJS.InvertFilter = function( value ) {
 			// private variable
 			
 			// constructor
-			_scope.construct = function() {}
 			
 			// public property
 			

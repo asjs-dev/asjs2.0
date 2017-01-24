@@ -22,7 +22,7 @@ function NotificationWindowMediator( view ) {
 			var _notificationWindowView = new NotificationWindowView();
 			
 			// constructor
-			_scope.construct = function() {
+			_scope.new = function() {
 				_notificationWindowView.addEventListener( NotificationWindowMediator.HIDE, hide );
 			}
 			

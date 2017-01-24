@@ -29,7 +29,7 @@ PitchDetect = function() {
 			var _interval;
 			
 			// constructor
-			_scope.construct = function() {
+			_scope.new = function() {
 				_scope.bufferLength = 1024;
 				_scope.minSamples = 0;
 				_scope.samplingInterval = 50;

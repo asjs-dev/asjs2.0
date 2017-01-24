@@ -20,7 +20,7 @@ function NotificationWindowView() {
 			var _cancelButton = new ASJS.Button();
 			
 			// constructor
-			_scope.construct = function() {
+			_scope.new = function() {
 				_scope.setCSS( "background-color", "rgba( 0, 0, 0, 0.4 )" );
 				_scope.setSize( "100%", "100%" );
 				_scope.setCSS( "position", "fixed" );

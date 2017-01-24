@@ -24,7 +24,7 @@ ASJS.AnimatedSprite = function() {
 			var _imageCache = [];
 			
 			// constructor
-			_scope.construct = function() {
+			_scope.new = function() {
 				_scope.stop();
 			}
 			

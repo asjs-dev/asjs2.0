@@ -15,7 +15,7 @@ ASJS.ImageSelector = function() {
 			var _reader = new FileReader();
 			
 			// constructor
-			_scope.construct = function() {
+			_scope.new = function() {
 				_reader.onload = readerOnLoad;
 			}
 			

@@ -14,7 +14,7 @@ ASJS.TextInput = function() {
 			// private variable
 			
 			// constructor
-			_scope.construct = function() {
+			_scope.new = function() {
 				_scope.type = ASJS.TextInput.TYPE_TEXT;
 			}
 			

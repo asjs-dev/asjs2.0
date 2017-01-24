@@ -13,7 +13,6 @@ ASJS.NotificationHandler = function() {
 			var _handlers = {};
 			
 			// constructor
-			_scope.construct = function() {}
 			
 			// public property
 			
@@ -30,6 +29,7 @@ ASJS.NotificationHandler = function() {
 				var l = handlers.length;
 				while ( ++i < l ) {
 					var type = handlers[ i ];
+					if ( _handlers[ type ] && _handlers[ type ].indexOf( dispatcher ) > -1 ) break;
 					if ( !_handlers[ type ] ) _handlers[ type ] = [];
 					_handlers[ type ].push( dispatcher );
 				}

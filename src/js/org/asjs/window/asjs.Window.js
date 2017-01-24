@@ -22,7 +22,7 @@ ASJS.Window = function() {
 			var _url;
 			
 			// constructor
-			_scope.construct = function() {
+			_scope.new = function() {
 				_requestAnimationFrame = _scope.el.requestAnimationFrame
 					|| _scope.el.mozRequestAnimationFrame
 					|| _scope.el.webkitRequestAnimationFrame

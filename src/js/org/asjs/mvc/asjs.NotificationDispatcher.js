@@ -16,7 +16,7 @@ ASJS.NotificationDispatcher = function() {
 			var _nHandler = new ASJS.NotificationHandler();
 			
 			// constructor
-			_scope.construct = function() {
+			_scope.new = function() {
 				registerHandlers();
 			}
 			

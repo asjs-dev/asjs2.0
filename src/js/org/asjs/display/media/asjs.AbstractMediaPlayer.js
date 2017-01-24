@@ -14,7 +14,7 @@ ASJS.AbstractMediaPlayer = function( tag ) {
 			// private variable
 			
 			// constructor
-			_scope.construct = function() {
+			_scope.new = function() {
 				_scope.controls = false;
 				_scope.preload = ASJS.AbstractMediaPlayer.PRELOAD_AUTO;
 			}

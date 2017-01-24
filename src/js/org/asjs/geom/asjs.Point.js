@@ -14,7 +14,6 @@ ASJS.Point = function( x, y ) {
 			// private variable
 			
 			// constructor
-			_scope.construct = function() {}
 			
 			// public property
 			

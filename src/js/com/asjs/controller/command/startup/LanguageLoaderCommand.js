@@ -17,7 +17,6 @@ function LanguageLoaderCommand() {
 			var _dataProxy = new DataProxy();
 			
 			// constructor
-			_scope.construct = function() {}
 			
 			// public property
 			

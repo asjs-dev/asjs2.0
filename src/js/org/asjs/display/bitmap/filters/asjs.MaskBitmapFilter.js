@@ -19,7 +19,6 @@ ASJS.MaskBitmapFilter = function( mask, pos, invert, cutout ) {
 			var _cutout = cutout == undefined ? true : cutout;
 			
 			// constructor
-			_scope.construct = function() {}
 			
 			// public property
 			

@@ -26,7 +26,7 @@ ASJS.Bitmap = function( bitmapWidth, bitmapHeight ) {
 			var _original;
 			
 			// constructor
-			_scope.construct = function() {
+			_scope.new = function() {
 				if ( !getContext() ) throw new Error( "ASJS.Bitmap (canvas) is not supported in your browser!" );
 				_scope.setBitmapSize( bitmapWidth, bitmapHeight );
 			}

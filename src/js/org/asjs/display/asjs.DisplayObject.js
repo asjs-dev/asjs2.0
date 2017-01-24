@@ -23,7 +23,7 @@ ASJS.DisplayObject = function( tag ) {
 			var _cssDisplay = "block";
 			
 			// constructor
-			_scope.construct = function() {
+			_scope.new = function() {
 				_scope.tabindex = -1;
 				_scope.setCSS( "pointer-events", "auto" );
 				_scope.setCSS( "position", "absolute" );

@@ -27,7 +27,7 @@ function ContentView() {
 			var _drag = false;
 			
 			// constructor
-			_scope.construct = function() {
+			_scope.new = function() {
 				_scope.addEventListener( ASJS.Stage.ADDED_TO_STAGE, addedToStage );
 			}
 			

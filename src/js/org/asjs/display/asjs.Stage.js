@@ -22,7 +22,6 @@ ASJS.Stage = function() {
 			var _stageHeight = 0;
 			
 			// constructor
-			_scope.construct = function() {}
 			
 			// public property
 			prop( _scope, "title", {

@@ -19,7 +19,6 @@ ASJS.ScriptLoader = function() {
 			var _content;
 			
 			// constructor
-			_scope.construct = function() {}
 			
 			// public property
 			prop( _scope, "type", {

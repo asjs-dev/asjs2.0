@@ -25,7 +25,7 @@ ASJS.Loader = function() {
 			var _data;
 			
 			// constructor
-			_scope.construct = function() {
+			_scope.new = function() {
 				reset();
 			}
 			

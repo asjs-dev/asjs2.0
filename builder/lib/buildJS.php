@@ -107,7 +107,7 @@
 				} else $out .= $line;
 			}
 			
-			if ( $this->obfuscation ) $out = $this->obfuscation( $out );
+			//if ( $this->obfuscation ) $out = $this->obfuscation( $out );
 			
 			$this->output .= ";" . $out;
 		}

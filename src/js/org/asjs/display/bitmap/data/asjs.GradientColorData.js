@@ -15,7 +15,6 @@ ASJS.GradientColorData = function( stop, color, alpha ) {
 			// private variable
 			
 			// constructor
-			_scope.construct = function() {}
 			
 			// public property
 			

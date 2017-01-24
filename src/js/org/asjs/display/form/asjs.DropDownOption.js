@@ -14,7 +14,7 @@ ASJS.DropDownOption = function( value, label, disabled, selected ) {
 			// private variable
 			
 			// constructor
-			_scope.construct = function() {
+			_scope.new = function() {
 				_scope.value = value || 0;
 				_scope.label = label || "";
 				_scope.disabled = disabled || false;

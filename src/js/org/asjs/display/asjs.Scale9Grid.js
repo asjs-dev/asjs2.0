@@ -19,7 +19,7 @@ ASJS.Scale9Grid = function() {
 			var _blocks = [];
 			
 			// constructor
-			_scope.construct = function() {
+			_scope.new = function() {
 				var i = -1;
 				var l = 9;
 				while ( ++i < l ) {

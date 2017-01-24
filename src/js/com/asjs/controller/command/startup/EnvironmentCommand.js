@@ -23,7 +23,6 @@ function EnvironmentCommand() {
 			var _sleepToResizeId;
 			
 			// constructor
-			_scope.construct = function() {}
 			
 			// public property
 			

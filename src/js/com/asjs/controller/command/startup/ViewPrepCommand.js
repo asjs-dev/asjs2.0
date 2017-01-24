@@ -17,7 +17,6 @@ function ViewPrepCommand() {
 			var _language = new Language();
 			
 			// constructor
-			_scope.construct = function() {}
 			
 			// public property
 			

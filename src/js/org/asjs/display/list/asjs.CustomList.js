@@ -22,7 +22,7 @@ ASJS.CustomList = function() {
 			var _name;
 			
 			// constructor
-			_scope.construct = function() {
+			_scope.new = function() {
 				_itemsContainer.setCSS( "position", "relative" );
 				_itemsContainer.setSize( "auto", "auto" );
 				_itemsContainer.addEventListener( ASJS.Cell.CLICK, onCellClick );

@@ -21,7 +21,7 @@ ASJS.PrimitiveDisplayObject = function( tag ) {
 			var _state = priv.CREATED;
 			
 			// constructor
-			_scope.construct = function() {
+			_scope.new = function() {
 				_scope.id = "intance_" + ( ++ASJS.PrimitiveDisplayObject.instanceId );
 			}
 			
