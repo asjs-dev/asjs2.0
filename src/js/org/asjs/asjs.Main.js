@@ -17,51 +17,44 @@ function roFunc( t, pn, f ) {
 	cnst( t, pn, f );
 }
 
-var ASJS = {
-	t: {
-		bc: function( t, p, a, oa, b ) {
-			"asjstbc";
-			var cf = function( t, s, a, f ) {
-				"asjstc";
-				if ( !t.$c ) t.$c = [];
-				if ( t.$c.indexOf( f ) == -1 ) t.$c.push( f );
-				if ( a.callee.caller == null || a.callee.caller.toString().indexOf( "asjstcc" ) == -1 ) {
-					while ( t.$c.length > 0 ) {
-						var fnc = t.$c.shift();
-						if ( typeof fnc == "function" ) fnc.call( t );
-					}
-					t.$c = null;
-					delete t.$c;
-					t.new = null;
-					delete t.new;
-				}
-				return t;
-			};
-			
-			var ccf = function( t, p, a, oa ) {
-				"asjstcc";
-				( p || Object ).apply( t, oa || a );
-				var s = {};
-				for ( var k in t ) {
-					if ( k != "$c" && k != "new" ) {
-						if ( Object.getOwnPropertyDescriptor( t, k ).writable ) s[ k ] = t[ k ];
-						else prop( s, k, Object.getOwnPropertyDescriptor( t, k ) );
-					}
-				}
-				return s;
-			};
-			
-			var s = ccf( t, p, a, oa );
-			if ( typeof b == "function" ) b( t, s );
-			return cf( t, s, a, t.new );
-		}
-	}
-};
-
 function createClass( t, p, oa, b ) {
+	function bc( t, p, a, oa, b ) {
+		function bca( t, s, a, f ) {
+			if ( !t.$c ) t.$c = [];
+			if ( t.$c.indexOf( f ) == -1 ) t.$c.push( f );
+			if ( a.callee.caller == null || a.callee.caller.name != "bcb" ) {
+				while ( t.$c.length > 0 ) {
+					var fnc = t.$c.shift();
+					if ( typeof fnc == "function" ) fnc.call( t );
+				}
+				t.$c = null;
+				t.new = null;
+				delete t.$c;
+				delete t.new;
+			}
+			return t;
+		};
+		
+		function bcb( t, p, a, oa ) {
+			( p || Object ).apply( t, oa || a );
+			var s = {};
+			for ( var k in t ) {
+				if ( k != "$c" && k != "new" ) {
+					if ( Object.getOwnPropertyDescriptor( t, k ).writable ) s[ k ] = t[ k ];
+					else prop( s, k, Object.getOwnPropertyDescriptor( t, k ) );
+				}
+			}
+			return s;
+		};
+		
+		var s = bcb( t, p, a, oa );
+		if ( typeof b == "function" ) b( t, s );
+		return bca( t, s, a, t.new );
+	};
+	
 	var h = arguments.callee.caller;
 	var a = h && h.name == "createSingletonClass" ? h.arguments.callee.caller.arguments : h.arguments;
-	return ASJS.t.bc( t, p, a, oa, b );
+	return bc( t, p, a, oa, b );
 };
 
 function createSingletonClass( o, t, p, oa, b ) {
@@ -76,22 +69,24 @@ function sourcePath( v ) {
 }
 
 var includedScript = {};
-function includeOnce( filename ) {
-	if ( includedScript[ filename ] ) return;
-	includedScript[ filename ] = 1;
+function includeOnce( f ) {
+	if ( includedScript[ f ] ) return;
+	includedScript[ f ] = 1;
 	$.ajaxSetup( { async: false } );
-	$.getScript( sourcePath + filename );
+	$.getScript( sourcePath + f );
 	$.ajaxSetup( { async: true } );
 }
 
 var stage;
-ASJS.inited = false;
-ASJS.start = function( baseClass ) {
-	if ( ASJS.inited ) return;
-	ASJS.inited = true;
-	window.onload = function() {
-		stage = new ASJS.Stage();
-		stage.init();
-		new baseClass();
-	};
-}
+var ASJS = {
+	inited: false,
+	start: function( b ) {
+		if ( ASJS.inited ) return;
+		ASJS.inited = true;
+		window.onload = function() {
+			stage = new ASJS.Stage();
+			stage.init();
+			new b();
+		};
+	}
+};
