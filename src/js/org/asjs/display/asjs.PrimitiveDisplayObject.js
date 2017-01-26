@@ -1,24 +1,23 @@
+includeOnce( "org/asjs/display/asjs.Tag.js" );
 includeOnce( "org/asjs/event/asjs.MouseEvent.js" );
 includeOnce( "org/asjs/window/asjs.Window.js" );
 includeOnce( "org/asjs/geom/asjs.Rectangle.js" );
 
 ASJS.PrimitiveDisplayObject = function( tag ) {
-	return createClass( this, Object, null, 
+	return createClass( this, ASJS.Tag, null, 
 		function( _scope, _super ) {
 			// private object
 			var priv = {};
 			
 			// private const
-			cnst( priv, "CREATED", "created" );
+			cnst( priv, "ADD_PIXEL_TYPES", [ "width", "height", "top", "left" ] );
 			
 			// public variable
-			_scope.jQuery = $( tag || "<div />" );
 			
 			// protected variable
 			
 			// private variable
-			var _parent = null;
-			var _state = priv.CREATED;
+			var _eventHandlers = {};
 			
 			// constructor
 			_scope.new = function() {
@@ -26,38 +25,6 @@ ASJS.PrimitiveDisplayObject = function( tag ) {
 			}
 			
 			// public property
-			prop( _scope, "text", {
-				get: function() { return _scope.jQuery.text(); },
-				set: function( v ) { _scope.jQuery.text( v ); }
-			});
-	
-			prop( _scope, "html", {
-				get: function() { return _scope.jQuery.html(); },
-				set: function( v ) { _scope.jQuery.html( v ); }
-			});
-			
-			prop( _scope, "el", {
-				get: function() { return _scope.jQuery[ 0 ]; }
-			});
-			
-			prop( _scope, "bounds", {
-				get: function() { return new ASJS.Rectangle(); }
-			});
-	
-			prop( _scope, "parent", {
-				get: function() { return _parent; },
-				set: function( v ) {
-					if ( v == null || v.getChildIndex( _scope ) > -1 ) {
-						_parent = v;
-						_scope._sendParentChangeEvent();
-					}
-				}
-			});
-	
-			prop( _scope, "stage", {
-				get: function() { return _scope.parent ? _scope.parent.stage : null; }
-			});
-	
 			prop( _scope, "id", {
 				get: function() { return _scope.getAttr( "id" ); },
 				set: function( v ) { _scope.setAttr( "id", v ); }
@@ -85,85 +52,74 @@ ASJS.PrimitiveDisplayObject = function( tag ) {
 			// public read only function
 			
 			// public function
-			_scope.addClass = function( v ) {
-				return _scope.jQuery.addClass( v );
-			};
-	
-			_scope.removeClass = function( v ) {
-				_scope.jQuery.removeClass( v );
-			};
-			
-			_scope.getAttr = function( k ) {
-				return _scope.jQuery.attr( k );
-			};
-	
-			_scope.setAttr = function( k, v ) {
-				_scope.jQuery.attr( k, v );
-			};
-			
-			_scope.removeAttr = function( k ) {
-				_scope.jQuery.removeAttr( k );
-			};
-			
 			_scope.getCSS = function( k ) {
-				return _scope.jQuery.css( k );
-			};
+				var v = _scope.el.style[ k ];
+				return v.indexOf( "%" ) > -1 && _scope.parent ? ( _scope.parent.width / 100 ) * parseFloat( v ) : v;
+			}
 	
 			_scope.setCSS = function( k, v ) {
-				_scope.jQuery.css( k, v );
-			};
+				_scope.el.style[ k ] = priv.ADD_PIXEL_TYPES.indexOf( k ) > -1 && typeof v == "number" ? v + "px" : v;
+			}
 			
-			_scope.dispatchEvent = function( type, data, bubble ) {
-				var eb = bubble == undefined ? true : bubble;
-				if ( eb ) _scope.jQuery.trigger( type, data );
-				else _scope.jQuery.triggerHandler( type, data );
-			};
+			_scope.dispatchEvent = function( event, data, bubble ) {
+				var e;
+				if ( typeof event == "string" ) {
+					e = new CustomEvent( event, {
+						bubbles: bubble == undefined ? true : bubble, 
+						cancelable: true, 
+						detail: data
+					});
+				} else e = event;
+				_scope.el.dispatchEvent( e );
+			}
 	
-			_scope.addEventListener = function( type, callback ) {
-				if ( type == ASJS.MouseEvent.SCROLL && _scope.jQuery == new ASJS.Window().jQuery ) _scope.jQuery.scroll( callback );
-				else _scope.jQuery.on( type, callback );
-			};
-	
-			_scope.removeEventListeners = function() {
-				_scope.jQuery.off();
-			};
-	
-			_scope.removeEventListener = function( type, callback ) {
-				_scope.jQuery.off( type, null, callback );
-			};
-	
-			_scope.hasEventListener = function( which, handler ) {
-				var events = $._data( _scope.el, "events" );
-				if ( events == undefined ) return false;
-				var w = which.indexOf( " " ) > -1 ? which.split( " " ) : [ which ];
-				var i = -1;
-				var l = w.length;
-				while ( ++i < l ) {
-					var event = events[ w[ i ] ];
-					if ( event != undefined ) {
-						var j = -1;
-						var k = event.length;
-						while ( ++j < k ) {
-							if ( event[ j ].handler == handler ) return true;
-						}
+			_scope.addEventListener = function( type, callback, capture ) {
+				var types = type.split( " " );
+				while ( types.length > 0 ) {
+					var t = types.shift();
+					if ( t != "" ) {
+						if ( _scope.hasEventListener( t, callback ) ) return;
+						if ( !_eventHandlers[ t ] ) _eventHandlers[ t ] = [];
+						_eventHandlers[ t ].push( callback );
+						_scope.el.addEventListener( t, callback, capture );
 					}
 				}
-				return false;
-			};
-			
-			_scope.clear = function() {
-				_scope.html = "";
-				_scope.text = "";
-			};
+			}
+	
+			_scope.removeEventListeners = function() {
+				for ( var type in _eventHandlers ) {
+					var handlers = _eventHandlers[ type ];
+					while ( handlers.length > 0 ) _scope.removeEventListener( type, handlers[ 0 ] );
+				}
+			}
+	
+			_scope.removeEventListener = function( type, callback ) {
+				var handlers = _eventHandlers[ type ];
+				if ( !handlers ) return;
+				if ( callback ) {
+					var i = handlers.indexOf( callback );
+					if ( i == -1 ) return;
+					handlers.splice( i, 1 );
+					_scope.el.removeEventListener( type, callback );
+				} else {
+					while ( handlers.length > 0 ) _scope.removeEventListener( type, handlers[ 0 ] );
+				}
+				if ( handlers.length == 0 ) {
+					_eventHandlers[ type ] = null;
+					delete _eventHandlers[ type ];
+				}
+			}
+	
+			_scope.hasEventListener = function( type, callback ) {
+				var handlers = _eventHandlers[ type ];
+				if ( !handlers ) return false;
+				if ( !callback ) return true;
+				return handlers.indexOf( callback ) > -1;
+			}
 			
 			// protected read only function
 			
 			// protected function
-			_scope._sendParentChangeEvent = function() {
-				var state = _scope.stage ? ASJS.Stage.ADDED_TO_STAGE : ASJS.Stage.REMOVED_FROM_STAGE;
-				if ( _state != priv.CREATED || state != ASJS.Stage.REMOVED_FROM_STAGE ) _scope.dispatchEvent( state, null, false );
-				_state = state;
-			};
 			
 			// private read only function
 			

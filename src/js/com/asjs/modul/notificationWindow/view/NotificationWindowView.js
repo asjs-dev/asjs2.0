@@ -22,7 +22,6 @@ function NotificationWindowView() {
 			// constructor
 			_scope.new = function() {
 				_scope.setCSS( "background-color", "rgba( 0, 0, 0, 0.4 )" );
-				_scope.setSize( "100%", "100%" );
 				_scope.setCSS( "position", "fixed" );
 		
 				_window.size = new ASJS.Point( 30, 80 );
@@ -95,8 +94,9 @@ function NotificationWindowView() {
 			}
 	
 			_scope.drawNow = function() {
-				_window.setSize( Math.max( 150, Math.min( _scope.width, _notificationItem.width ) ), Math.max( 150, Math.min( _scope.height, _notificationItem.height ) ) );
-				_window.move( ( _scope.width - _window.width ) * 0.5, Math.max( 0, ( _scope.height - _window.height ) * 0.5 ) );
+				_scope.setSize( stage.stageWidth, stage.stageHeight );
+				_window.setSize( Math.max( 150, Math.min( stage.stageWidth, _notificationItem.width ) ), Math.max( 150, Math.min( stage.stageHeight, _notificationItem.height ) ) );
+				_window.move( ( stage.stageWidth - _window.width ) * 0.5, Math.max( 0, ( stage.stageHeight - _window.height ) * 0.5 ) );
 				_window.drawNow();
 				
 				_title.move( _window.x + 25, _window.y + 10 );

@@ -1,7 +1,7 @@
 includeOnce( "org/asjs/display/form/asjs.AbstractTextElement.js" );
 
 ASJS.TextArea = function() {
-	return createClass( this, ASJS.AbstractTextElement, [ "<textarea />" ] );
+	return createClass( this, ASJS.AbstractTextElement, [ "textarea" ] );
 }
 // public static const
 

@@ -1,7 +1,7 @@
 includeOnce( "org/asjs/display/asjs.DisplayObject.js" );
 
 ASJS.Label = function() {
-	return createClass( this, ASJS.DisplayObject, [ "<label />" ], 
+	return createClass( this, ASJS.DisplayObject, [ "label" ], 
 		function( _scope, _super ) {
 			// private object
 			

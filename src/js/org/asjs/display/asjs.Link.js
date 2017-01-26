@@ -1,7 +1,7 @@
 includeOnce( "org/asjs/display/asjs.Sprite.js" );
 
 ASJS.Link = function() {
-	return createClass( this, ASJS.Sprite, [ "<a />" ], 
+	return createClass( this, ASJS.Sprite, [ "a" ], 
 		function( _scope, _super ) {
 			// private object
 			

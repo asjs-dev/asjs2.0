@@ -63,22 +63,23 @@ function createSingletonClass( o, t, p, oa, b ) {
 	return o.$i || ( o.$i = createClass( t, p, oa, b ) );
 };
 
-var sourcePath = "";
 function sourcePath( v ) {
-	if ( sourcePath == "" ) sourcePath = v;
+	if ( ASJS.sourcePath == "" ) ASJS.sourcePath = v;
 }
 
-var includedScript = {};
 function includeOnce( f ) {
-	if ( includedScript[ f ] ) return;
-	includedScript[ f ] = 1;
-	$.ajaxSetup( { async: false } );
-	$.getScript( sourcePath + f );
-	$.ajaxSetup( { async: true } );
+	if ( ASJS.includedScript[ f ] ) return;
+	ASJS.includedScript[ f ] = 1;
+	var script = ASJS.Tag( "script" );
+		script.setAttr( "type", "text/javascript" );
+		script.setAttr( "src", ASJS.sourcePath + f );
+	( new ASJS.Head() ).addChild( script );
 }
 
 var stage;
 var ASJS = {
+	sourcePath: "",
+	includedScript: {},
 	inited: false,
 	start: function( b ) {
 		if ( ASJS.inited ) return;

@@ -4,7 +4,7 @@ includeOnce( "org/asjs/geom/asjs.Matrix.js" );
 includeOnce( "org/asjs/geom/asjs.GeomUtils.js" );
 
 ASJS.Bitmap = function( bitmapWidth, bitmapHeight ) {
-	return createClass( this, ASJS.DisplayObject, [ "<canvas />" ], 
+	return createClass( this, ASJS.DisplayObject, [ "canvas" ], 
 		function( _scope, _super ) {
 			// private object
 			var priv = {};

@@ -23,25 +23,34 @@ ASJS.EventDispatcher = function() {
 			// public read only function
 			
 			// public function
-			_scope.dispatchEvent = function( type, data, bubble ) {
-				var eb = bubble == undefined ? true : bubble;
-				
-				var ev = new $.Event( type, data, eb );
-				
-				if ( !_scope.hasEventListener( type ) ) return;
-				var handlers = _handlers[ type ];
+			_scope.dispatchEvent = function( event, data, bubble ) {
+				var e;
+				if ( typeof event == "string" ) {
+					e = new CustomEvent( event, {
+						bubbles: bubble == undefined ? true : bubble, 
+						cancelable: true, 
+						detail: data
+					});
+				} else e = event;
+				var t = e.type || event;
+				if ( !_scope.hasEventListener( t ) ) return;
+				var handlers = _handlers[ t ];
 				var i = -1;
 				var l = handlers.length;
-				while ( ++i < l ) {
-					handlers[ i ]( ev );
-				}
-			};
-	
+				while ( ++i < l ) handlers[ i ]( e );
+			}
+			
 			_scope.addEventListener = function( type, handler ) {
-				if ( _scope.hasEventListener( type, handler ) ) return;
-				if ( !_handlers[ type ] ) _handlers[ type ] = [];
-				_handlers[ type ].push( handler );
-			};
+				var types = type.split( " " );
+				while ( types.length > 0 ) {
+					var t = types.shift();
+					if ( t != "" ) {
+						if ( _scope.hasEventListener( t, handler ) ) return;
+						if ( !_handlers[ t ] ) _handlers[ t ] = [];
+						_handlers[ t ].push( handler );
+					}
+				}
+			}
 	
 			_scope.removeEventListeners = function() {
 				_handlers = {};

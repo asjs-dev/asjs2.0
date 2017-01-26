@@ -116,7 +116,7 @@ ASJS.CSS = function() {
 			
 			function createRunTimeStyle() {
 				if ( hasRunTimeStyle() ) return;
-				_runTimeStyle = new ASJS.PrimitiveDisplayObject( "<style />" );
+				_runTimeStyle = new ASJS.Tag( "style" );
 				_runTimeStyle.setAttr( "type", "text/css" );
 				_head.addChild( _runTimeStyle );
 			}

@@ -1,7 +1,7 @@
 includeOnce( "org/asjs/display/asjs.DisplayObject.js" );
 
 ASJS.MediaSource = function( src, type ) {
-	return createClass( this, ASJS.DisplayObject, [ "<source />" ], 
+	return createClass( this, ASJS.DisplayObject, [ "source" ], 
 		function( _scope, _super ) {
 			// private object
 			

@@ -2,7 +2,7 @@ includeOnce( "org/asjs/display/form/asjs.FormElement.js" );
 includeOnce( "org/asjs/display/asjs.DisplayObject.js" );
 
 ASJS.RadioButton = function() {
-	return createClass( this, ASJS.FormElement, [ "<label />" ], 
+	return createClass( this, ASJS.FormElement, [ "label" ], 
 		function( _scope, _super ) {
 			// private object
 			
@@ -13,7 +13,7 @@ ASJS.RadioButton = function() {
 			// protected variable
 			
 			// private variable
-			var _radio = new ASJS.DisplayObject( "<input />" );
+			var _radio = new ASJS.DisplayObject( "input" );
 			var _label = new ASJS.DisplayObject();
 			
 			// constructor
@@ -45,16 +45,16 @@ ASJS.RadioButton = function() {
 			});
 	
 			prop( _scope, "checked", {
-				get: function() { return _radio.jQuery.is( ":checked" ); },
+				get: function() { return _radio.el.checked; },
 				set: function( v ) {
-					_radio.jQuery.prop( "checked", v );
-					if ( v ) _radio.jQuery.change();
+					_radio.el.checked = v;
+					if ( v ) _radio.el.change();
 				}
 			});
 	
 			prop( _scope, "val", {
-				get: function() { return _radio.getAttr( "value" ); },
-				set: function( v ) { _radio.setAttr( "value", v ); }
+				get: function() { return _radio.value; },
+				set: function( v ) { _radio.value = v; }
 			});
 			
 			// protected property

@@ -1,7 +1,7 @@
 includeOnce( "org/asjs/display/media/asjs.AbstractMediaPlayer.js" );
 
 ASJS.VideoPlayer = function() {
-	return createClass( this, ASJS.AbstractMediaPlayer, [ "<video />" ], 
+	return createClass( this, ASJS.AbstractMediaPlayer, [ "video" ], 
 		function( _scope, _super ) {
 			// private object
 			

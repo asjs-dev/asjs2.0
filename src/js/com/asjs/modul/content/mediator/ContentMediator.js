@@ -69,7 +69,7 @@ function ContentMediator( view ) {
 					_scope.sendNotification( NotificationWindowMediator.SHOW, notificationWindowDataVo );
 				});
 		
-				_dataProxy.loadAnimation( "json/animation/contentAnimation.json" ).done( onLoadAnimation );
+				_dataProxy.loadAnimation( "json/animation/contentAnimation.json" ).resolve( onLoadAnimation );
 	
 				_scope._onResize();
 			}

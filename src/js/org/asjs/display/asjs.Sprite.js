@@ -88,7 +88,7 @@ ASJS.Sprite = function( tag ) {
 			_scope.addChildAt = function( child, index ) {
 				if ( !child ) return null;
 				if ( child.parent ) child.parent.removeChild( child );
-				_scope.jQuery.append( child.jQuery );
+				_scope.el.appendChild( child.el );
 				child.enabled = child.enabled ? _mouseChildren : child.enabled;
 				_children.push( child );
 				_scope.setChildIndex( child, index );
@@ -98,7 +98,7 @@ ASJS.Sprite = function( tag ) {
 	
 			_scope.removeChild = function( child ) {
 				if ( !child ) return null;
-				child.jQuery.detach();
+				_scope.el.removeChild( child.el );
 				var index = _scope.getChildIndex( child );
 				if ( index > -1 ) _children.splice( index, 1 );
 				child.parent = null;
@@ -118,7 +118,7 @@ ASJS.Sprite = function( tag ) {
 				var childActualIndex = _scope.getChildIndex( child );
 				if ( childActualIndex > -1 ) _children.splice( childActualIndex, 1 );
 				var afterChild = _scope.getChildAt( index );
-				if ( afterChild ) child.jQuery.insertBefore( afterChild.jQuery );
+				if ( afterChild ) _scope.el.insertBefore( child.el, afterChild.el );
 				_children.splice( index, 0, child );
 				return child;
 			}

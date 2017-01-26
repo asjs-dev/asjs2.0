@@ -13,7 +13,7 @@ ASJS.FileSelector = function() {
 			// public variable
 			
 			// protected variable
-			_scope._fileInput = new ASJS.DisplayObject( "<input />" );
+			_scope._fileInput = new ASJS.DisplayObject( "input" );
 			
 			// private variable
 			var _preview = new ASJS.Sprite();
@@ -38,7 +38,7 @@ ASJS.FileSelector = function() {
 			});
 	
 			prop( _scope, "val", {
-				get: function() { return _scope._fileInput.jQuery.val(); }
+				get: function() { return _scope._fileInput.el.value; }
 			});
 	
 			prop( _scope, "fileInput", {
@@ -80,7 +80,7 @@ ASJS.FileSelector = function() {
 			// private function
 			function onClick( e ) {
 				if ( e.target == _scope._fileInput.el ) return;
-				_scope._fileInput.jQuery.click();
+				_scope._fileInput.el.click();
 			}
 		}
 	);

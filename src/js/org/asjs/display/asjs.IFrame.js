@@ -1,7 +1,7 @@
 includeOnce( "org/asjs/display/asjs.DisplayObject.js" );
 
 ASJS.IFrame = function() {
-	return createClass( this, ASJS.DisplayObject, [ "<iframe />" ], 
+	return createClass( this, ASJS.DisplayObject, [ "iframe" ], 
 		function( _scope, _super ) {
 			// private object
 			

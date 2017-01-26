@@ -27,7 +27,7 @@ function DataProxy() {
 			
 			// public function
 			_scope.loadJSON = function( url ) {
-				var dfd = new $.Deferred();
+				var dfd = new ASJS.Deferred();
 		
 				var loader = new JSONLoader();
 					loader.method = ASJS.RequestMethod.GET;
@@ -39,7 +39,7 @@ function DataProxy() {
 					});
 					loader.load( url );
 		
-				return dfd.promise();
+				return dfd.promise;
 			}
 	
 			_scope.loadAnimation = function( url ) {

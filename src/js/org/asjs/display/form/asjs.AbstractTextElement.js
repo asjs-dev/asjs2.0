@@ -65,8 +65,8 @@ ASJS.AbstractTextElement = function( tag ) {
 			});
 	
 			prop( _scope, "val", {
-				get: function() { return _scope.jQuery.val(); },
-				set: function( v ) { _scope.jQuery.val( v ); }
+				get: function() { return _scope.el.value; },
+				set: function( v ) { _scope.el.value = v; }
 			});
 	
 			prop( _scope, "maxChar", {

@@ -2,6 +2,8 @@ includeOnce( "org/asjs/net/asjs.Loader.js" );
 includeOnce( "org/asjs/net/asjs.RequestMethod.js" );
 includeOnce( "org/asjs/event/asjs.LoaderEvent.js" );
 
+includeOnce( "org/asjs/utils/asjs.Deferred.js" );
+
 includeOnce( "org/asjs/display/animation/asjs.AnimationDescriptor.js" );
 
 includeOnce( "org/asjs/geom/asjs.Rectangle.js" );
@@ -36,7 +38,7 @@ ASJS.AnimationLoader = function() {
 			
 			// public function
 			_scope.load = function( url ) {
-				_dfd = $.Deferred();
+				_dfd = new ASJS.Deferred();
 		
 				_loader = new ASJS.Loader();
 				_loader.addEventListener( ASJS.LoaderEvent.LOAD, onLoad );
@@ -45,7 +47,7 @@ ASJS.AnimationLoader = function() {
 				_loader.responseType = "json";
 				_loader.load( url );
 		
-				return _dfd.promise();
+				return _dfd.promise;
 			}
 			
 			// protected read only function

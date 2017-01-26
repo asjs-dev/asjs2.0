@@ -2,7 +2,7 @@ includeOnce( "org/asjs/display/asjs.DisplayObject.js" );
 includeOnce( "org/asjs/display/bitmap/asjs.Bitmap.js" );
 
 ASJS.Image = function() {
-	return createClass( this, ASJS.DisplayObject, [ "<img />" ], 
+	return createClass( this, ASJS.DisplayObject, [ "img" ], 
 		function( _scope, _super ) {
 			// private object
 			

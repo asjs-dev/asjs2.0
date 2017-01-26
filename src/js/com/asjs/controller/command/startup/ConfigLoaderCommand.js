@@ -30,12 +30,12 @@ function ConfigLoaderCommand() {
 			
 			// public function
 			_scope.execute = function() {
-				var dfd = _dataProxy.loadJSON( "json/config.json" );
-					dfd.done(function( response ) {
+				var promise = _dataProxy.loadJSON( "json/config.json" );
+					promise.resolve(function( response ) {
 						_config.data = response;
 					});
 		
-				return dfd;
+				return promise;
 			}
 			
 			// protected read only function

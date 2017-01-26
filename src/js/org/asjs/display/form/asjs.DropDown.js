@@ -14,7 +14,7 @@ ASJS.DropDown = function() {
 			// protected variable
 			
 			// private variable
-			var _select = new ASJS.Sprite( "<select />" );
+			var _select = new ASJS.Sprite( "select" );
 			
 			// constructor
 			_scope.new = function() {
@@ -40,8 +40,8 @@ ASJS.DropDown = function() {
 			});
 	
 			prop( _scope, "val", {
-				get: function() { return _select.jQuery.val(); },
-				set: function( v ) { _select.jQuery.val( v ); }
+				get: function() { return _select.el.value; },
+				set: function( v ) { _select.el.value = v; }
 			});
 			
 			// protected property

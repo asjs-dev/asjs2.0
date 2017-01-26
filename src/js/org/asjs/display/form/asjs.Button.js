@@ -1,7 +1,7 @@
 includeOnce( "org/asjs/display/form/asjs.FormElement.js" );
 
 ASJS.Button = function() {
-	return createClass( this, ASJS.FormElement, [ "<input />" ], 
+	return createClass( this, ASJS.FormElement, [ "input" ], 
 		function( _scope, _super ) {
 			// private object
 			

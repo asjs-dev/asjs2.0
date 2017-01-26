@@ -1,5 +1,5 @@
 function GoogleMap() {
-	return createClass( this, ASJS.Sprite, [ "<p />" ], 
+	return createClass( this, ASJS.Sprite, [ "p" ], 
 		function( _scope, _super ) {
 			// private object
 			

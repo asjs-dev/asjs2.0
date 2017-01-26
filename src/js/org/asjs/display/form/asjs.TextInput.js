@@ -1,7 +1,7 @@
 includeOnce( "org/asjs/display/form/asjs.AbstractTextElement.js" );
 
 ASJS.TextInput = function() {
-	return createClass( this, ASJS.AbstractTextElement, [ "<input />" ], 
+	return createClass( this, ASJS.AbstractTextElement, [ "input" ], 
 		function( _scope, _super ) {
 			// private object
 			

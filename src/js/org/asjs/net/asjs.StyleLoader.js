@@ -1,6 +1,6 @@
 includeOnce( "org/asjs/net/asjs.Loader.js" );
 includeOnce( "org/asjs/window/asjs.Head.js" );
-includeOnce( "org/asjs/display/asjs.PrimitiveDisplayObject.js" );
+includeOnce( "org/asjs/display/asjs.Tag.js" );
 
 ASJS.StyleLoader = function() {
 	return createClass( this, ASJS.Loader, null, 
@@ -30,7 +30,7 @@ ASJS.StyleLoader = function() {
 			// public function
 			_scope.useStyle = function() {
 				if ( _style || _super.content == "" ) return;
-				_style = new ASJS.PrimitiveDisplayObject( "<style />" );
+				_style = new ASJS.Tag( "style" );
 				_style.setAttr( "type", "text/css" );
 				_style.text = _super.content;
 				_head.addChild( _style );

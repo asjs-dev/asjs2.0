@@ -44,11 +44,11 @@ function StartupCommand() {
 			
 			// private function
 			function loadConfig() {
-				( new ConfigLoaderCommand() ).execute().done( loadLanguage );
+				( new ConfigLoaderCommand() ).execute().resolve( loadLanguage );
 			}
 	
 			function loadLanguage() {
-				( new LanguageLoaderCommand() ).execute().done( initApplication );
+				( new LanguageLoaderCommand() ).execute().resolve( initApplication );
 			}
 	
 			function initApplication() {

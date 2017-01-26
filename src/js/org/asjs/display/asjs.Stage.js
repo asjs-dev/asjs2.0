@@ -4,7 +4,7 @@ includeOnce( "org/asjs/utils/asjs.Mouse.js" );
 includeOnce( "org/asjs/window/asjs.Window.js" );
 
 ASJS.Stage = function() {
-	return createSingletonClass( ASJS.Stage, this, ASJS.Sprite, [ "body" ], 
+	return createSingletonClass( ASJS.Stage, this, ASJS.Sprite, [ document.body ], 
 		function( _scope, _super ) {
 			// private object
 			

@@ -30,12 +30,12 @@ function LanguageLoaderCommand() {
 			
 			// public function
 			_scope.execute = function() {
-				var dfd = _dataProxy.loadJSON( "json/language.json" );
-					dfd.done(function( response ) {
+				var promise = _dataProxy.loadJSON( "json/language.json" );
+					promise.resolve(function( response ) {
 						_language.data = response;
 					});
 		
-				return dfd;
+				return promise;
 			}
 			
 			// protected read only function

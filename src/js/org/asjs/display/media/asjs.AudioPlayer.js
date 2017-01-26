@@ -1,7 +1,7 @@
 includeOnce( "org/asjs/display/media/asjs.AbstractMediaPlayer.js" );
 
 ASJS.AudioPlayer = function() {
-	return createClass( this, ASJS.AbstractMediaPlayer, [ "<audio />" ] );
+	return createClass( this, ASJS.AbstractMediaPlayer, [ "audio" ] );
 }
 // public static const
 

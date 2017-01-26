@@ -1,8 +1,8 @@
-includeOnce( "org/asjs/display/asjs.PrimitiveDisplayObject.js" );
+includeOnce( "org/asjs/event/asjs.EventDispatcher.js" );
 includeOnce( "org/asjs/event/asjs.WindowEvent.js" );
 
 ASJS.Window = function() {
-	return createSingletonClass( ASJS.Window, this, ASJS.PrimitiveDisplayObject, [ window ], 
+	return createSingletonClass( ASJS.Window, this, ASJS.EventDispatcher, null, 
 		function( _scope, _super ) {
 			// private object
 			
@@ -13,6 +13,7 @@ ASJS.Window = function() {
 			// protected variable
 				
 			// private variable
+			var _el = window;
 			var _browserStatus;
 			var _requestAnimationFrame;
 			var _cancelAnimationFrame;
@@ -23,6 +24,12 @@ ASJS.Window = function() {
 			
 			// constructor
 			_scope.new = function() {
+				for ( var key in _el ) {
+					if( key.search( 'on' ) === 0 ) _el.addEventListener( key.slice( 2 ), function( e ) {
+						_scope.dispatchEvent( e );
+					});
+				}
+				
 				_requestAnimationFrame = _scope.el.requestAnimationFrame
 					|| _scope.el.mozRequestAnimationFrame
 					|| _scope.el.webkitRequestAnimationFrame
@@ -42,16 +49,20 @@ ASJS.Window = function() {
 			}
 			
 			// public property
+			prop( _scope, "el", {
+				get: function() { return _el; }
+			});
+			
 			prop( _scope, "isOnline", {
 				get: function() { return _browserStatus == ASJS.WindowEvent.ONLINE; }
 			});
 	
 			prop( _scope, "width", {
-				get: function() { return _scope.jQuery.width(); }
+				get: function() { return _scope.el.innerWidth || document.documentElement.clientWidth || document.body.clientWidth; }
 			});
 	
 			prop( _scope, "height", {
-				get: function() { return _scope.jQuery.height(); }
+				get: function() { return _scope.el.innerHeight || document.documentElement.clientHeight || document.body.clientHeight; }
 			});
 	
 			prop( _scope, "screen", {
@@ -103,13 +114,13 @@ ASJS.Window = function() {
 			});
 			
 			prop( _scope, "scrollTop", {
-				get: function() { return _scope.jQuery.scrollTop(); },
-				set: function( v ) { _scope.jQuery.scrollTop( v ); }
+				get: function() { return ( _scope.el.pageYOffset != undefined ? _scope.el.pageYOffset : document.scrollTop ) - ( document.clientTop || 0 ); },
+				set: function( v ) { _scope.el.scrollTo( _scope.scrollLeft, v ); }
 			});
 	
 			prop( _scope, "scrollLeft", {
-				get: function() { return _scope.jQuery.scrollLeft(); },
-				set: function( v ) { _scope.jQuery.scrollLeft( v ); }
+				get: function() { return ( _scope.el.pageXOffset != undefined ? _scope.el.pageXOffset : document.scrollLeft ) - ( document.clientLeft || 0 ); },
+				set: function( v ) { _scope.el.scrollTo( v, _scope.scrollTop ); }
 			});
 	
 			prop( _scope, "location", {

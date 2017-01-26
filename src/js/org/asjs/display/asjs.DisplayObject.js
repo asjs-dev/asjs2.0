@@ -121,12 +121,12 @@ ASJS.DisplayObject = function( tag ) {
 			});
 	
 			prop( _scope, "width", {
-				get: function() { return _scope.jQuery.width() * _scaleX; },
+				get: function() { return parseFloat( _scope.getCSS( "width" ) ) * _scaleX; },
 				set: function( v ) { _scope.setCSS( "width", typeof v != "number" ? v : ( parseFloat( v ) / _scaleX ) ); }
 			});
 	
 			prop( _scope, "height", {
-				get: function() { return _scope.jQuery.height() * _scaleY; },
+				get: function() { return parseFloat( _scope.getCSS( "height" ) ) * _scaleY; },
 				set: function( v ) { _scope.setCSS( "height", typeof v != "number" ? v : ( parseFloat( v ) / _scaleY ) ); }
 			});
 	

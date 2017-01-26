@@ -2,7 +2,7 @@ includeOnce( "org/asjs/display/form/asjs.FormElement.js" );
 includeOnce( "org/asjs/display/asjs.DisplayObject.js" );
 
 ASJS.Checkbox = function() {
-	return createClass( this, ASJS.FormElement, [ "<label />" ], 
+	return createClass( this, ASJS.FormElement, [ "label" ], 
 		function( _scope, _super ) {
 			// private object
 			
@@ -13,7 +13,7 @@ ASJS.Checkbox = function() {
 			// protected variable
 			
 			// private variable
-			var _checkbox = new ASJS.DisplayObject( "<input />" );
+			var _checkbox = new ASJS.DisplayObject( "input" );
 			var _label = new ASJS.DisplayObject();
 			
 			// constructor
@@ -49,10 +49,10 @@ ASJS.Checkbox = function() {
 			});
 	
 			prop( _scope, "checked", {
-				get: function() { return _checkbox.jQuery.is( ":checked" ); },
+				get: function() { return _checkbox.el.checked; },
 				set: function( v ) {
-					_checkbox.jQuery.prop( "checked", v );
-					_checkbox.jQuery.change();
+					_checkbox.el.checked = v;
+					_checkbox.el.change();
 				}
 			});
 			

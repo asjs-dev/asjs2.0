@@ -11,7 +11,7 @@ ASJS.Head = function() {
 				
 			// private variable
 			var _children = [];
-			var _head = $( "head" );
+			var _el = document.head;
 			
 			// constructor
 			
@@ -34,24 +34,27 @@ ASJS.Head = function() {
 			_scope.addChild = function( child ) {
 				if ( !child ) return null;
 				if ( child.parent ) child.parent.removeChild( child );
-				child.enabled = child.enabled ? _mouseChildren : child.enabled;
 				_children.push( child );
-				_head.append( child.el );
+				_el.append( child.el );
 				child.parent = _scope;
 				return child;
 			}
 			
 			_scope.removeChild = function( child ) {
 				if ( !child ) return null;
-				child.jQuery.detach();
-				var index = getChildIndex( child );
+	            _el.removeChild( child.el );
+				var index = _scope.getChildIndex( child );
 				if ( index > -1 ) _children.splice( index, 1 );
 				child.parent = null;
 				return child;
 			}
 			
 			_scope.contains = function( child ) {
-				return getChildIndex( child ) > -1;
+				return _scope.getChildIndex( child ) > -1;
+			}
+			
+			_scope.getChildIndex = function( child ) {
+				return !child ? -1 : _children.indexOf( child );
 			}
 			
 			// protected read only function
@@ -61,9 +64,6 @@ ASJS.Head = function() {
 			// private read only function
 			
 			// private function
-			function getChildIndex( child ) {
-				return !child ? -1 : _children.indexOf( child );
-			}
 		}
 	);
 };
