@@ -1,5 +1,5 @@
-includeOnce( "com/asjs/modul/content/mediator/ContentMediator.js" );
-includeOnce( "com/asjs/modul/notificationWindow/mediator/NotificationWindowMediator.js" );
+includeOnce( "com/asjs/module/content/mediator/ContentMediator.js" );
+includeOnce( "com/asjs/module/notificationWindow/mediator/NotificationWindowMediator.js" );
 includeOnce( "com/asjs/model/Language.js" );
 
 function ViewPrepCommand() {

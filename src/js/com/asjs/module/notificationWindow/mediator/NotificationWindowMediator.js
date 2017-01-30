@@ -1,6 +1,6 @@
 includeOnce( "com/asjs/mediator/AbstractResizeMediator.js" );
-includeOnce( "com/asjs/modul/notificationWindow/view/NotificationWindowView.js" );
-includeOnce( "com/asjs/modul/notificationWindow/model/vo/NotificationWindowDataVo.js" );
+includeOnce( "com/asjs/module/notificationWindow/view/NotificationWindowView.js" );
+includeOnce( "com/asjs/module/notificationWindow/model/vo/NotificationWindowDataVo.js" );
 
 function NotificationWindowMediator( view ) {
 	return createClass( this, AbstractResizeMediator, null, 

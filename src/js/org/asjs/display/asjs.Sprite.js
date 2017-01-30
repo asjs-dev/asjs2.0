@@ -1,7 +1,6 @@
 includeOnce( "org/asjs/display/asjs.DisplayObject.js" );
 
 ASJS.Sprite = function( tag ) {
-	var t = ( new Date() ).valueOf();
 	return createClass( this, ASJS.DisplayObject, null, 
 		function( _scope, _super ) {
 			// private object

@@ -2,10 +2,10 @@ includeOnce( "com/asjs/mediator/AbstractResizeMediator.js" );
 includeOnce( "com/asjs/model/Language.js" );
 includeOnce( "com/asjs/model/proxy/DataProxy.js" );
 
-includeOnce( "com/asjs/modul/content/view/ContentView.js" );
+includeOnce( "com/asjs/module/content/view/ContentView.js" );
 
-includeOnce( "com/asjs/modul/notificationWindow/mediator/NotificationWindowMediator.js" );
-includeOnce( "com/asjs/modul/notificationWindow/model/vo/NotificationWindowDataVo.js" );
+includeOnce( "com/asjs/module/notificationWindow/mediator/NotificationWindowMediator.js" );
+includeOnce( "com/asjs/module/notificationWindow/model/vo/NotificationWindowDataVo.js" );
 
 function ContentMediator( view ) {
 	return createClass( this, AbstractResizeMediator, null, 

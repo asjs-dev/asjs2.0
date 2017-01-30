@@ -17,7 +17,6 @@ ASJS.PrimitiveDisplayObject = function( tag ) {
 			// protected variable
 			
 			// private variable
-			var _eventHandlers = {};
 			
 			// constructor
 			_scope.new = function() {
@@ -59,62 +58,6 @@ ASJS.PrimitiveDisplayObject = function( tag ) {
 	
 			_scope.setCSS = function( k, v ) {
 				_scope.el.style[ k ] = priv.ADD_PIXEL_TYPES.indexOf( k ) > -1 && typeof v == "number" ? v + "px" : v;
-			}
-			
-			_scope.dispatchEvent = function( event, data, bubble ) {
-				var e;
-				if ( typeof event == "string" ) {
-					e = new CustomEvent( event, {
-						bubbles: bubble == undefined ? true : bubble, 
-						cancelable: true, 
-						detail: data
-					});
-				} else e = event;
-				_scope.el.dispatchEvent( e );
-			}
-	
-			_scope.addEventListener = function( type, callback, capture ) {
-				var types = type.split( " " );
-				while ( types.length > 0 ) {
-					var t = types.shift();
-					if ( t != "" ) {
-						if ( _scope.hasEventListener( t, callback ) ) return;
-						if ( !_eventHandlers[ t ] ) _eventHandlers[ t ] = [];
-						_eventHandlers[ t ].push( callback );
-						_scope.el.addEventListener( t, callback, capture );
-					}
-				}
-			}
-	
-			_scope.removeEventListeners = function() {
-				for ( var type in _eventHandlers ) {
-					var handlers = _eventHandlers[ type ];
-					while ( handlers.length > 0 ) _scope.removeEventListener( type, handlers[ 0 ] );
-				}
-			}
-	
-			_scope.removeEventListener = function( type, callback ) {
-				var handlers = _eventHandlers[ type ];
-				if ( !handlers ) return;
-				if ( callback ) {
-					var i = handlers.indexOf( callback );
-					if ( i == -1 ) return;
-					handlers.splice( i, 1 );
-					_scope.el.removeEventListener( type, callback );
-				} else {
-					while ( handlers.length > 0 ) _scope.removeEventListener( type, handlers[ 0 ] );
-				}
-				if ( handlers.length == 0 ) {
-					_eventHandlers[ type ] = null;
-					delete _eventHandlers[ type ];
-				}
-			}
-	
-			_scope.hasEventListener = function( type, callback ) {
-				var handlers = _eventHandlers[ type ];
-				if ( !handlers ) return false;
-				if ( !callback ) return true;
-				return handlers.indexOf( callback ) > -1;
 			}
 			
 			// protected read only function
