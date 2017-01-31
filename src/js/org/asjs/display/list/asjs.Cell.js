@@ -64,10 +64,10 @@ ASJS.Cell = function( tag ) {
 			
 			// private function
 			function onClick( e ) {
-				var ev = new ASJS.MouseEvent( ASJS.Cell.CLICK );
-					ev.ctrlKey = e.ctrlKey;
-					ev.shiftKey = e.shiftKey;
-				_scope.dispatchEvent( ev );
+				_scope.dispatchEvent( ASJS.Cell.CLICK, {
+					ctrlKey: e.ctrlKey,
+					shiftKey: e.shiftKey
+				});
 			}
 		}
 	);

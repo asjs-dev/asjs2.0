@@ -42,14 +42,14 @@ roFunc( Tools, "getURLParams", function( param ) {
 	return urlParams[ param ];
 });
 
-roFunc( Tools, "createUrlParams", function( params ) {
+roFunc( Tools, "createUrlParams", function( params, reload ) {
 	var url = "";
 	for ( var k in params ) {
 		if ( url != "" ) url += "&";
 		url += k + "=" + params[ k ];
 	}
 	new ASJS.Window().location.href = '#' + url;
-	Tools.reload();
+	if ( reload ) Tools.reload();
 });
 
 roFunc( Tools, "reload", function() {

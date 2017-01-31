@@ -178,12 +178,12 @@ ASJS.CustomList = function() {
 				var cell = _itemsContainer.getChildByDOMObject( e.target );
 				if ( !cell ) return;
 		
-				if ( !_scope.multiselect || ( !e.ctrlKey && !e.shiftKey ) ) _scope.clearSelection();
+				if ( !_scope.multiselect || ( !e.detail.ctrlKey && !e.detail.shiftKey ) ) _scope.clearSelection();
 		
-				cell.checked = e.ctrlKey ? !cell.checked : true;
+				cell.checked = e.detail.ctrlKey ? !cell.checked : true;
 				var cellIndex = _itemsContainer.getChildIndex( cell );
 		
-				if ( !e.ctrlKey && e.shiftKey ) {
+				if ( !e.detail.ctrlKey && e.detail.shiftKey ) {
 					var i = -1;
 					var l = Math.abs( cellIndex - _lastCellIndex );
 					var step = cellIndex > _lastCellIndex ? -1 : 1;
