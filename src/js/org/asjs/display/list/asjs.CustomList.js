@@ -19,7 +19,7 @@ ASJS.CustomList = function() {
 			var _cell = ASJS.Cell;
 			var _lastCellIndex = 0;
 			var _itemsContainer = new ASJS.Sprite();
-			var _name;
+			var _name = "";
 			
 			// constructor
 			_scope.new = function() {
@@ -177,18 +177,18 @@ ASJS.CustomList = function() {
 			function onCellClick( e ) {
 				var cell = _itemsContainer.getChildByDOMObject( e.target );
 				if ( !cell ) return;
-		
+				
 				if ( !_scope.multiselect || ( !e.detail.ctrlKey && !e.detail.shiftKey ) ) _scope.clearSelection();
 		
 				cell.checked = e.detail.ctrlKey ? !cell.checked : true;
 				var cellIndex = _itemsContainer.getChildIndex( cell );
 		
-				if ( !e.detail.ctrlKey && e.detail.shiftKey ) {
+				if ( _scope.multiselect && !e.detail.ctrlKey && e.detail.shiftKey ) {
 					var i = -1;
 					var l = Math.abs( cellIndex - _lastCellIndex );
 					var step = cellIndex > _lastCellIndex ? -1 : 1;
 					while ( ++i < l ) {
-						cell = _scope.getCellAt( cellIndex + ( i * step ) );
+						cell = _scope.getCellAt( cellIndex + ( ( i + 1 ) * step ) );
 						cell.checked = true;
 					}
 				}
