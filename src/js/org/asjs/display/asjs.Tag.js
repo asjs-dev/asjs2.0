@@ -100,15 +100,18 @@ ASJS.Tag = function( tag ) {
 			}
 			
 			_scope.dispatchEvent = function( event, data, bubble ) {
-				var e;
-				if ( typeof event == "string" ) {
-					e = new CustomEvent( event, {
-						bubbles: bubble == undefined ? true : bubble, 
-						cancelable: true, 
-						detail: data
-					});
-				} else e = event;
-				_scope.el.dispatchEvent( e );
+				try {
+					var e;
+					if ( typeof event == "string" ) {
+						e = new CustomEvent( event, {
+							bubbles: bubble == undefined ? true : bubble, 
+							cancelable: true, 
+							detail: data
+						});
+					} else e = event;
+					_scope.el.dispatchEvent( e );
+				} catch ( e ) {
+				}
 			}
 	
 			_scope.addEventListener = function( type, callback, capture ) {
