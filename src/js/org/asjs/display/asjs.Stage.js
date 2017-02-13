@@ -20,7 +20,6 @@ ASJS.Stage = function() {
 			var _window = new ASJS.Window();
 			var _stageWidth = 0;
 			var _stageHeight = 0;
-			var _stageResizeTimeoutId;
 			
 			// constructor
 			
@@ -69,22 +68,19 @@ ASJS.Stage = function() {
 			
 			// private function
 			function recalcStageSize() {
-				_stageResizeTimeoutId = _window.clearTimeout( _stageResizeTimeoutId );
-				_stageResizeTimeoutId = _window.setTimeout( function() {
-					var overflowX = _scope.getCSS( "overflow-x" );
-					var overflowY = _scope.getCSS( "overflow-y" );
-					
-					_scope.setCSS( "overflow-x", "hidden" );
-					_scope.setCSS( "overflow-y", "hidden" );
-		
-					_stageWidth = _window.width;
-					_stageHeight = _window.height;
-		
-					_scope.setCSS( "overflow-x", overflowX );
-					_scope.setCSS( "overflow-y", overflowY );
-		
-					_scope.dispatchEvent( ASJS.Stage.RESIZE );
-				}, 50 );
+				var overflowX = _scope.getCSS( "overflow-x" );
+				var overflowY = _scope.getCSS( "overflow-y" );
+
+				_scope.setCSS( "overflow-x", "hidden" );
+				_scope.setCSS( "overflow-y", "hidden" );
+
+				_stageWidth = _window.width;
+				_stageHeight = _window.height;
+
+				_scope.setCSS( "overflow-x", overflowX );
+				_scope.setCSS( "overflow-y", overflowY );
+
+				_scope.dispatchEvent( ASJS.Stage.RESIZE );
 			}
 		}
 	);
