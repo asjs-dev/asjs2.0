@@ -2,6 +2,7 @@ includeOnce( "org/asjs/display/asjs.Tag.js" );
 includeOnce( "org/asjs/event/asjs.MouseEvent.js" );
 includeOnce( "org/asjs/window/asjs.Window.js" );
 includeOnce( "org/asjs/geom/asjs.Rectangle.js" );
+includeOnce( "org/asjs/utils/asjs.CSS.js" );
 
 ASJS.PrimitiveDisplayObject = function( tag ) {
 	return createClass( this, ASJS.Tag, null, 
@@ -52,11 +53,13 @@ ASJS.PrimitiveDisplayObject = function( tag ) {
 			
 			// public function
 			_scope.getCSS = function( k ) {
-				var v = _scope.el.style[ k ];
-				return v.indexOf( "%" ) > -1 && _scope.parent ? ( _scope.parent.width / 100 ) * parseFloat( v ) : v;
+				var style = window.getComputedStyle( _scope.el );
+				var v = style.getPropertyValue( k );
+				return priv.ADD_PIXEL_TYPES.indexOf( k ) > -1 ? parseFloat( v ) : v;
 			}
 	
 			_scope.setCSS = function( k, v ) {
+				k = ASJS.CSS.replaceHyphen( k );
 				_scope.el.style[ k ] = priv.ADD_PIXEL_TYPES.indexOf( k ) > -1 && typeof v == "number" ? v + "px" : v;
 			}
 			
@@ -67,6 +70,9 @@ ASJS.PrimitiveDisplayObject = function( tag ) {
 			// private read only function
 			
 			// private function
+			function getAbsoluteValue( v ) {
+				return typeof v == "string" && v.indexOf( "%" ) > -1 && _scope.parent ? ( _scope.parent.width / 100 ) * parseFloat( v ) : v;
+			}
 		}
 	);
 };

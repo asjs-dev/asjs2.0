@@ -87,7 +87,6 @@ ASJS.DisplayObject = function( tag ) {
 					var i = -1;
 					var l = _filters.length;
 					while ( ++i < l ) filters += " " + _filters[ i ].execute();
-					_scope.setCSS( "-webkit-filter", filters );
 					_scope.setCSS( "filter", filters );
 				}
 			});

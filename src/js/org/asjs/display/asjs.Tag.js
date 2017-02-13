@@ -69,7 +69,8 @@ ASJS.Tag = function( tag ) {
 			
 			// public function
 			_scope.hasClass = function( v ) {
-				if ( _el.classList ) return _el.classList.contains( v );
+				var classList = _scope.getClassList();
+				if ( classList ) return classList.contains( v );
 				return !!_el.className.match( new RegExp( '(\\s|^)' + v + '(\\s|$)' ) );
 			}
 			
@@ -78,8 +79,13 @@ ASJS.Tag = function( tag ) {
 			}
 			
 			_scope.removeClass = function( v ) {
-				if ( _el.classList ) _el.classList.remove( v );
+				var classList = _scope.getClassList();
+				if ( classList ) classList.remove( v );
 				else if ( _scope.hasClass( v ) ) _el.className = _el.className.replace( new RegExp( '(\\s|^)' + v + '(\\s|$)' ), ' ' );
+			}
+			
+			_scope.getClassList = function( v ) {
+				return _el.classList;
 			}
 			
 			_scope.getAttr = function( k ) {

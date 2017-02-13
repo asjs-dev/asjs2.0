@@ -183,7 +183,6 @@ prop( ASJS.CSS, "styles", {
 	get: function() { return ( new ASJS.CSS() ).styles; }
 });
 
-
 // public static function
 roFunc( ASJS.CSS, "getRuleBySelector", function( s ) {
 	return ( new ASJS.CSS() ).getRuleBySelector( s );
@@ -209,3 +208,8 @@ roFunc( ASJS.CSS, "removeRule", function( s ) {
 	( new ASJS.CSS() ).removeRule( s );
 });
 
+roFunc( ASJS.CSS, "replaceHyphen", function( s ) {
+	return s.replace( /-./g, function( v ) {
+		return v.replace( "-", "" ).toUpperCase();
+	});
+});
