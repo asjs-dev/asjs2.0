@@ -21,7 +21,7 @@ ASJS.PrimitiveDisplayObject = function( tag ) {
 			
 			// constructor
 			_scope.new = function() {
-				_scope.id = "intance_" + ( ++ASJS.PrimitiveDisplayObject.instanceId );
+				_scope.id = "instance_" + ( ++ASJS.PrimitiveDisplayObject.instanceId );
 			}
 			
 			// public property
