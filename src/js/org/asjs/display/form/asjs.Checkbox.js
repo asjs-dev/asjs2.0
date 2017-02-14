@@ -39,7 +39,7 @@ ASJS.Checkbox = function() {
 			prop( _scope, "enabled", {
 				set: function( v ) {
 					_super.enabled = _checkbox.enabled = v;
-					_scope.drawNow();
+					_scope.render();
 				}
 			});
 	

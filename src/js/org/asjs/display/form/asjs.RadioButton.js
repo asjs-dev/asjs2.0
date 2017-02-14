@@ -35,7 +35,7 @@ ASJS.RadioButton = function() {
 			prop( _scope, "enabled", {
 				set: function( v ) {
 					_super.enabled = _radio.enabled = v;
-					_scope.drawNow();
+					_scope.render();
 				}
 			});
 	
@@ -66,7 +66,7 @@ ASJS.RadioButton = function() {
 			// public read only function
 			
 			// public function
-			_scope.drawNow = function() {};
+			_scope.render = function() {};
 			
 			// protected read only function
 			

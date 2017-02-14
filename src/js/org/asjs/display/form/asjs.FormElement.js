@@ -33,7 +33,7 @@ ASJS.FormElement = function( tag ) {
 			// public read only function
 			
 			// public function
-			_scope.drawNow = function() {};
+			_scope.render = function() {};
 			
 			// protected read only function
 			

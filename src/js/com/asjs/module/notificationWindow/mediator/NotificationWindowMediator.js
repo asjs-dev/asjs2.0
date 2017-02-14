@@ -54,7 +54,7 @@ function NotificationWindowMediator( view ) {
 			
 			// protected function
 			_scope._onResize = function() {
-				if ( _scope._view.contains( _notificationWindowView ) ) _notificationWindowView.drawNow();
+				if ( _scope._view.contains( _notificationWindowView ) ) _notificationWindowView.render();
 			}
 			
 			// private read only function

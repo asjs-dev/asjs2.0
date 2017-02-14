@@ -157,13 +157,13 @@ ASJS.CustomList = function() {
 				_scope.removeCell( _scope.getCellById( id ) );
 			}
 	
-			_scope.drawNow = function() {
+			_scope.render = function() {
 				var i = -1;
 				var l = _scope.length;
 				while ( ++i < l ) {
 					var cell = _scope.getCellAt( i );
 						cell.setSize( _scope.width, _scope.height );
-						cell.drawNow();
+						cell.render();
 				}
 			}
 			

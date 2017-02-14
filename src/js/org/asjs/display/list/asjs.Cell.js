@@ -52,7 +52,7 @@ ASJS.Cell = function( tag ) {
 			// public read only function
 			
 			// public function
-			_scope.drawNow = function() {}
+			_scope.render = function() {}
 	
 			_scope.showData = function() {}
 			

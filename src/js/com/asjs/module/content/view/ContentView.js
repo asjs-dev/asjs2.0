@@ -42,7 +42,7 @@ function ContentView() {
 			// public read only function
 			
 			// public function
-			_scope.drawNow = function() {
+			_scope.render = function() {
 				_background.setSize( stage.stageWidth, stage.stageHeight );
 				_box.x = ( stage.stageWidth - _box.width ) * 0.5;
 			}
@@ -84,7 +84,7 @@ function ContentView() {
 		
 				_scope.addEventListener( ASJS.MouseEvent.CLICK, onMouseClick );
 				
-				_scope.drawNow();
+				_scope.render();
 			}
 			
 			// protected read only function

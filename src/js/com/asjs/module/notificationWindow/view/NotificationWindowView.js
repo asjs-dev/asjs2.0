@@ -94,18 +94,18 @@ function NotificationWindowView() {
 				} else if ( hasCancelButton() ) _scope.removeChild( _cancelButton );
 			}
 	
-			_scope.drawNow = function() {
+			_scope.render = function() {
 				_scope.setSize( stage.stageWidth, stage.stageHeight );
 				_window.setSize( Math.max( 150, Math.min( stage.stageWidth, _notificationItem.width ) ), Math.max( 150, Math.min( stage.stageHeight, _notificationItem.height ) ) );
 				_window.move( ( stage.stageWidth - _window.width ) * 0.5, Math.max( 0, ( stage.stageHeight - _window.height ) * 0.5 ) );
-				_window.drawNow();
+				_window.render();
 				
 				_title.move( _window.x + 25, _window.y + 10 );
 				_title.width = _window.width - 50;
 		
 				_content.move( _title.x, _title.y + _title.height + 25 );
 				_content.setSize( _title.width, _window.height - _title.height - 55 - ( hasOkButton() || hasCancelButton() ? 60 : 0 ) );
-				if ( _content.drawNow ) _content.drawNow();
+				if ( _content.render ) _content.render();
 		
 				_okButton.width = _window.width * 0.5 - 20;
 				if ( hasOkButton() ) {

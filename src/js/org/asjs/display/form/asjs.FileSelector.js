@@ -48,7 +48,7 @@ ASJS.FileSelector = function() {
 			prop( _scope, "enabled", {
 				set: function( v ) {
 					_super.enabled = _scope._fileInput.enabled = v;
-					_scope.drawNow();
+					_scope.render();
 				}
 			});
 			

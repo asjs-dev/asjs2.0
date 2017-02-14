@@ -30,7 +30,7 @@ ASJS.DropDown = function() {
 			prop( _scope, "enabled", {
 				set: function( v ) {
 					_super.enabled = _select.enabled = v;
-					_scope.drawNow();
+					_scope.render();
 				}
 			});
 	
@@ -68,7 +68,7 @@ ASJS.DropDown = function() {
 				_select.addChild( option );
 			}
 	
-			_scope.drawNow = function() {
+			_scope.render = function() {
 				_select.setSize( _scope.width + 30, _scope.height );
 			}
 			

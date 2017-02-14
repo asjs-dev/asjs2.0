@@ -49,7 +49,7 @@ function ContentMediator( view ) {
 			
 			// protected function
 			_scope._onResize = function() {
-				if ( _scope._view.contains( _contentView ) ) _contentView.drawNow();
+				if ( _scope._view.contains( _contentView ) ) _contentView.render();
 			}
 			
 			// private read only function

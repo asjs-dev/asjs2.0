@@ -82,7 +82,7 @@ ASJS.Scale9Grid = function() {
 				_super.setSize( w, h );
 			}
 
-			_scope.drawNow = function() {
+			_scope.render = function() {
 				var rightSize = _size.x - ( _rectangle.x + _rectangle.width );
 				var bottomSize = _size.y - ( _rectangle.y + _rectangle.height );
 	
