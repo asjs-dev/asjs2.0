@@ -168,20 +168,12 @@ ASJS.DisplayObject = function( tag ) {
 			// public function
 			_scope.requestFullscreen = function() {
 				if ( !ASJS.DisplayObject.FULLSCREEN_ENABLED ) return;
-		
-				if ( _scope.el.requestFullscreen ) _scope.el.requestFullscreen();
-				else if ( _scope.el.webkitRequestFullscreen ) _scope.el.webkitRequestFullscreen();
-				else if ( _scope.el.mozRequestFullScreen ) _scope.el.mozRequestFullScreen();
-				else if ( _scope.el.msRequestFullscreen ) _scope.el.msRequestFullscreen();
+				_scope.el.requestFullscreen();
 			};
 	
 			_scope.exitFullscreen = function() {
 				if ( !ASJS.DisplayObject.FULLSCREEN_ENABLED ) return;
-		
-				if ( document.exitFullscreen ) document.exitFullscreen();
-				else if ( document.webkitExitFullscreen ) document.webkitExitFullscreen();
-				else if ( document.mozCancelFullScreen ) document.mozCancelFullScreen();
-				else if ( document.msExitFullscreen ) document.msExitFullscreen();
+				document.exitFullscreen();
 			};
 	
 			_scope.scale = function( scaleX, scaleY ) {
@@ -225,7 +217,7 @@ ASJS.DisplayObject = function( tag ) {
 	);
 };
 // public static const
-cnst( ASJS.DisplayObject, "FULLSCREEN_ENABLED", document.fullscreenEnabled || document.webkitFullscreenEnabled || document.mozFullScreenEnabled || document.msFullscreenEnabled );
+cnst( ASJS.DisplayObject, "FULLSCREEN_ENABLED", document.fullscreenEnabled );
 
 // public static variable
 

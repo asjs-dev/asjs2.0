@@ -55,7 +55,7 @@ ASJS.PrimitiveDisplayObject = function( tag ) {
 			_scope.getCSS = function( k ) {
 				var style = window.getComputedStyle( _scope.el );
 				var v = style.getPropertyValue( k );
-				if ( v == "" ) v = scp.el.style[ ASJS.CSS.replaceHyphen( k ) ];
+				if ( v == "" ) v = _scope.el.style[ ASJS.CSS.replaceHyphen( k ) ];
 				return priv.ADD_PIXEL_TYPES.indexOf( k ) > -1 ? parseFloat( v ) : v;
 			}
 	

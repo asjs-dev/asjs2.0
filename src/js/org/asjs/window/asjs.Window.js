@@ -15,12 +15,6 @@ ASJS.Window = function() {
 			// private variable
 			var _el = window;
 			var _browserStatus;
-			var _requestAnimationFrame;
-			var _cancelAnimationFrame;
-			var _audioContext;
-			var _navigator;
-			var _userMedia;
-			var _url;
 			
 			// constructor
 			_scope.new = function() {
@@ -30,19 +24,7 @@ ASJS.Window = function() {
 					});
 				}
 				
-				_requestAnimationFrame = _scope.el.requestAnimationFrame
-					|| _scope.el.mozRequestAnimationFrame
-					|| _scope.el.webkitRequestAnimationFrame
-					|| _scope.el.msRequestAnimationFrame
-					|| function( f ) { return setTimeout( f, 1 ) };
-				
-				_cancelAnimationFrame = _scope.el.cancelAnimationFrame || _scope.el.webkitCancelAnimationFrame;
-				_navigator = _scope.el.navigator || navigator;
-				_audioContext = _scope.el.AudioContext || _scope.el.webkitAudioContext;
-				_userMedia = _navigator.getUserMedia || _navigator.webkitGetUserMedia || _navigator.msGetUserMedia || _navigator.mozGetUserMedia;
-				_url = _scope.el.webkitURL || _scope.el.URL;
-				
-				_browserStatus = _navigator.onLine ? ASJS.WindowEvent.ONLINE : ASJS.WindowEvent.OFFLINE;
+				_browserStatus = _scope.navigator.onLine ? ASJS.WindowEvent.ONLINE : ASJS.WindowEvent.OFFLINE;
 				_scope.addEventListener( ASJS.WindowEvent.ONLINE + " " + ASJS.WindowEvent.OFFLINE, function( e ) {
 					_browserStatus = e.type;
 				});
@@ -94,19 +76,19 @@ ASJS.Window = function() {
 			});
 	
 			prop( _scope, "url", {
-				get: function() { return _url; }
+				get: function() { return _scope.el.URL; }
 			});
 		
 			prop( _scope, "navigator", {
-				get: function() { return _navigator; }
+				get: function() { return _scope.el.navigator; }
 			});
 	
 			prop( _scope, "audioContext", {
-				get: function() { return _audioContext; }
+				get: function() { return _scope.el.AudioContext; }
 			});
 	
 			prop( _scope, "userMedia", {
-				get: function() { return _userMedia; }
+				get: function() { return _scope.navigator.getUserMedia; }
 			});
 	
 			prop( _scope, "devicePixelRatio", {
@@ -156,11 +138,11 @@ ASJS.Window = function() {
 			};
 	
 			_scope.requestAnimationFrame = function( callback ) {
-				return _requestAnimationFrame( callback );
+				return _scope.el.requestAnimationFrame( callback );
 			};
 			
 			_scope.cancelAnimationFrame = function( id ) {
-				_cancelAnimationFrame( id );
+				_scope.el.cancelAnimationFrame( id );
 			}
 			
 			// protected read only function
