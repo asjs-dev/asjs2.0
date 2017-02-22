@@ -6,7 +6,7 @@
 		private $sourcePath			= "";
 		private $includedClasses	= array();
 		private $packages			= array();
-		private $obfuscation		= true;
+		private $compression		= true;
 		
 		public function __construct() {}
 		
@@ -24,12 +24,12 @@
 			));
 		}
 		
-		public function build( $projectFolder, $baseClass, $minimize = true, $obfuscation = true ) {
+		public function build( $projectFolder, $baseClass, $minimize = true, $compression = true ) {
 			if ( !isset( $baseClass ) || $baseClass == "" ) {
 				throw new Exception( "Missing Parameter: baseClass" );
 			}
 			
-			$this->obfuscation = $obfuscation;
+			$this->compression = $compression;
 			
 			$this->includeJS( $projectFolder, $baseClass, "baseClass", 0 );
 			
@@ -48,8 +48,8 @@
 			$this->output = preg_replace( "/\r+/", "\n", $this->output );
 			$this->output = preg_replace( "/\n+/", "\n", $this->output );
 			$this->output = str_replace( "}\n", "};\n", $this->output );
-			$this->output = str_replace( "_scope", "scp", $this->output );
-			$this->output = str_replace( "_super", "spr", $this->output );
+			//$this->output = str_replace( "_scope", "scp", $this->output );
+			//$this->output = str_replace( "_super", "spr", $this->output );
 			
 			//$this->output = str_replace( "\n", "", $this->output );
 			//$this->output = str_replace( "\n", ";", $this->output );
@@ -107,36 +107,138 @@
 				} else $out .= $line;
 			}
 			
-			//if ( $this->obfuscation ) $out = $this->obfuscation( $out );
+			//if ( $this->compression ) $out = $this->compress( $out );
 			
 			$this->output .= ";" . $out;
 		}
 		
-		private function obfuscation( $src ) {
-			preg_match_all( "/\t(var|function) (?<!\.)(?<!\w)(\w+)/", $src, $matches );
-			$results = $matches[ 2 ];
+		private function compress( $src ) {
+			$cleanContent = preg_replace( "/((?:\/\*(?:[^*]|(?:\*+[^*\/]))*\*+\/)|(?:\/\/.*))/mi", "", $src );
+			$cleanContent = preg_replace( "/\n/mi", "", $cleanContent );
+			$cleanContent = preg_replace( "/\r/mi", "", $cleanContent );
+			$cleanContent = preg_replace( "/\t/mi", "", $cleanContent );
+
+			preg_match_all( "/\W/mi", $src, $specChars );
 			
-			asort( $results );
-			usort( $results, function( $a, $b ) {
-				preg_match( "/_v[0-9]+/", $b, $bm );
-				if ( count( $bm ) > 0 ) return 1;
-			});
-			
-			$variables = array();
 			$i = -1;
-			$l = count( $results );
-			while ( ++$i < $l ) {
-				$variables[ $results[ $i ] ] = true;
+			$l = count( $specChars[ 0 ] );
+			$separators = array();
+			while ( ++$i < $l ) $separators[ $specChars[ 0 ][ $i ] ] = true;
+			$sepChars = "";
+			foreach ( $separators as $key => $value ) {
+				if ( strpos( $key, "./\\" ) === false ) $sepChars .= $key;
 			}
 			
-			$i = 0;
-			foreach ( $variables as $key => $value ) {
-				$newKey = "_v" . $i;
-				if ( strlen( $key ) >= strlen( $newKey ) ) {
-					$src = preg_replace( "/(?<!\.)(?<!\")\b" . $key . "\b/", $newKey, $src );
-					$i++;
+			$i = -1;
+			$l = strlen( $cleanContent );
+			$depth = 0;
+			$wordsHelper = array();
+			while ( ++$i < $l ) {
+				$char = $cleanContent[ $i ];
+				$isSep = strpos( $sepChars, $char ) !== false;
+				if ( $isSep ) $depth++;
+				
+				if ( strpos( " ", $char ) === false ) {
+					$key = "d_" . $depth;
+					if ( !isset( $wordsHelper[ $key ] ) ) $wordsHelper[ $key ] = "";
+					$wordsHelper[ $key ] .= $char;
+				}
+				
+				if ( $isSep ) $depth++;
+			}
+			
+			$words = array();
+			foreach ( $wordsHelper as $key => $value ) array_push( $words, $value );
+			
+			$i = -1;
+			$l = count( $words );
+			$depth = 0;
+			$bracketCount = 0;
+			$braceCount = 0;
+			$inBracket = false;
+			$inBrace = false;
+			$inString = false;
+			$aposCount = 0;
+			$quoteCount = 0;
+			$changeList = array();
+			while ( ++$i < $l ) {
+				if ( $words[ $i ] == "{" ) {
+					$braceCount++;
+					$depth++;
+					continue;
+				} else if ( $words[ $i ] == "}" ) {
+					$braceCount--;
+					$depth--;
+					continue;
+				} else if ( $words[ $i ] == "(" ) {
+					$bracketCount++;
+					$depth++;
+					continue;
+				} else if ( $words[ $i ] == ")" ) {
+					$bracketCount--;
+					$depth--;
+					continue;
+				} else if ( $words[ $i ] == "\"" ) {
+					$quoteCount++;
+					continue;
+				} else if ( $words[ $i ] == "'" ) {
+					$aposCount++;
+					continue;
+				}
+				$inString = $aposCount % 2 == 1 || $quoteCount % 2 == 1;
+				$inBracket = $bracketCount > 0;
+				$inBrace = $braceCount > 0;
+				if ( !$inString && $depth > 0 ) {
+					if ( $words[ $i ] == "var" ) $changeList[ $words[ $i + 1 ] ] = true;
+					else if ( $words[ $i ] == "function" ) {
+						if ( $i > 0 && $words[ $i - 1 ] == "=" && $words[ $i - 3 ] == "var" ) $changeList[ $words[ $i - 2 ] ] = true;
+						else if ( $words[ $i + 1 ] != "(" ) $changeList[ $words[ $i + 1 ] ] = true;
+						else {
+							//print "\nanonym function ";
+						}
+						
+						if ( $words[ $i + 1 ] == "(" ) {
+							$i += 1;
+							while ( ++$i < $l ) {
+								if ( $words[ $i ] == ")" ) break;
+								else if ( $words[ $i ] != "," ) $changeList[ $words[ $i ] ] = true;
+							}
+						} else if ( $words[ $i + 2 ] == "(" ) {
+							$i += 2;
+							while ( ++$i < $l ) {
+								if ( $words[ $i ] == ")" ) break;
+								else if ( $words[ $i ] != "," ) $changeList[ $words[ $i ] ] = true;
+							}
+						}
+					}
 				}
 			}
+			
+			$list = array();
+			foreach ( $changeList as $key => $value ) {
+				array_push( $list, $key );
+			}
+			
+			usort( $list, function( $a, $b ) {
+				return strlen( $a ) - strlen( $b );
+			});
+			
+			$i = -1;
+			$l = count( $list );
+			$id = 0;
+			while ( ++$i < $l ) {
+				$key = "v" . $id;
+				if ( strlen( $key ) >= strlen( $list[ $i ] ) ) continue;
+				$j = $i;
+				$m = $l;
+				while ( ++$j < $m ) {
+					if ( $key == $list[ $j ] ) $id++;
+				}
+				$key = "v" . $id;
+				$src = preg_replace( "/(?<!\.)(?<!\")(?<!')\b" . $list[ $i ] . "\b/", $key, $src );
+				$id++;
+			}
+			
 			return $src;
 		}
 	

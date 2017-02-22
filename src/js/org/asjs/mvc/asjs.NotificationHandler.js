@@ -23,12 +23,12 @@ ASJS.NotificationHandler = function() {
 			// public read only function
 			
 			// public function
-			_scope.register = function( dispatcher, handlers ) {
-				if ( !dispatcher || !handlers ) return;
+			_scope.register = function( dispatcher ) {
+				if ( !dispatcher || !dispatcher._handlers ) return;
 				var i = -1;
-				var l = handlers.length;
+				var l = dispatcher._handlers.length;
 				while ( ++i < l ) {
-					var type = handlers[ i ];
+					var type = dispatcher._handlers[ i ];
 					if ( _handlers[ type ] && _handlers[ type ].indexOf( dispatcher ) > -1 ) break;
 					if ( !_handlers[ type ] ) _handlers[ type ] = [];
 					_handlers[ type ].push( dispatcher );
@@ -36,11 +36,11 @@ ASJS.NotificationHandler = function() {
 			}
 
 			_scope.remove = function( dispatcher ) {
-				if ( !dispatcher.handlers ) return;
+				if ( !dispatcher._handlers ) return;
 				var i = -1;
-				var l = dispatcher.handlers.length;
+				var l = dispatcher._handlers.length;
 				while ( ++i < l ) {
-					var type = dispatcher.handlers[ i ];
+					var type = dispatcher._handlers[ i ];
 					if ( _handlers[ type ] ) {
 						var index = _handlers[ type ].indexOf( dispatcher );
 						if ( index > -1 ) _handlers[ type ].splice( index, 1 );

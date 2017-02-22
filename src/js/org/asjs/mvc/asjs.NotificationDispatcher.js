@@ -47,7 +47,7 @@ ASJS.NotificationDispatcher = function() {
 			
 			// private function
 			function registerHandlers() {
-				_nHandler.register( _scope, _scope._handlers );
+				_nHandler.register( _scope );
 			}
 	
 			function removeHandlers() {
