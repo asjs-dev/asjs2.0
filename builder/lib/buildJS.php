@@ -107,7 +107,7 @@
 				} else $out .= $line;
 			}
 			
-			//if ( $this->compression ) $out = $this->compress( $out );
+			if ( $this->compression ) $out = $this->compress( $out );
 			
 			$this->output .= ";" . $out;
 		}
@@ -122,11 +122,10 @@
 			
 			$i = -1;
 			$l = count( $specChars[ 0 ] );
-			$separators = array();
-			while ( ++$i < $l ) $separators[ $specChars[ 0 ][ $i ] ] = true;
-			$sepChars = "";
-			foreach ( $separators as $key => $value ) {
-				if ( strpos( $key, "./\\" ) === false ) $sepChars .= $key;
+			$separators = "";
+			while ( ++$i < $l ) {
+				$char = $specChars[ 0 ][ $i ];
+				if ( strpos( $separators, $char ) === false && strpos( "./\\", $char ) === false ) $separators .= $char;
 			}
 			
 			$i = -1;
@@ -135,7 +134,7 @@
 			$wordsHelper = array();
 			while ( ++$i < $l ) {
 				$char = $cleanContent[ $i ];
-				$isSep = strpos( $sepChars, $char ) !== false;
+				$isSep = strpos( $separators, $char ) !== false;
 				if ( $isSep ) $depth++;
 				
 				if ( strpos( " ", $char ) === false ) {
@@ -229,10 +228,18 @@
 			while ( ++$i < $l ) {
 				$key = "v" . $id;
 				if ( strlen( $key ) >= strlen( $list[ $i ] ) ) continue;
-				$j = $i;
-				$m = $l;
-				while ( ++$j < $m ) {
-					if ( $key == $list[ $j ] ) $id++;
+				$found = false;
+				while ( !$found ) {
+					$found = true;
+					$j = -1;
+					$m = $l;
+					while ( ++$j < $m ) {
+						if ( $key == $list[ $j ] ) {
+							$found = false;
+							$key = "v" . ++$id;
+							break;
+						}
+					}
 				}
 				$key = "v" . $id;
 				$src = preg_replace( "/(?<!\.)(?<!\")(?<!')\b" . $list[ $i ] . "\b/", $key, $src );

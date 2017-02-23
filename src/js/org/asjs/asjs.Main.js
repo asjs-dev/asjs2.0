@@ -23,7 +23,7 @@ function createClass( t, p, oa, b ) {
 		function bca( t, s, a, f ) {
 			if ( !t.$c ) t.$c = [];
 			if ( t.$c.indexOf( f ) == -1 ) t.$c.push( f );
-			if ( a.callee.caller == null || a.callee.caller.name != "bcb" ) {
+			if ( a.callee.caller == null || a.callee.caller.name != bcb.name ) {
 				while ( t.$c.length > 0 ) {
 					var fnc = t.$c.shift();
 					if ( typeof fnc == "function" ) fnc.call( t );
@@ -54,13 +54,13 @@ function createClass( t, p, oa, b ) {
 	};
 	
 	var h = arguments.callee.caller;
-	var a = h && h.name == "createSingletonClass" ? h.arguments.callee.caller.arguments : h.arguments;
+	var a = h && h.name == createSingletonClass.name ? h.arguments.callee.caller.arguments : h.arguments;
 	return bc( t, p, a, oa, b );
 };
 
 function createSingletonClass( o, t, p, oa, b ) {
 	var a = arguments.callee.caller.arguments.callee.caller;
-	if ( a && a.name == "createClass" ) return createClass( t, p, oa, b );
+	if ( a && a.name == createClass.name ) return createClass( t, p, oa, b );
 	return o.$i || ( o.$i = createClass( t, p, oa, b ) );
 };
 
