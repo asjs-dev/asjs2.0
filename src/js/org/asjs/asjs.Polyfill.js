@@ -184,6 +184,18 @@
 		}
 	};
 	
+	function checkFunctionName() {
+		if ( !trace.name ) {
+			prop( Function.prototype, "name", {
+				get: function() {
+					var matches = this.toString().match( /^function\s*([^\s(]+)/ );
+					if ( matches ) return matches[ 1 ];
+					return null;
+				}
+			});
+		}
+	}
+	
 	checkCustomEvent();
 	checkAnimationFrame();
 	checkNavigator();
@@ -191,4 +203,5 @@
 	checkUserMedia();
 	checkURL();
 	checkFullscreenEnabled();
+	checkFunctionName();
 })();
