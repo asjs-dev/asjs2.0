@@ -222,6 +222,21 @@
 				return strlen( $a ) - strlen( $b );
 			});
 			
+			preg_match_all( '/(?:([\'"])).*?(?:\1)/', $src, $preventStrings );
+			$i = -1;
+			$l = count( $preventStrings[ 0 ] );
+			$preventStringKeys = array();
+			while ( ++$i < $l ) {
+				$preventStringKeys[ $preventStrings[ 0 ][ $i ] ] = true;
+			}
+			
+			$j = 0;
+			foreach ( $preventStringKeys as $key => $value ) {
+				$preventStringKeys[ $key ] = "+++===+++" . $j . "+++===+++";
+				$src = str_replace( $key, $preventStringKeys[ $key ], $src );
+				$j++;
+			}
+			
 			$i = -1;
 			$l = count( $list );
 			$id = 0;
@@ -244,6 +259,10 @@
 				$key = "v" . $id;
 				$src = preg_replace( "/(?<!\.)(?<!\")(?<!')\b" . $list[ $i ] . "\b/", $key, $src );
 				$id++;
+			}
+			
+			foreach ( $preventStringKeys as $key => $value ) {
+				$src = str_replace( $value, $key, $src );
 			}
 			
 			return $src;

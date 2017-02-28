@@ -48,7 +48,8 @@ roFunc( Tools, "createUrlParams", function( params, reload ) {
 		if ( url != "" ) url += "&";
 		url += k + "=" + params[ k ];
 	}
-	new ASJS.Window().location.href = '#' + url;
+	var window = new ASJS.Window();
+		window.location.href = window.location.href.split( window.location.hash ).join( "" ) + "#" + url;
 	if ( reload ) Tools.reload();
 });
 

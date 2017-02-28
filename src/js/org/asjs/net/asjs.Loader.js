@@ -35,7 +35,10 @@ ASJS.Loader = function() {
 			});
 	
 			prop( _scope, "content", {
-				get: function() { return _request.response; }
+				get: function() {
+					if ( _responseType == "json" && typeof _request.response == "string" ) return JSON.parse( _request.response );
+                	return _request.response;
+                }
 			});
 	
 			prop( _scope, "status", {

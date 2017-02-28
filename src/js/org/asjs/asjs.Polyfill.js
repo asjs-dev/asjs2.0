@@ -185,7 +185,7 @@
 	};
 	
 	function checkFunctionName() {
-		if ( checkFunctionName.name == "checkFunctionName" ) return;
+		if ( checkFunctionName.name && typeof checkFunctionName.name == "string" ) return;
 		prop( Function.prototype, "name", {
 			get: function() {
 				var matches = this.toString().match( /^function\s*([^\s(]+)/ );
