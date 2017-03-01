@@ -61,7 +61,7 @@
 	};
 	
 	function checkURL() {
-		if ( !window.URL ) window.URL = window.webkitURL;
+		window.URL = window.webkitURL || window.URL;
 		if ( !window.URL ) trace( "window.URL is not supported!" );
 	};
 	
