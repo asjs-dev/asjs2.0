@@ -1,6 +1,6 @@
 {
-	"supported_languages": [ "en" ],
-	"default_language": "en",
+	"supportedLanguages": [ "en" ],
+	"selectedLanguage": "en",
 	"elements": {
 		"title": {
 			"en": "<AS/JS> - BASE"

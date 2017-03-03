@@ -52,7 +52,7 @@ function EnvironmentCommand() {
 				var selectedLanguage = Tools.getURLParams( 'lang' );
 				if ( selectedLanguage == undefined || _language.supportedLanguages.indexOf( selectedLanguage ) == -1 ) selectedLanguage = _cookies.readCookie( 'language' );
 				if ( selectedLanguage == undefined || _language.supportedLanguages.indexOf( selectedLanguage ) == -1 ) selectedLanguage = _language.selectedLanguage;
-				_language.selectedLanguage = selectedLanguage;
+				_language.set( "selectedLanguage", selectedLanguage );
 
 				_cookies.createCookie( 'language', _language.selectedLanguage );
 				stage.title = _language.getText( "title" );

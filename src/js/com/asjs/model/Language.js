@@ -10,29 +10,18 @@ function Language() {
 			// protected variable
 			
 			// private variable
-			var _languageItems = {};
-			var _supportedLanguages;
-			var _selectedLanguage;
 			
 			// constructor
 			
 			// public property
 			prop( _scope, "supportedLanguages", {
-				get: function() { return _supportedLanguages; }
+				get: function() { return _super.data.supportedLanguages; }
 			});
-
-			prop( _scope, "data", {
-				set: function( v ) {
-					_super.data = v.elements;
-					_supportedLanguages = v.supported_languages;
-					_selectedLanguage = v.default_language;
-				}
-			});
-
+			
 			prop( _scope, "selectedLanguage", {
-				get: function() { return _selectedLanguage; },
-				set: function( v ) { _selectedLanguage = v; }
+				get: function() { return _super.data.selectedLanguage; }
 			});
+
 			
 			// protected property
 			
@@ -44,7 +33,7 @@ function Language() {
 			
 			// public function
 			_scope.getText = function( k ) {
-				var i = _scope.get( k );
+				var i = _scope.get( "elements" )[ k ];
 				return i != null && i[ _scope.selectedLanguage ] != undefined ? i[ _scope.selectedLanguage ] : "";
 			}
 
