@@ -2,7 +2,7 @@ includeOnce( "org/asjs/event/asjs.MouseEvent.js" );
 includeOnce( "org/asjs/display/asjs.Sprite.js" );
 
 ASJS.Cell = function( tag ) {
-	return createClass( this, ASJS.Sprite, null, 
+	return createClass( this, ASJS.Sprite, [ "li" ], 
 		function( _scope, _super ) {
 			// private object
 			

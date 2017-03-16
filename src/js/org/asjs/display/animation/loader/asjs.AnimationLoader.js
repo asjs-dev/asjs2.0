@@ -62,7 +62,8 @@ ASJS.AnimationLoader = function() {
 					data.id, 
 					data.image, 
 					new ASJS.Point( data.imageSize.w, data.imageSize.h ),  
-					data.frameDelay
+					data.frameDelay,
+					data.repeat
 				);
 		
 				var i = -1;

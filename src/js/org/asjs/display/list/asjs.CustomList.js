@@ -18,7 +18,7 @@ ASJS.CustomList = function() {
 			var _multiselect = false;
 			var _cell = ASJS.Cell;
 			var _lastCellIndex = 0;
-			var _itemsContainer = new ASJS.Sprite();
+			var _itemsContainer = new ASJS.Sprite( "ul" );
 			var _name = "";
 			
 			// constructor

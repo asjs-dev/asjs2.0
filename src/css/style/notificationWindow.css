@@ -1,0 +1,36 @@
+.notification-window-view--button {
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 42px;
+	text-align: center;
+	color: #FFFFFF;
+	
+	cursor: pointer;
+	
+	background-color: rgba( 0, 153, 204, 0.55 );
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-o-border-radius: 5px;
+	border-radius: 5px;
+}
+
+.notification-window-view--button:hover {
+	background-color: rgba( 0, 153, 204, 0.75 );
+}
+
+.notification-window-view--button:active {
+	background-color: rgba( 0, 153, 204, 0.95 );
+}
+
+.notification-window-view--title-label {
+	font-size: 20px;
+	font-weight: 700;
+	color: #FFFFFF;
+}
+	
+.notification-window-view--content-label {
+	font-size: 14px;
+	font-weight: 500;
+	color: #393939;
+	overflow: auto;
+}

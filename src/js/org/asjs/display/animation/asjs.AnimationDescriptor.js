@@ -1,6 +1,6 @@
 includeOnce( "org/asjs/geom/asjs.Point.js" );
 
-ASJS.AnimationDescriptor = function( name, spriteSheet, size, frameDelay, sequenceList ) {
+ASJS.AnimationDescriptor = function( name, spriteSheet, size, frameDelay, repeat, sequenceList ) {
 	return createClass( this, Object, null, 
 		function( _scope, _super ) {
 			// private object
@@ -12,6 +12,7 @@ ASJS.AnimationDescriptor = function( name, spriteSheet, size, frameDelay, sequen
 			_scope.spriteSheet = spriteSheet || "";
 			_scope.size = size || new ASJS.Point();
 			_scope.frameDelay = Math.floor( Math.max( 1, frameDelay || 1 ) );
+			_scope.repeat = repeat || 0;
 			_scope.sequenceList = sequenceList || [];
 			
 			// protected variable

@@ -48,24 +48,24 @@ function ContentView() {
 			}
 	
 			_scope.init = function( data ) {
-				_background.addClass( "background" );
+				_background.addClass( "content-view--background" );
 				_background.setCSS( "position", "fixed" );
 				_background.alpha = 0.5;
 				_scope.addChild( _background );
 		
-				_box.addClass( "box" );
+				_box.addClass( "content-view--box" );
 				_box.setSize( 320, 130 );
 				_box.y = 100;
 				_scope.addChild( _box );
 		
 				_label.text = _language.getText( "new_asjs_base_site" );
-				_label.addClass( "box_label" );
+				_label.addClass( "content-view--box--label" );
 				_label.setSize( 320, 30 );
 				_label.move( 0, 34 );
 				_box.addChild( _label );
 		
 				_button.label = _language.getText( "show_notification_window" );
-				_button.addClass( "box_button" );
+				_button.addClass( "content-view--box--button" );
 				_button.setSize( 320, 40 );
 				_button.move( 0, _box.height - _button.height );
 				_button.addEventListener( ASJS.MouseEvent.CLICK, onButtonClick );

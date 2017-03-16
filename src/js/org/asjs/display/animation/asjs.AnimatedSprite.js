@@ -18,9 +18,11 @@ ASJS.AnimatedSprite = function() {
 			var _cycler	= new ASJS.Cycler();
 			var _animations = {};
 			var _isPlaying = false;
+			var _selectedAnimationName = "";
 			var _selectedAnimation = "";
 			var _step = 0;
-			var _angle = ASJS.AnimatedSprite.PLAY_NORMAL;
+			var _repeat = 0;
+			var _reverseAnimation = false;
 			var _imageCache = [];
 			
 			// constructor
@@ -30,7 +32,7 @@ ASJS.AnimatedSprite = function() {
 			
 			// public property
 			prop( _scope, "selectedAnimation", {
-				get: function() { return _selectedAnimation; }
+				get: function() { return _selectedAnimationName; }
 			});
 			
 			// protected property
@@ -59,24 +61,28 @@ ASJS.AnimatedSprite = function() {
 	
 			_scope.stop = function() {
 				_step = 0;
+				_repeat = 0;
 				_isPlaying = false;
 				_cycler.removeCallback( update );
 			}
 	
 			_scope.play = function( name, type ) {
 				if ( !_animations[ name ] ) return;
+				_scope.stop();
 		
-				var angle = !type ? ASJS.AnimatedSprite.PLAY_NORMAL : ( type == ASJS.AnimatedSprite.PLAY_NORMAL ? ASJS.AnimatedSprite.PLAY_NORMAL : ASJS.AnimatedSprite.PLAY_REVERSE );
-				if ( _selectedAnimation == name && _angle == angle ) {
+				var reverseAnimation = !type ? false : type == ASJS.AnimatedSprite.PLAY_REVERSE;
+				if ( _selectedAnimationName == name && _reverseAnimation == reverseAnimation ) {
 					letsPlay();
 					return;
 				}
 		
-				_selectedAnimation = name;
-				_angle = angle;
+				_selectedAnimationName = name;
+				_selectedAnimation = _animations[ _selectedAnimationName ];
+				_reverseAnimation = reverseAnimation;
 		
-				_step = 0;
-				var spriteSheet = _animations[ _selectedAnimation ].spriteSheet;
+				_step = _reverseAnimation ? _selectedAnimation.sequenceList.length - 1 : 0;
+				_repeat = 0;
+				var spriteSheet = _selectedAnimation.spriteSheet;
 				if ( spriteSheet != "" ) {
 					if ( _imageCache.indexOf( spriteSheet ) > -1 ) setSpriteSheet( spriteSheet );
 					else {
@@ -114,11 +120,10 @@ ASJS.AnimatedSprite = function() {
 			function update() {
 				if ( !_isPlaying ) return;
 		
-				var selectedAnimation = _animations[ _selectedAnimation ];
-				var sequenceList = selectedAnimation.sequenceList;
+				var sequenceList = _selectedAnimation.sequenceList;
 		
 				var rect = sequenceList[ _step ];
-				var size = selectedAnimation.size;
+				var size = _selectedAnimation.size;
 		
 				var percentW = _scope.width / rect.width;
 				var percentH = _scope.height / rect.height;
@@ -127,11 +132,19 @@ ASJS.AnimatedSprite = function() {
 				_scope.setCSS( "background-size", ( size.x * percentW ) + "px " + ( size.y * percentH ) + "px" );
 				_scope.setSize( rect.width * percentW, rect.height * percentH );
 		
-				if ( _angle == ASJS.AnimatedSprite.PLAY_NORMAL ) {
-					if ( ++_step >= sequenceList.length ) _step = 0;
+				if ( !_reverseAnimation ) {
+					if ( ++_step >= sequenceList.length ) {
+						_step = 0;
+						_repeat++;
+					}
 				} else {
-					if ( --_step < 0 ) _step = sequenceList.length - 1;
+					if ( --_step < 0 ) {
+						_step = sequenceList.length - 1;
+						_repeat++;
+					}
 				}
+				
+				if ( _selectedAnimation.repeat > 0 && _repeat == _selectedAnimation.repeat ) _scope.stop();
 			}
 		}
 	);
