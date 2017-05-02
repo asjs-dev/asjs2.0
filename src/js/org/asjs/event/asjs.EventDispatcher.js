@@ -24,17 +24,9 @@ ASJS.EventDispatcher = function() {
 			
 			// public function
 			_scope.dispatchEvent = function( event, data, bubble ) {
-				var e;
-				if ( typeof event == "string" ) {
-					e = new CustomEvent( event, {
-						bubbles: bubble == undefined ? true : bubble, 
-						cancelable: true, 
-						detail: data
-					});
-				} else e = event;
-				var t = e.type || event;
-				if ( !_scope.hasEventListener( t ) ) return;
-				var handlers = _handlers[ t ];
+				var e = ASJS.EventDispatcher.createEvent( event, data, bubble );
+				if ( !_scope.hasEventListener( e.type ) ) return;
+				var handlers = _handlers[ e.type ];
 				var i = -1;
 				var l = handlers.length;
 				while ( ++i < l ) handlers[ i ]( e );
@@ -92,4 +84,20 @@ ASJS.EventDispatcher = function() {
 // public static property
 
 // public static function
+roFunc( ASJS.EventDispatcher, "createEvent", function( event, data, bubble ) {
+	if ( typeof event != "string" ) return event;
+	var e;
+	var bubbles = bubble == undefined ? true : bubble;
+	try {
+		e = document.createEvent( "CustomEvent" );
+		e.initCustomEvent( event, bubbles, true, data );
+	} catch ( error ) {
+		e = new CustomEvent( event, {
+			bubbles: bubbles, 
+			cancelable: true, 
+			detail: data
+		});
+	}
+	return e;
+});
 

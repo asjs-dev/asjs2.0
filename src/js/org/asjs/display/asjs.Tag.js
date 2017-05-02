@@ -1,3 +1,4 @@
+includeOnce( "org/asjs/event/asjs.EventDispatcher.js" );
 includeOnce( "org/asjs/event/asjs.MouseEvent.js" );
 includeOnce( "org/asjs/window/asjs.Window.js" );
 includeOnce( "org/asjs/geom/asjs.Rectangle.js" );
@@ -107,17 +108,8 @@ ASJS.Tag = function( tag ) {
 			
 			_scope.dispatchEvent = function( event, data, bubble ) {
 				try {
-					var e;
-					if ( typeof event == "string" ) {
-						e = new CustomEvent( event, {
-							bubbles: bubble == undefined ? true : bubble, 
-							cancelable: true, 
-							detail: data
-						});
-					} else e = event;
-					_scope.el.dispatchEvent( e );
-				} catch ( e ) {
-				}
+					_scope.el.dispatchEvent( ASJS.EventDispatcher.createEvent( event, data, bubble ) );
+				} catch ( error ) {}
 			}
 	
 			_scope.addEventListener = function( type, callback, capture ) {

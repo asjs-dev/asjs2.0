@@ -46,7 +46,7 @@
 		
 			try {
 				$jsConfig = $this->config[ "js" ];
-				$cssConfig = $this->config[ "css" ];
+				$cssConfig = isset( $this->config[ "css" ] ) ? $this->config[ "css" ] : null;
 				
 				$i = -1;
 				$l = count( $jsConfig[ "packages" ] );
@@ -57,14 +57,16 @@
 				$this->buildJS->build( $jsConfig[ "sourcePath" ], $jsConfig[ "baseClass" ], $this->config[ "minimize" ], $this->config[ "compress" ] );
 				$this->buildJS->save( $jsConfig[ "output" ] );
 			
-				$i = -1;
-				$l = count( $cssConfig[ "packages" ] );
-				while ( ++$i < $l ) {
-					$this->buildCSS->addPackage( $cssConfig[ "packages" ][ $i ] );
-				}
+				if ( isset( $cssConfig ) ) {
+					$i = -1;
+					$l = count( $cssConfig[ "packages" ] );
+					while ( ++$i < $l ) {
+						$this->buildCSS->addPackage( $cssConfig[ "packages" ][ $i ] );
+					}
 				
-				$this->buildCSS->build( $this->config[ "minimize" ] );
-				$this->buildCSS->save( $cssConfig[ "output" ] );
+					$this->buildCSS->build( $this->config[ "minimize" ] );
+					$this->buildCSS->save( $cssConfig[ "output" ] );
+				}
 			
 				echo $this->colors->getColoredString( "build complete", "yellow" );
 			} catch( Exception $e ) {
