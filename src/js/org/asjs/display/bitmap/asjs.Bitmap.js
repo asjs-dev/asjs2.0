@@ -1,5 +1,6 @@
 includeOnce( "org/asjs/display/asjs.DisplayObject.js" );
 includeOnce( "org/asjs/display/asjs.Image.js" );
+includeOnce( "org/asjs/display/bitmap/utils/asjs.Color.js" );
 includeOnce( "org/asjs/geom/asjs.Matrix.js" );
 includeOnce( "org/asjs/geom/asjs.GeomUtils.js" );
 
@@ -265,9 +266,9 @@ ASJS.Bitmap = function( bitmapWidth, bitmapHeight ) {
 			}
 	
 			function addColorToGradient( gradient, stop, color, alpha ) {
-				var rgb = hexToRGB( color );
+				var rgb = ASJS.Color.hexToRGB( color );
 					rgb.a = alpha;
-				gradient.addColorStop( stop, rgbToString( rgb ) );
+				gradient.addColorStop( stop, ASJS.Color.rgbToString( rgb ) );
 			}
 	
 			function fillStyle( targetType, v ) {
@@ -285,9 +286,9 @@ ASJS.Bitmap = function( bitmapWidth, bitmapHeight ) {
 			}
 	
 			function beginColorFill( targetType, rgb, alpha ) {
-				var rgb = hexToRgb( rgb );
+				var rgb = ASJS.Color.hexToRgb( rgb );
 					rgb.a = alpha;
-				fillStyle( targetType, rgbToString( rgb ) );
+				fillStyle( targetType, ASJS.Color.rgbToString( rgb ) );
 			}
 	
 			function beginGradientFill( targetType, type, gradientData, colors ) {
@@ -317,25 +318,6 @@ ASJS.Bitmap = function( bitmapWidth, bitmapHeight ) {
 			function getContext() {
 				if ( !_context ) _context = _scope.el.getContext( "2d" );
 				return _context;
-			}
-	
-			function rgbToString( rgb ) {
-				return "rgba( " + rgb.r + ", " + rgb.g + ", " + rgb.b + ", " + rgb.a + " )";
-			}
-	
-			function hexToRgb( v ) {
-				var shorthandRegex = /^(?:#|0x)?([a-f\d])([a-f\d])([a-f\d])$/i;
-				v = v.replace( shorthandRegex, function( m, r, g, b ) {
-					return r + r + g + g + b + b;
-				});
-		
-				var result = /^(?:#|0x)?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec( v );
-				return result ? {
-					r: parseInt( result[1], 16 ),
-					g: parseInt( result[2], 16 ),
-					b: parseInt( result[3], 16 ),
-					a: 1
-				} : null;
 			}
 	
 			function executeFilters() {
@@ -383,4 +365,3 @@ cnst( ASJS.Bitmap, "LINE_JOIN_MITER",   "miter" );
 // public static property
 
 // public static function
-

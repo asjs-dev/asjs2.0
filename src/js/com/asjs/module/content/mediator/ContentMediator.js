@@ -20,6 +20,8 @@ function ContentMediator( view ) {
 			_scope._handlers.push( ContentMediator.SHOW );
 			
 			// private variable
+			var _forceResize = true;
+			
 			var _dataProxy = new DataProxy();
 			var _language = new Language();
 			var _contentView = new ContentView();
@@ -49,7 +51,10 @@ function ContentMediator( view ) {
 			
 			// protected function
 			_scope._onResize = function() {
-				if ( _scope._view.contains( _contentView ) ) _contentView.render();
+				_forceResize = true;
+				if ( !_scope._view.contains( _contentView ) ) return;
+				_contentView.render();
+				_forceResize = false;
 			}
 			
 			// private read only function
@@ -71,7 +76,7 @@ function ContentMediator( view ) {
 		
 				_dataProxy.loadAnimation( "json/animation/contentAnimation.json" ).resolve( onLoadAnimation );
 	
-				_scope._onResize();
+				if ( _forceResize ) _scope._onResize();
 			}
 		}
 	);

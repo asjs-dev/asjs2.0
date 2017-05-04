@@ -15,6 +15,8 @@ function NotificationWindowMediator( view ) {
 			_scope._handlers.push( NotificationWindowMediator.SHOW );
 			
 			// private variable
+			var _forceResize = true;
+			
 			var _pool = [];
 			var _showed = false;
 			var _defaultOkLabel = "";
@@ -54,7 +56,10 @@ function NotificationWindowMediator( view ) {
 			
 			// protected function
 			_scope._onResize = function() {
-				if ( _scope._view.contains( _notificationWindowView ) ) _notificationWindowView.render();
+				_forceResize = true;
+				if ( !_scope._view.contains( _notificationWindowView ) ) return;
+				_notificationWindowView.render();
+				_forceResize = false;
 			}
 			
 			// private read only function
@@ -89,7 +94,8 @@ function NotificationWindowMediator( view ) {
 				_notificationWindowView.showWindow( notificationItem );
 		
 				if ( !_scope._view.contains( _notificationWindowView ) ) _scope._view.addChild( _notificationWindowView );
-				_scope._onResize();
+				
+				if ( _forceResize ) _scope._onResize();
 			}
 		}
 	);

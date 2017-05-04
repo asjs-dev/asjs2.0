@@ -129,9 +129,8 @@ ASJS.Loader = function() {
 				_request = null;
 				_request = new XMLHttpRequest();
 				if ( "withCredentials" in _request ) {
-				} else if ( typeof XDomainRequest != "undefined" ) {
-					_request = new XDomainRequest();
-				} else _request = null;
+				} else if ( typeof XDomainRequest != "undefined" ) _request = new XDomainRequest();
+				else _request = null;
 		
 				if ( _request == null ) throw new Error( "CORS not supported" );
 				_request.withCredentials = true;
