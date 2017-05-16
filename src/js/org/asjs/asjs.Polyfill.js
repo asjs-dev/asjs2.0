@@ -195,6 +195,20 @@
 		});
 	}
 	
+	function checkEventListeners() {
+		var p = document.createElement( "p" );
+		
+		if ( p.addEventListener ) return;
+		
+		ASJS.Tag.addEventListener    = "attachEvent";
+		ASJS.Tag.removeEventListener = "detachEvent";
+		ASJS.Tag.dispatchEvent       = "fireEvent";
+	}
+	
+	function checkMediaSource() {
+		window.MediaSource = window.MediaSource || window.WebKitMediaSource;
+	}
+	
 	checkCustomEvent();
 	checkAnimationFrame();
 	checkNavigator();
@@ -203,4 +217,6 @@
 	checkURL();
 	checkFullscreenEnabled();
 	checkFunctionName();
+	checkEventListeners();
+	checkMediaSource();
 })();

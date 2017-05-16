@@ -1,6 +1,6 @@
 includeOnce( "org/asjs/display/asjs.DisplayObject.js" );
 
-ASJS.MediaSource = function( src, type ) {
+ASJS.Source = function( src, type ) {
 	return createClass( this, ASJS.DisplayObject, [ "source" ], 
 		function( _scope, _super ) {
 			// private object
@@ -51,12 +51,12 @@ ASJS.MediaSource = function( src, type ) {
 	);
 }
 // public static const
-cnst( ASJS.MediaSource, "TYPE_AUDIO_MP3",  "audio/mpeg" );
-cnst( ASJS.MediaSource, "TYPE_AUDIO_OGG",  "audio/ogg" );
-cnst( ASJS.MediaSource, "TYPE_AUDIO_WAV",  "audio/wav" );
-cnst( ASJS.MediaSource, "TYPE_VIDEO_MP4",  "video/mp4" );
-cnst( ASJS.MediaSource, "TYPE_VIDEO_OGG",  "video/ogg" );
-cnst( ASJS.MediaSource, "TYPE_VIDEO_WEBM", "video/webm" );
+cnst( ASJS.Source, "TYPE_AUDIO_MP3",  "audio/mpeg" );
+cnst( ASJS.Source, "TYPE_AUDIO_OGG",  "audio/ogg" );
+cnst( ASJS.Source, "TYPE_AUDIO_WAV",  "audio/wav" );
+cnst( ASJS.Source, "TYPE_VIDEO_MP4",  "video/mp4" );
+cnst( ASJS.Source, "TYPE_VIDEO_OGG",  "video/ogg" );
+cnst( ASJS.Source, "TYPE_VIDEO_WEBM", "video/webm" );
 
 // public static variable
 
