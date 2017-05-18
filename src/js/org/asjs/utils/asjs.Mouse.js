@@ -50,7 +50,7 @@ ASJS.Mouse = function() {
 			};
 	
 			_scope.init = function() {
-				if ( stage ) _window.addEventListener( priv.EVENT, onMouseMove );
+				if ( _window ) _window.addEventListener( priv.EVENT, onMouseMove );
 			};
 	
 			_scope.getTouchPointByEvent = function( e ) {

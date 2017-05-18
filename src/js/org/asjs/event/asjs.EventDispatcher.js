@@ -85,19 +85,11 @@ ASJS.EventDispatcher = function() {
 
 // public static function
 roFunc( ASJS.EventDispatcher, "createEvent", function( event, data, bubble ) {
-	if ( typeof event != "string" ) return event;
-	var e;
-	var bubbles = bubble == undefined ? true : bubble;
-	try {
-		e = document.createEvent( "CustomEvent" );
-		e.initCustomEvent( event, bubbles, true, data );
-	} catch ( error ) {
-		e = new CustomEvent( event, {
-			bubbles: bubbles, 
+	return typeof event != "string" ? 
+		event :
+		new CustomEvent( event, {
+			detail: data, 
 			cancelable: true, 
-			detail: data
+			bubbles: bubble == undefined ? true : bubble
 		});
-	}
-	return e;
 });
-

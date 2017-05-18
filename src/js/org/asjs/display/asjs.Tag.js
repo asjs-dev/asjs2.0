@@ -1,4 +1,3 @@
-includeOnce( "org/asjs/event/asjs.EventDispatcher.js" );
 includeOnce( "org/asjs/event/asjs.MouseEvent.js" );
 includeOnce( "org/asjs/window/asjs.Window.js" );
 includeOnce( "org/asjs/geom/asjs.Rectangle.js" );

@@ -86,6 +86,7 @@ var ASJS = {
 		if ( ASJS.inited ) return;
 		ASJS.inited = true;
 		window.onload = function() {
+			new ASJS.Polyfill();
 			stage = new ASJS.Stage();
 			stage.init();
 			new b();
