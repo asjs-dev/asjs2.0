@@ -4,7 +4,36 @@ ASJS.Polyfill = function() {
 			var _vendors = [ 'ms', 'moz', 'webkit', 'o' ];
 			var _doc = document;
 			var _win = window;
+			
+			var _addEventListener    = "addEventListener";
+			var _removeEventListener = "removeEventListener";
+			var _dispatchEvent       = "dispatchEvent";
 	
+			_scope.new = function() {
+				checkCustomEvent();
+				checkEventListeners();
+				checkAnimationFrame();
+				checkNavigator();
+				checkAudioContext();
+				checkUserMedia();
+				checkURL();
+				checkFullscreenEnabled();
+				checkFunctionName();
+				checkMediaSource();
+			}
+			
+			prop( _scope, "addEventListener", {
+				get: function() { return _addEventListener; }
+			});
+			
+			prop( _scope, "removeEventListener", {
+				get: function() { return _removeEventListener; }
+			});
+			
+			prop( _scope, "dispatchEvent", {
+				get: function() { return _dispatchEvent; }
+			});
+			
 			function checkCustomEvent() {
 				if ( typeof _win.CustomEvent === "function" ) return false;
 				trace( "window.CustomEvent is not supported, but replaceable" );
@@ -128,7 +157,7 @@ ASJS.Polyfill = function() {
 				function dispatch( type, target ) {
 					var event = _doc.createEvent( "Event" );
 						event.initEvent( type, true, false );
-					target[ ASJS.Tag.dispatchEvent ]( event );
+					target[ _dispatchEvent ]( event );
 				}
 
 				function handleChange( e ) {
@@ -156,22 +185,22 @@ ASJS.Polyfill = function() {
 
 						function change() {
 							resolve();
-							_doc[ ASJS.Tag.removeEventListener ]( api.events.change, change, false );
+							_doc[ _removeEventListener ]( api.events.change, change, false );
 						}
 
 						function error() {
 							reject( new TypeError() );
-							_doc[ ASJS.Tag.removeEventListener ]( api.events.error, error, false );
+							_doc[ _removeEventListener ]( api.events.error, error, false );
 						}
 
-						_doc[ ASJS.Tag.addEventListener ]( api.events.change, change, false );
-						_doc[ ASJS.Tag.addEventListener ]( api.events.error,  error,  false );
+						_doc[ _addEventListener ]( api.events.change, change, false );
+						_doc[ _addEventListener ]( api.events.error,  error,  false );
 					};
 				}
 
 				if ( pollute && !( w3.enabled in _doc ) && api ) {
-					_doc[ ASJS.Tag.addEventListener ]( api.events.change, handleChange, false );
-					_doc[ ASJS.Tag.addEventListener ]( api.events.error,  handleError,  false );
+					_doc[ _addEventListener ]( api.events.change, handleChange, false );
+					_doc[ _addEventListener ]( api.events.error,  handleError,  false );
 
 					_doc[ w3.enabled ] = _doc[ api.enabled ];
 					_doc[ w3.element ] = _doc[ api.element ];
@@ -204,25 +233,14 @@ ASJS.Polyfill = function() {
 		
 				if ( p.addEventListener ) return;
 		
-				ASJS.Tag.addEventListener    = "attachEvent";
-				ASJS.Tag.removeEventListener = "detachEvent";
-				ASJS.Tag.dispatchEvent       = "fireEvent";
+				_addEventListener    = "attachEvent";
+				_removeEventListener = "detachEvent";
+				_dispatchEvent       = "fireEvent";
 			}
 	
 			function checkMediaSource() {
 				_win.MediaSource = _win.MediaSource || _win.WebKitMediaSource;
 			}
-	
-			checkCustomEvent();
-			checkEventListeners();
-			checkAnimationFrame();
-			checkNavigator();
-			checkAudioContext();
-			checkUserMedia();
-			checkURL();
-			checkFullscreenEnabled();
-			checkFunctionName();
-			checkMediaSource();
 		}
 	);
 };

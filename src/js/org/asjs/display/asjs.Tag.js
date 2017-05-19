@@ -16,6 +16,7 @@ ASJS.Tag = function( tag ) {
 			// protected variable
 			
 			// private variable
+			var _polyfill = new ASJS.Polyfill();
 			var _el = !tag || typeof tag == "string" ? document.createElement(tag || "div") : tag;
 			var _parent = null;
 			var _state = priv.CREATED;
@@ -107,7 +108,7 @@ ASJS.Tag = function( tag ) {
 			
 			_scope.dispatchEvent = function( event, data, bubble ) {
 				try {
-					_scope.el[ ASJS.Tag.dispatchEvent ]( ASJS.EventDispatcher.createEvent( event, data, bubble ) );
+					_scope.el[ _polyfill.dispatchEvent ]( ASJS.EventDispatcher.createEvent( event, data, bubble ) );
 				} catch ( error ) {}
 			}
 	
@@ -119,7 +120,7 @@ ASJS.Tag = function( tag ) {
 						if ( _scope.hasEventListener( t, callback ) ) return;
 						if ( !_eventHandlers[ t ] ) _eventHandlers[ t ] = [];
 						_eventHandlers[ t ].push( callback );
-						_scope.el[ ASJS.Tag.addEventListener ]( t, callback, capture );
+						_scope.el[ _polyfill.addEventListener ]( t, callback, capture );
 					}
 				}
 			}
@@ -138,7 +139,7 @@ ASJS.Tag = function( tag ) {
 					var i = handlers.indexOf( callback );
 					if ( i == -1 ) return;
 					handlers.splice( i, 1 );
-					_scope.el[ ASJS.Tag.removeEventListener ]( type, callback );
+					_scope.el[ _polyfill.removeEventListener ]( type, callback );
 				} else {
 					while ( handlers.length > 0 ) _scope.removeEventListener( type, handlers[ 0 ] );
 				}
@@ -173,9 +174,6 @@ ASJS.Tag = function( tag ) {
 // public static const
 
 // public static variable
-ASJS.Tag.addEventListener    = "addEventListener";
-ASJS.Tag.removeEventListener = "removeEventListener";
-ASJS.Tag.dispatchEvent       = "dispatchEvent";
 
 // public static property
 
