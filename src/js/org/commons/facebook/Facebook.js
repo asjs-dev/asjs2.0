@@ -1,5 +1,5 @@
 function Facebook( facebookAppId, version ) {
-	return createSingletonClass( Facebook, this, ASJS.DisplayObject, [ "div" ], 
+	return createSingletonClass( Facebook, this, ASJS.DisplayObject, null, 
 		function( _scope, _super ) {
 			// private object
 			

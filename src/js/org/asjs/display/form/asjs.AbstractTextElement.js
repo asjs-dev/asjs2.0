@@ -4,7 +4,7 @@ includeOnce( "org/asjs/event/asjs.Event.js" );
 includeOnce( "org/asjs/utils/asjs.Keyboard.js" );
 
 ASJS.AbstractTextElement = function( tag ) {
-	return createClass( this, ASJS.FormElement, null, 
+	return createClass( this, ASJS.FormElement, [ tag ], 
 		function( _scope, _super ) {
 			// private object
 			

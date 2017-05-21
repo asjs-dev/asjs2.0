@@ -1,5 +1,5 @@
 function AbstractResizeMediator( view ) {
-	return createClass( this, ASJS.AbstractMediator, null, 
+	return createClass( this, ASJS.AbstractMediator, [ view ], 
 		function( _scope, _super ) {
 			// private object
 			

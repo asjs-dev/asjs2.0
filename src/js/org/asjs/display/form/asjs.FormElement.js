@@ -1,7 +1,7 @@
 includeOnce( "org/asjs/display/asjs.Sprite.js" );
 
 ASJS.FormElement = function( tag ) {
-	return createClass( this, ASJS.Sprite, null, 
+	return createClass( this, ASJS.Sprite, [ tag ], 
 		function( _scope, _super ) {
 			// private object
 			

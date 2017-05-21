@@ -1,7 +1,7 @@
 includeOnce( "org/asjs/geom/asjs.Point.js" );
 
 ASJS.Rectangle = function( x, y, width, height ) {
-	return createClass( this, ASJS.Point, null, 
+	return createClass( this, ASJS.Point, [ x, y ], 
 		function( _scope, _super ) {
 			// private object
 			

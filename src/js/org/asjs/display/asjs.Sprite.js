@@ -1,7 +1,7 @@
 includeOnce( "org/asjs/display/asjs.DisplayObject.js" );
 
 ASJS.Sprite = function( tag ) {
-	return createClass( this, ASJS.DisplayObject, null, 
+	return createClass( this, ASJS.DisplayObject, [ tag ], 
 		function( _scope, _super ) {
 			// private object
 			

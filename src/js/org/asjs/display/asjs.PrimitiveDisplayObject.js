@@ -5,7 +5,7 @@ includeOnce( "org/asjs/geom/asjs.Rectangle.js" );
 includeOnce( "org/asjs/utils/asjs.CSS.js" );
 
 ASJS.PrimitiveDisplayObject = function( tag ) {
-	return createClass( this, ASJS.Tag, null, 
+	return createClass( this, ASJS.Tag, [ tag ], 
 		function( _scope, _super ) {
 			// private object
 			var priv = {};

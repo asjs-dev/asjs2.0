@@ -1,7 +1,7 @@
 includeOnce( "org/asjs/display/bitmap/filters/asjs.AbstractConvoluteBitmapFilter.js" );
 
 ASJS.BlurBitmapFilter = function( opaque, value ) {
-	return createClass( this, ASJS.AbstractConvoluteBitmapFilter, null, 
+	return createClass( this, ASJS.AbstractConvoluteBitmapFilter, [ opaque ], 
 		function( _scope, _super ) {
 			// private object
 			

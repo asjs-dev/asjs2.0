@@ -100,10 +100,10 @@ ASJS.Polyfill = function() {
 			};
 	
 			function checkFullscreenEnabled() {
-				var pollute = true,
-					api,
-					vendor,
-					apis = {
+				var pollute = true;
+				var api;
+				var vendor;
+				var apis = {
 						w3: {
 							enabled: "fullscreenEnabled",
 							element: "fullscreenElement",
@@ -144,8 +144,8 @@ ASJS.Polyfill = function() {
 								error:  "MSFullscreenError"
 							}
 						}
-					},
-					w3 = apis.w3;
+					};
+				var w3 = apis.w3;
 
 				for ( vendor in apis ) {
 					if ( apis[ vendor ].enabled in _doc ) {
@@ -232,7 +232,7 @@ ASJS.Polyfill = function() {
 				var p = _doc.createElement( "p" );
 		
 				if ( p.addEventListener ) return;
-		
+				
 				_addEventListener    = "attachEvent";
 				_removeEventListener = "detachEvent";
 				_dispatchEvent       = "fireEvent";

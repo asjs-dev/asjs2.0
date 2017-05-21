@@ -3,7 +3,7 @@ includeOnce( "com/asjs/module/notificationWindow/view/NotificationWindowView.js"
 includeOnce( "com/asjs/module/notificationWindow/model/vo/NotificationWindowDataVo.js" );
 
 function NotificationWindowMediator( view ) {
-	return createClass( this, AbstractResizeMediator, null, 
+	return createClass( this, AbstractResizeMediator, [ view ], 
 		function( _scope, _super ) {
 			// private object
 			

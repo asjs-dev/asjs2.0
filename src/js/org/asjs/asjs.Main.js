@@ -1,8 +1,6 @@
 "use strict";
 
-function trace() {
-	console.log( arguments );
-}
+var trace = console.log;
 
 function prop( t, pn, p ) {
 	p.enumerable = true;
@@ -14,8 +12,20 @@ function cnst( t, pn, v ) {
 	prop( t, pn, { get: function() { return v; } } );
 }
 
-function roFunc( t, pn, f ) {
-	cnst( t, pn, f );
+var roFunc = cnst;
+
+function stackTrace() {
+	var list = [];
+	try {
+		throw new Error();
+	} catch ( e ) {
+		var re = new RegExp( "(new )*([a-zA-Z0-9\.]+)@|at (new )*([a-zA-Z0-9\.]+) \\(", "g" );
+		var st = e.stack;
+		var m;
+		re.exec( st );
+		while ( ( m = re.exec( st ) ) && list.length < 6 ) list.push( m[ 2 ] || m[ 4 ] );
+	}
+	return list;
 }
 
 function createClass( t, p, oa, b ) {
@@ -23,7 +33,8 @@ function createClass( t, p, oa, b ) {
 		function bca( t, s, a, f ) {
 			if ( !t.$c ) t.$c = [];
 			if ( t.$c.indexOf( f ) == -1 ) t.$c.push( f );
-			if ( a.callee.caller == null || a.callee.caller.name != bcb.name ) {
+			var cn = stackTrace()[ a ? 4 : 5 ];
+			if ( cn != bcb.name ) {
 				while ( t.$c.length > 0 ) {
 					var fnc = t.$c.shift();
 					if ( typeof fnc == "function" ) fnc.call( t );
@@ -36,8 +47,8 @@ function createClass( t, p, oa, b ) {
 			return t;
 		};
 		
-		function bcb( t, p, a, oa ) {
-			( p || Object ).apply( t, oa || a );
+		function bcb( t, p, oa ) {
+			( p || Object ).apply( t, oa );
 			var s = {};
 			for ( var k in t ) {
 				if ( k != "$c" && k != "new" ) {
@@ -48,19 +59,20 @@ function createClass( t, p, oa, b ) {
 			return s;
 		};
 		
-		var s = bcb( t, p, a, oa );
+		var s = bcb( t, p, oa );
 		if ( typeof b == "function" ) b( t, s );
 		return bca( t, s, a, t.new );
 	};
 	
 	var h = arguments.callee.caller;
-	var a = h && h.name == createSingletonClass.name ? h.arguments.callee.caller.arguments : h.arguments;
-	return bc( t, p, a, oa, b );
+	var cn = stackTrace()[ 1 ];
+	var a = cn == createSingletonClass.name ? h.arguments.callee.caller.arguments : h.arguments;
+	return bc( t, p, a.callee.caller, oa, b );
 };
 
 function createSingletonClass( o, t, p, oa, b ) {
-	var a = arguments.callee.caller.arguments.callee.caller;
-	if ( a && a.name == createClass.name ) return createClass( t, p, oa, b );
+	var cn = stackTrace()[ 4 ];
+	if ( cn == createClass.name ) return createClass( t, p, oa, b );
 	return o.$i || ( o.$i = createClass( t, p, oa, b ) );
 };
 

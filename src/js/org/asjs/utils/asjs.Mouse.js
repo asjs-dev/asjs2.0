@@ -53,17 +53,6 @@ ASJS.Mouse = function() {
 				if ( _window ) _window.addEventListener( priv.EVENT, onMouseMove );
 			};
 	
-			_scope.getTouchPointByEvent = function( e ) {
-				var iosTouchEvent = e.touches;
-				var androidTouchEvent = ( e.originalEvent ? e.originalEvent.touches : null );
-				var touches = iosTouchEvent || androidTouchEvent;
-				if ( touches && touches.length > 0 ) {
-					var touch = touches[ 0 ];
-					return new ASJS.Point( touch.pageX, touch.pageY );
-				}
-				return new ASJS.Point( e.pageX, e.pageY );
-			};
-			
 			// protected read only function
 			
 			// protected function
@@ -72,7 +61,15 @@ ASJS.Mouse = function() {
 			
 			// private function
 			function onMouseMove( e ) {
-				_mousePos = _scope.getTouchPointByEvent( e );
+				var x = 0;
+				var y = 0;
+				var iosTouchEvent = e.touches;
+				var androidTouchEvent = ( e.originalEvent ? e.originalEvent.touches : null );
+				var touches = iosTouchEvent || androidTouchEvent;
+				var touch = e;
+				if ( touches && touches.length > 0 ) touch = touches[ 0 ];
+				_mousePos.x = touch.pageX;
+				_mousePos.y = touch.pageY;
 			};
 
 		}
