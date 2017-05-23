@@ -1,0 +1,49 @@
+.content-view {
+	&--background {
+		background-position: center center;
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-image: url(../images/background.png);
+	}
+
+	&--box {
+		background-color: rgba( 255, 255, 255, 0.75 );
+		-webkit-border-radius: 5px;
+		-moz-border-radius: 5px;
+		-o-border-radius: 5px;
+		border-radius: 5px;
+		box-shadow: 0px 0px 60px rgba( 0, 0, 0, 0.75 );
+		
+		&--label {
+			font-size: 24px;
+			font-weight: 500;
+			line-height: 30px;
+			text-align: center;
+			color: #393939;
+		}
+
+		&--button {
+			font-size: 16px;
+			font-weight: 500;
+			line-height: 40px;
+			text-align: center;
+			color: #FFFFFF;
+	
+			cursor: pointer;
+	
+			background-color: rgba( 0, 153, 204, 0.55 );
+			-webkit-border-radius: 0px 0px 5px 5px;
+			-moz-border-radius: 0px 0px 5px 5px;
+			-o-border-radius: 0px 0px 5px 5px;
+			border-radius: 0px 0px 5px 5px;
+
+			&:hover {
+				background-color: rgba( 0, 153, 204, 0.75 );
+			}
+
+			&:active {
+				background-color: rgba( 0, 153, 204, 0.95 );
+			}
+		}
+	}
+}
