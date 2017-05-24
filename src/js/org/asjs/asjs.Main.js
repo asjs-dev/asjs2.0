@@ -1,6 +1,6 @@
 "use strict";
 
-var trace = console.log;
+var trace = console ? console.log : function() {};
 
 function prop( t, pn, p ) {
 	p.enumerable = true;
