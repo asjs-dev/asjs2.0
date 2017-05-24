@@ -7,12 +7,11 @@
 	}
 
 	&--box {
-		background-color: rgba( 255, 255, 255, 0.75 );
-		-webkit-border-radius: 5px;
-		-moz-border-radius: 5px;
-		-o-border-radius: 5px;
-		border-radius: 5px;
-		box-shadow: 0px 0px 60px rgba( 0, 0, 0, 0.75 );
+		background-color: rgba( 255, 255, 255, $alpha2 );
+		
+		@include border-radius(5px, 5px, 5px, 5px);
+		
+		box-shadow: 0px 0px 60px rgba( 0, 0, 0, $alpha2 );
 		
 		&--label {
 			font-size: 24px;
@@ -31,18 +30,16 @@
 	
 			cursor: pointer;
 	
-			background-color: rgba( 0, 153, 204, 0.55 );
-			-webkit-border-radius: 0px 0px 5px 5px;
-			-moz-border-radius: 0px 0px 5px 5px;
-			-o-border-radius: 0px 0px 5px 5px;
-			border-radius: 0px 0px 5px 5px;
+			background-color: rgba( 0, 153, 204, $alpha3 );
+			
+			@include border-radius(0px, 0px, 5px, 5px);
 
 			&:hover {
-				background-color: rgba( 0, 153, 204, 0.75 );
+				background-color: rgba( 0, 153, 204, $alpha2 );
 			}
 
 			&:active {
-				background-color: rgba( 0, 153, 204, 0.95 );
+				background-color: rgba( 0, 153, 204, $alpha1 );
 			}
 		}
 	}
