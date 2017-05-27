@@ -1,44 +1,81 @@
-EmptyClass = function() {
-	return createSingletonClass( EmptyClass, this, [Object | parentClass ], [null | [p1, p2, pn]], 
-	// OR //
-	return createClass( this, [Object | parentClass ], [null | [p1, p2, pn]], 
-		function( _scope, _super ) {
-			// private object
-			
-			// private const
-			
-			// public variable
-			
-			// protected variable
-			
-			// private variable
-			
-			// constructor
-			
-			// public property
-			
-			// protected property
-			
-			// private property
-			
-			// public static function
-			
-			// public read only function
-			
-			// public function
-			
-			// protected read only function
-			
-			// protected function
-			
-			// private read only function
-			
-			// private function
-			
-			// internal classes
-		}
-	);
-};
+var EmptyClass = createClass( [Object | parentClass], [null | [p1, p2, ..., pn]],
+	function( _scope, _super ) {
+		// private object
+		
+		// private const
+		
+		// public variable
+		
+		// protected variable
+		
+		// private variable
+		
+		// constructor
+		
+		// public property
+		
+		// protected property
+		
+		// private property
+		
+		// public static function
+		
+		// public read only function
+		
+		// public function
+		
+		// protected read only function
+		
+		// protected function
+		
+		// private read only function
+		
+		// private function
+		
+		// internal classes
+	}
+);
+// SINGLETON
+var EmptyClass = {};
+createSingletonClass( EmptyClass, [Object | parentClass], [null | [p1, p2, ..., pn]],
+	function( _scope, _super ) {
+		// private object
+		
+		// private const
+		
+		// public variable
+		
+		// protected variable
+		
+		// private variable
+		
+		// constructor
+		
+		// public property
+		
+		// protected property
+		
+		// private property
+		
+		// public static function
+		
+		// public read only function
+		
+		// public function
+		
+		// protected read only function
+		
+		// protected function
+		
+		// private read only function
+		
+		// private function
+		
+		// internal classes
+	}
+);
+// var ec = EmptyClass.instance();
+
 // public static const
 
 // public static variable
@@ -48,80 +85,142 @@ EmptyClass = function() {
 // public static function
 
 // ---------------------------------------------------------------------- //
-BaseClass = function() {
-	return createSingletonClass( BaseClass, this, [Object | parentClass ], [null | [p1, p2, ..., pn]], 
-	// OR //
-	return createClass( this, [Object | parentClass ], [null | [p1, p2, ..., pn]], 
-		function( _scope, _super ) {
-			// private object
-			var priv = {};
-			
-			// private const
-			cnst( priv, "PRIVATE_CONST", 0 );
-			
-			// public variable
-			_scope.publicVar = 0;
-			
-			// protected variable
-			_scope._protectedVar = 0;
-			
-			// private variable
-			var _privateVar;
-			
-			// constructor
-			_scope.new = function() { // optional
-				trace( "new BaseClass()" );
-			}
-			
-			// public property
-			prop( _scope, "val", {
-				get: function() { return _privateVar; },
-				set: function( v ) { _privateVar = v; }
-			});
-			
-			// protected property
-			prop( _scope, "_val", {
-				get: function() { return _privateVar; },
-				set: function( v ) { _privateVar = v; }
-			});
-			
-			// private property
-			prop( priv, "val", {
-				get: function() { return _privateVar; },
-				set: function( v ) { _privateVar = v; }
-			});
-			
-			// public read only function
-			roFunc( _scope, "publicFunction", function() {});
-			
-			// public function
-			_scope.publicFunction = function() {};
-			
-			// protected read only function
-			roFunc( _scope, "_protectedFunction", function() {});
-			
-			// protected function
-			_scope._protectedFunction = function() {};
-			
-			// private read only function
-			roFunc( priv, "privateFunction", function() {});
-			
-			// private function
-			function privateFunction() {};
-			
-			// internal classes
-			var InternalClass = function() {
-				return createSingletonClass( InternalClass, this, [Object | parentClass], [null | [p1, p2, ..., pn]],
-				// OR //
-				return createClass( this, [Object | parentClass ], [null | [p1, p2, ..., pn]],
-					function( _scope, _super ) {
-						_scope.new = function() {} // optional
-					}
-				);
-			};
+var BaseClass = createClass( [Object | parentClass], [null | [p1, p2, ..., pn]],
+	function( _scope, _super ) {
+		// private object
+		var priv = {};
+		
+		// private const
+		cnst( priv, "PRIVATE_CONST", 0 );
+		
+		// public variable
+		_scope.publicVar = 0;
+		
+		// protected variable
+		_scope._protectedVar = 0;
+		
+		// private variable
+		var _privateVar;
+		
+		// constructor
+		_scope.new = function() { // optional
+			trace( "new BaseClass()" );
 		}
-	);
-};
+		
+		// public property
+		prop( _scope, "val", {
+			get: function() { return _privateVar; },
+			set: function( v ) { _privateVar = v; }
+		});
+		
+		// protected property
+		prop( _scope, "_val", {
+			get: function() { return _privateVar; },
+			set: function( v ) { _privateVar = v; }
+		});
+		
+		// private property
+		prop( priv, "val", {
+			get: function() { return _privateVar; },
+			set: function( v ) { _privateVar = v; }
+		});
+		
+		// public read only function
+		roFunc( _scope, "publicFunction", function() {});
+		
+		// public function
+		_scope.publicFunction = function() {};
+		
+		// protected read only function
+		roFunc( _scope, "_protectedFunction", function() {});
+		
+		// protected function
+		_scope._protectedFunction = function() {};
+		
+		// private read only function
+		roFunc( priv, "privateFunction", function() {});
+		
+		// private function
+		function privateFunction() {};
+		
+		// internal classes
+		var InternalClass = createClass( [Object | parentClass], [null | [p1, p2, ..., pn]],
+			function( _scope, _super ) {
+				_scope.new = function() {} // optional
+			}
+		);
+	}
+);
+// SINGLETON
+var BaseClass = {};
+createSingletonClass( BaseClass, [Object | parentClass], [null | [p1, p2, ..., pn]],
+	function( _scope, _super ) {
+		// private object
+		var priv = {};
+		
+		// private const
+		cnst( priv, "PRIVATE_CONST", 0 );
+		
+		// public variable
+		_scope.publicVar = 0;
+		
+		// protected variable
+		_scope._protectedVar = 0;
+		
+		// private variable
+		var _privateVar;
+		
+		// constructor
+		_scope.new = function() { // optional
+			trace( "new BaseClass()" );
+		}
+		
+		// public property
+		prop( _scope, "val", {
+			get: function() { return _privateVar; },
+			set: function( v ) { _privateVar = v; }
+		});
+		
+		// protected property
+		prop( _scope, "_val", {
+			get: function() { return _privateVar; },
+			set: function( v ) { _privateVar = v; }
+		});
+		
+		// private property
+		prop( priv, "val", {
+			get: function() { return _privateVar; },
+			set: function( v ) { _privateVar = v; }
+		});
+		
+		// public read only function
+		roFunc( _scope, "publicFunction", function() {});
+		
+		// public function
+		_scope.publicFunction = function() {};
+		
+		// protected read only function
+		roFunc( _scope, "_protectedFunction", function() {});
+		
+		// protected function
+		_scope._protectedFunction = function() {};
+		
+		// private read only function
+		roFunc( priv, "privateFunction", function() {});
+		
+		// private function
+		function privateFunction() {};
+		
+		// internal classes
+		var InternalClass = createClass( [Object | parentClass], [null | [p1, p2, ..., pn]],
+			function( _scope, _super ) {
+				_scope.new = function() {} // optional
+			}
+		);
+	}
+);
+// var bc = BaseClass.instance();
+
 // public static const
 cnst( BaseClass, "PUBLIC_STATIC_CONST", 10 );
 

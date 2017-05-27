@@ -2,83 +2,81 @@ includeOnce( "org/asjs/event/asjs.KeyboardEvent.js" );
 includeOnce( "org/asjs/event/asjs.FocusEvent.js" );
 includeOnce( "org/asjs/window/asjs.Window.js" );
 
-ASJS.Keyboard = function() {
-	return createClass( this, Object, null, 
-		function( _scope, _super ) {
-			// private object
-			
-			// private const
-			
-			// public variable
-			
-			// protected variable
-			
-			// private variable
-			var _window = new ASJS.Window();
-			var _pressedKeys = {};
-			var _downCallback;
-			var _upCallback;
-			
-			// constructor
-			
-			// public property
-			
-			// protected property
-			
-			// private property
-			
-			// public read only function
-			
-			// public function
-			_scope.isPressed = function( w ) {
-				return _pressedKeys[ w ];
-			};
-	
-			_scope.addKeyListener = function( target, downCallback, upCallback ) {
-				if ( !target ) return;
-				_downCallback = downCallback;
-				_upCallback   = upCallback;
+ASJS.Keyboard = createClass( Object, null,
+	function( _scope, _super ) {
+		// private object
 		
-				_scope.removeKeyListener( target );
+		// private const
 		
-				target.addEventListener( ASJS.KeyboardEvent.KEY_DOWN, onKeyDown );
-				target.addEventListener( ASJS.KeyboardEvent.KEY_UP, onKeyUp );
+		// public variable
 		
-				_window.addEventListener( ASJS.FocusEvent.BLUR, onBlur );
-			};
-	
-			_scope.removeKeyListener = function( target ) {
-				target.removeEventListener( ASJS.KeyboardEvent.KEY_DOWN, onKeyDown );
-				target.removeEventListener( ASJS.KeyboardEvent.KEY_UP, onKeyUp );
+		// protected variable
 		
-				_window.removeEventListener( ASJS.FocusEvent.BLUR, onBlur );
-			};
-			
-			// protected read only function
-			
-			// protected function
-			
-			// private read only  function
-			
-			// private function
-			function onBlur() {
-				for ( var k in _pressedKeys ) _pressedKeys[ k ] = false;
-			};
+		// private variable
+		var _window = ASJS.Window.instance();
+		var _pressedKeys = {};
+		var _downCallback;
+		var _upCallback;
+		
+		// constructor
+		
+		// public property
+		
+		// protected property
+		
+		// private property
+		
+		// public read only function
+		
+		// public function
+		_scope.isPressed = function( w ) {
+			return _pressedKeys[ w ];
+		};
+
+		_scope.addKeyListener = function( target, downCallback, upCallback ) {
+			if ( !target ) return;
+			_downCallback = downCallback;
+			_upCallback   = upCallback;
 	
-			function onKeyDown( e ) {
-				_pressedKeys[ e.which ] = true;
-				if ( _downCallback ) _downCallback();
-				//return false;
-			};
+			_scope.removeKeyListener( target );
 	
-			function onKeyUp( e ) {
-				_pressedKeys[ e.which ] = false;
-				if ( _upCallback ) _upCallback();
-				//return false;
-			};
-		}
-	);
-}
+			target.addEventListener( ASJS.KeyboardEvent.KEY_DOWN, onKeyDown );
+			target.addEventListener( ASJS.KeyboardEvent.KEY_UP, onKeyUp );
+	
+			_window.addEventListener( ASJS.FocusEvent.BLUR, onBlur );
+		};
+
+		_scope.removeKeyListener = function( target ) {
+			target.removeEventListener( ASJS.KeyboardEvent.KEY_DOWN, onKeyDown );
+			target.removeEventListener( ASJS.KeyboardEvent.KEY_UP, onKeyUp );
+	
+			_window.removeEventListener( ASJS.FocusEvent.BLUR, onBlur );
+		};
+		
+		// protected read only function
+		
+		// protected function
+		
+		// private read only  function
+		
+		// private function
+		function onBlur() {
+			for ( var k in _pressedKeys ) _pressedKeys[ k ] = false;
+		};
+
+		function onKeyDown( e ) {
+			_pressedKeys[ e.which ] = true;
+			if ( _downCallback ) _downCallback();
+			//return false;
+		};
+
+		function onKeyUp( e ) {
+			_pressedKeys[ e.which ] = false;
+			if ( _upCallback ) _upCallback();
+			//return false;
+		};
+	}
+);
 // public static const
 cnst( ASJS.Keyboard, "SPACE",            32 );
 cnst( ASJS.Keyboard, "BACKSPACE",        8 );

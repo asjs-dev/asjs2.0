@@ -1,24 +1,29 @@
-ASJS.Color = function( r, g, b, a ) {
-	return createClass( this, Object, null,
-		function( _scope, _super ) {
+ASJS.Color = createClass( Object, null,
+	function( _scope, _super ) {
+		_scope.r;
+		_scope.g;
+		_scope.b;
+		_scope.a;
+		
+		_scope.new = function( r, g, b, a ) {
 			_scope.r = r || 0;
 			_scope.g = g || 0;
 			_scope.b = b || 0;
 			_scope.a = a || 255;
-			
-			prop( _scope, "hex", {
-				get: function() { return ASJS.Color.rgbToHex( _scope ); },
-				set: function( v ) {
-					var color = ASJS.Color.hexToRgb( v );
-					_scope.r = color.r;
-					_scope.g = color.g;
-					_scope.b = color.b;
-					_scope.a = color.a;
-				}
-			});
 		}
-	);
-};
+		
+		prop( _scope, "hex", {
+			get: function() { return ASJS.Color.rgbToHex( _scope ); },
+			set: function( v ) {
+				var color = ASJS.Color.hexToRgb( v );
+				_scope.r = color.r;
+				_scope.g = color.g;
+				_scope.b = color.b;
+				_scope.a = color.a;
+			}
+		});
+	}
+);
 // public static const
 
 // public static variable

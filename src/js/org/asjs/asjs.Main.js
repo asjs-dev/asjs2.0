@@ -14,67 +14,68 @@ function cnst( t, pn, v ) {
 
 var roFunc = cnst;
 
-function stackTrace() {
-	var list = [];
-	try {
-		throw new Error();
-	} catch ( e ) {
-		var re = new RegExp( "(new )*([a-zA-Z0-9\.]+)@|at (new )*([a-zA-Z0-9\.]+) \\(", "g" );
-		var st = e.stack;
-		var m;
-		re.exec( st );
-		while ( ( m = re.exec( st ) ) && list.length < 6 ) list.push( m[ 2 ] || m[ 4 ] );
+function createClass( p, a, n ) {
+	function extendProperties( t ) {
+		var s = {};
+		for ( var k in t ) {
+			if ( k != "$i" && k != "$n" && k != "$f" && k != "new" && k != "constructor" ) {
+				if ( Object.getOwnPropertyDescriptor( t, k ).writable ) s[ k ] = t[ k ];
+				else prop( s, k, Object.getOwnPropertyDescriptor( t, k ) );
+			}
+		}
+		return s;
 	}
-	return list;
+
+	function c() {
+		var t = this;
+		var arg = [];
+		if ( a ) {
+			for ( var i = 0; i < a.length; i++ ) {
+				arg.push( a[ i ] );
+			}
+		}
+		for ( var i = 0; i < arguments.length; i++ ) {
+			arg.push( arguments[ i ] );
+		}
+		
+		if ( !t.$n ) t.$n = [];
+		t.$n.push( n );
+		
+		p.apply( t, arg );
+		
+		var s = extendProperties( t );
+		
+		if ( n ) n( t, s );
+		
+		if ( !t.$f ) t.$f = [];
+		var f = t.new;
+		if ( f ) {
+			if ( t.$f.indexOf( f ) == -1 ) t.$f.push( f );
+			t.new = null;
+		}
+		if ( t.$n[ 0 ] == n ) {
+			t.$n = null;
+			delete t.$n;
+			while ( t.$f.length > 0 ) {
+				t.$f.shift().apply( t, arg );
+			}
+			t.$f = null;
+			delete t.$f;
+		}
+	}
+	
+	c.prototype = Object.create( p.prototype );
+	c.prototype.constructor = c;
+	
+	return c;
 }
 
-function createClass( t, p, oa, b ) {
-	function bc( t, p, a, oa, b ) {
-		function bca( t, s, a, f ) {
-			if ( !t.$c ) t.$c = [];
-			if ( t.$c.indexOf( f ) == -1 ) t.$c.push( f );
-			var cn = stackTrace()[ a ? 4 : 5 ];
-			if ( cn != bcb.name ) {
-				while ( t.$c.length > 0 ) {
-					var fnc = t.$c.shift();
-					if ( typeof fnc == "function" ) fnc.call( t );
-				}
-				t.$c = null;
-				t.new = null;
-				delete t.$c;
-				delete t.new;
-			}
-			return t;
-		};
-		
-		function bcb( t, p, oa ) {
-			( p || Object ).apply( t, oa );
-			var s = {};
-			for ( var k in t ) {
-				if ( k != "$c" && k != "new" ) {
-					if ( Object.getOwnPropertyDescriptor( t, k ).writable ) s[ k ] = t[ k ];
-					else prop( s, k, Object.getOwnPropertyDescriptor( t, k ) );
-				}
-			}
-			return s;
-		};
-		
-		var s = bcb( t, p, oa );
-		if ( typeof b == "function" ) b( t, s );
-		return bca( t, s, a, t.new );
-	};
-	
-	var h = arguments.callee.caller;
-	var cn = stackTrace()[ 1 ];
-	var a = cn == createSingletonClass.name ? h.arguments.callee.caller.arguments : h.arguments;
-	return bc( t, p, a.callee.caller, oa, b );
-};
-
-function createSingletonClass( o, t, p, oa, b ) {
-	var cn = stackTrace()[ 4 ];
-	if ( cn == createClass.name ) return createClass( t, p, oa, b );
-	return o.$i || ( o.$i = createClass( t, p, oa, b ) );
-};
+function createSingletonClass( sc, p, a, n ) {
+	roFunc( sc, "instance", function() {
+		if ( !sc.$i ) cnst( sc, "$i", new ( createClass( p, a, n ) )() );
+		return sc.$i;
+	});
+}
 
 function sourcePath( v ) {
 	if ( ASJS.sourcePath == "" ) ASJS.sourcePath = v;
@@ -86,7 +87,7 @@ function includeOnce( f ) {
 	var script = ASJS.Tag( "script" );
 		script.setAttr( "type", "text/javascript" );
 		script.setAttr( "src", ASJS.sourcePath + f );
-	( new ASJS.Head() ).addChild( script );
+	( ASJS.Head.instance() ).addChild( script );
 }
 
 var stage;
@@ -97,11 +98,10 @@ var ASJS = {
 	start: function( b ) {
 		if ( ASJS.inited ) return;
 		ASJS.inited = true;
-		window.onload = function() {
-			new ASJS.Polyfill();
-			stage = new ASJS.Stage();
-			stage.init();
-			new b();
-		};
+		
+		ASJS.Polyfill.instance();
+		stage = ASJS.Stage.instance();
+		stage.init();
+		new b();
 	}
 };

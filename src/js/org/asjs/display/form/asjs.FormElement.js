@@ -1,50 +1,48 @@
 includeOnce( "org/asjs/display/asjs.Sprite.js" );
 
-ASJS.FormElement = function( tag ) {
-	return createClass( this, ASJS.Sprite, [ tag ], 
-		function( _scope, _super ) {
-			// private object
-			
-			// private const
-			
-			// public variable
-			
-			// protected variable
-			
-			// private variable
-			
-			// constructor
-			_scope.new = function() {
-				_scope.tabIndex = "auto";
-			}
-			
-			// public property
-			prop( _scope, "name", {
-				get: function() { return _scope.getAttr( "name" ); },
-				set: function( v ) { _scope.setAttr( "name", v ); }
-			});
-			
-			// protected property
-			
-			// private property
-			
-			// public static function
-			
-			// public read only function
-			
-			// public function
-			_scope.render = function() {};
-			
-			// protected read only function
-			
-			// protected function
-			
-			// private read only function
-			
-			// private function
+ASJS.FormElement = createClass( ASJS.Sprite, null, 
+	function( _scope, _super ) {
+		// private object
+		
+		// private const
+		
+		// public variable
+		
+		// protected variable
+		
+		// private variable
+		
+		// constructor
+		_scope.new = function() {
+			_scope.tabIndex = "auto";
 		}
-	);
-}
+		
+		// public property
+		prop( _scope, "name", {
+			get: function() { return _scope.getAttr( "name" ); },
+			set: function( v ) { _scope.setAttr( "name", v ); }
+		});
+		
+		// protected property
+		
+		// private property
+		
+		// public static function
+		
+		// public read only function
+		
+		// public function
+		_scope.render = function() {};
+		
+		// protected read only function
+		
+		// protected function
+		
+		// private read only function
+		
+		// private function
+	}
+);
 // public static const
 
 // public static variable

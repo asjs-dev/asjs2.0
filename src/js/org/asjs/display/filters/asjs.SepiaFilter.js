@@ -1,45 +1,47 @@
 includeOnce( "org/asjs/display/filters/asjs.AbstractFilter.js" );
 
-ASJS.SepiaFilter = function( value ) {
-	return createClass( this, ASJS.AbstractFilter, null, 
-		function( _scope, _super ) {
-			// private object
-			
-			// private const
-			
-			// public variable
-			
-			// protected variable
-			
-			// private variable
-			
-			// constructor
-			
-			// public property
-			
-			// protected property
-			
-			// private property
-			
-			// public static function
-			
-			// public read only function
-			
-			// public function
-			_scope.execute = function() {
-				return "sepia(" + value + "%)";
-			}
-			
-			// protected read only function
-			
-			// protected function
-			
-			// private read only function
-			
-			// private function
+ASJS.SepiaFilter = createClass( ASJS.AbstractFilter, null, 
+	function( _scope, _super ) {
+		// private object
+		
+		// private const
+		
+		// public variable
+		
+		// protected variable
+		
+		// private variable
+		var _value;
+		
+		// constructor
+		_scope.new = function( value ) {
+			_value = value;
 		}
-	);
-}
+		
+		// public property
+		
+		// protected property
+		
+		// private property
+		
+		// public static function
+		
+		// public read only function
+		
+		// public function
+		_scope.execute = function() {
+			return "sepia(" + _value + "%)";
+		}
+		
+		// protected read only function
+		
+		// protected function
+		
+		// private read only function
+		
+		// private function
+	}
+);
 // public static const
 
 // public static variable

@@ -1,43 +1,46 @@
-ASJS.GradientColorData = function( stop, color, alpha ) {
-	return createClass( this, Object, null, 
-		function( _scope, _super ) {
-			// private object
-			
-			// private const
-			
-			// public variable
+ASJS.GradientColorData = createClass( Object, null, 
+	function( _scope, _super ) {
+		// private object
+		
+		// private const
+		
+		// public variable
+		_scope.stop;
+		_scope.color;
+		_scope.alpha;
+		
+		// protected variable
+		
+		// private variable
+		
+		// constructor
+		_scope.new = function( stop, color, alpha ) {
 			_scope.stop = stop || 0;
 			_scope.color = color || "#0";
 			_scope.alpha = alpha || 1;
-			
-			// protected variable
-			
-			// private variable
-			
-			// constructor
-			
-			// public property
-			
-			// protected property
-			
-			// private property
-			
-			// public static function
-			
-			// public read only function
-			
-			// public function
-			
-			// protected read only function
-			
-			// protected function
-			
-			// private read only function
-			
-			// private function
 		}
-	);
-}
+					
+		// public property
+		
+		// protected property
+		
+		// private property
+		
+		// public static function
+		
+		// public read only function
+		
+		// public function
+		
+		// protected read only function
+		
+		// protected function
+		
+		// private read only function
+		
+		// private function
+	}
+);
 // public static const
 
 // public static variable
