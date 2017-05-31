@@ -8,6 +8,8 @@ createSingletonClass( ASJS.Polyfill, Object, null,
 		var _addEventListener    = "addEventListener";
 		var _removeEventListener = "removeEventListener";
 		var _dispatchEvent       = "dispatchEvent";
+		
+		var _fullscreenAPI;
 
 		_scope.new = function() {
 			checkCustomEvent();
@@ -32,6 +34,10 @@ createSingletonClass( ASJS.Polyfill, Object, null,
 		
 		prop( _scope, "dispatchEvent", {
 			get: function() { return _dispatchEvent; }
+		});
+		
+		prop( _scope, "fullscreenAPI", {
+			get: function() { return _fullscreenAPI; }
 		});
 		
 		function checkCustomEvent() {
@@ -198,12 +204,18 @@ createSingletonClass( ASJS.Polyfill, Object, null,
 				};
 			}
 
+			_fullscreenAPI = {
+				enabled: ""
+			};
+			
 			if ( pollute && !( w3.enabled in _doc ) && api ) {
 				_doc[ _addEventListener ]( api.events.change, handleChange, false );
 				_doc[ _addEventListener ]( api.events.error,  handleError,  false );
 
 				_doc[ w3.enabled ] = _doc[ api.enabled ];
 				_doc[ w3.element ] = _doc[ api.element ];
+				
+				_fullscreenAPI = api;
 
 				_doc[ w3.exit ] = function() {
 					var result = _doc[ api.exit ]();
