@@ -55,7 +55,6 @@ ASJS.AnimatedSprite = createClass( ASJS.DisplayObject, null,
 
 		_scope.removeAnimationDescriptor = function( name ) {
 			_animations[ name ] = null;
-			delete _animations[ name ];
 		}
 
 		_scope.stop = function() {

@@ -145,10 +145,7 @@ ASJS.Tag = createClass( Object, null,
 			} else {
 				while ( handlers.length > 0 ) _scope.removeEventListener( type, handlers[ 0 ] );
 			}
-			if ( handlers.length == 0 ) {
-				_eventHandlers[ type ] = null;
-				delete _eventHandlers[ type ];
-			}
+			if ( handlers.length == 0 ) _eventHandlers[ type ] = null;
 		}
 
 		_scope.hasEventListener = function( type, callback ) {

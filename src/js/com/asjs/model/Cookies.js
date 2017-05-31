@@ -32,7 +32,7 @@ createSingletonClass( Cookies, Object, null,
 			} else var expires = "";
 			document.cookie = n + "=" + v + expires + "; path=/";
 			try {
-				if ( typeof( Storage ) !== "undefined" ) localStorage[ n ] = v;
+				if ( typeof( Storage ) !== "undefined" ) localStorage.setItem( n, v );
 			} catch ( e ) {
 				trace( e );
 			}
@@ -49,7 +49,7 @@ createSingletonClass( Cookies, Object, null,
 				if ( c.indexOf( nameEQ ) == 0 ) return c.substring( nameEQ.length, c.length );
 			}
 			try {
-				if ( typeof( Storage ) !== "undefined" ) return localStorage[ n ];
+				if ( typeof( Storage ) !== "undefined" ) return localStorage.getItem( n );
 			} catch ( e ) {
 				trace( e );
 			}
@@ -59,7 +59,7 @@ createSingletonClass( Cookies, Object, null,
 		_scope.eraseCookie = function( n ) {
 			_scope.createCookie( n, "", -1 );
 			try {
-				if ( typeof( Storage ) !== "undefined" ) delete localStorage[ n ];
+				if ( typeof( Storage ) !== "undefined" ) localStorage.removeItem( n );
 			} catch ( e ) {
 				trace( e );
 			}

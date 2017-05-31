@@ -71,7 +71,6 @@ ASJS.ScriptLoader = createClass( ASJS.Loader, null,
 			_head.addChild( script );
 			_head.removeChild( script );
 			script = null;
-			delete script;
 			return ASJS[ id ]();
 		}
 	}

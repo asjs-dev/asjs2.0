@@ -1,20 +1,26 @@
 "use strict";
 
 var trace = console ? console.log : function() {};
+var trc = trace;
 
-function prop( t, pn, p ) {
+var property = function( t, pn, p ) {
 	p.enumerable = true;
 	p.configurable = true;
 	Object.defineProperty( t, pn, p );
 }
+var prop = property;
 
-function cnst( t, pn, v ) {
-	prop( t, pn, { get: function() { return v; } } );
+var constant = function( t, pn, v ) {
+	prop( t, pn, {
+		get: function() { return v; }
+	});
 }
+var cnst = constant;
 
-var roFunc = cnst;
+var readOnlyFunction = cnst;
+var roFunc = readOnlyFunction;
 
-function createClass( p, a, n ) {
+var createClass = function( p, a, n ) {
 	function extendProperties( t ) {
 		var s = {};
 		for ( var k in t ) {
@@ -55,12 +61,8 @@ function createClass( p, a, n ) {
 		}
 		if ( t.$n[ 0 ] == n ) {
 			t.$n = null;
-			delete t.$n;
-			while ( t.$f.length > 0 ) {
-				t.$f.shift().apply( t, arg );
-			}
+			while ( t.$f.length > 0 ) t.$f.shift().apply( t, arg );
 			t.$f = null;
-			delete t.$f;
 		}
 	}
 	
@@ -69,13 +71,15 @@ function createClass( p, a, n ) {
 	
 	return c;
 }
+var c0 = createClass;
 
-function createSingletonClass( sc, p, a, n ) {
+var createSingletonClass = function( sc, p, a, n ) {
 	roFunc( sc, "instance", function() {
 		if ( !sc.$i ) cnst( sc, "$i", new ( createClass( p, a, n ) )() );
 		return sc.$i;
 	});
 }
+var c1 = createSingletonClass;
 
 function sourcePath( v ) {
 	if ( ASJS.sourcePath == "" ) ASJS.sourcePath = v;
