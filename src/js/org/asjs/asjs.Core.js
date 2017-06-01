@@ -1,7 +1,15 @@
 "use strict";
 
-var trace = console ? console.log : function() {};
+var trace = console.log;
 var trc = trace;
+try {
+	trace( "" );
+} catch ( e ) {
+	console.log( e );
+	trace = function() {};
+	trc = trace;
+}
+console.clear();
 
 var property = function( t, pn, p ) {
 	p.enumerable = true;
@@ -107,7 +115,11 @@ var ASJS = {
 		}
 		if ( ASJS.initedClasses.indexOf( b ) == -1 ) {
 			ASJS.initedClasses.push( b );
-			new b();
+			try {
+				new b();
+			} catch ( e ) {
+				console.log( e );
+			}
 		}
 	}
 };
