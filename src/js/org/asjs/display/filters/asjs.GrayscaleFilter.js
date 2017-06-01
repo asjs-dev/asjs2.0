@@ -11,11 +11,11 @@ ASJS.GrayscaleFilter = createClass( ASJS.AbstractFilter, null,
 		// protected variable
 		
 		// private variable
-		var _value;
+		_scope.value = 0;
 		
 		// constructor
 		_scope.new = function( value ) {
-			_value = value;
+			_scope.value = value;
 		}
 		
 		// public property
@@ -30,7 +30,7 @@ ASJS.GrayscaleFilter = createClass( ASJS.AbstractFilter, null,
 		
 		// public function
 		_scope.execute = function() {
-			return "grayscale(" + _value + "%)";
+			return "grayscale(" + _scope.value + "%)";
 		}
 		
 		// protected read only function

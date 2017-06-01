@@ -2,6 +2,33 @@ includeOnce( "org/asjs/net/asjs.Loader.js" );
 includeOnce( "org/asjs/window/asjs.Head.js" );
 includeOnce( "org/asjs/display/asjs.Tag.js" );
 
+/*
+	How to use:
+	// external script (js/test.js)
+	(function() {
+		var Application = createClass( Object, null,
+			function( _scope, _super ) {
+				_scope.new = function() {
+					trace( "Create external script" );
+				}
+			
+				_scope.sayHello = function() {
+					trace( "Hello!" );
+				}
+			}
+		);
+		ASJS.start( Application );
+	})();
+	
+	// loader
+	var scriptLoader = new ASJS.ScriptLoader();
+		scriptLoader.addEventListener( ASJS.LoaderEvent.LOAD, function( e ) {
+			var s = new scriptLoader.content();
+				s.sayHello();
+		});
+		scriptLoader.load( "js/test.js" );
+*/
+
 ASJS.ScriptLoader = createClass( ASJS.Loader, null,
 	function( _scope, _super ) {
 		// private object
@@ -14,21 +41,15 @@ ASJS.ScriptLoader = createClass( ASJS.Loader, null,
 		
 		// private variable
 		var _head = ASJS.Head.instance();
-		var _type = ASJS.ScriptLoader.TYPE_EVALUATE;
 		var _content;
 		
 		// constructor
 		
 		// public property
-		prop( _scope, "type", {
-			get: function() { return _type; },
-			set: function( v ) { _type = v; }
-		});
-		
 		prop( _scope, "content", {
 			get: function() {
 				if ( !_content && _super.content != "" ) {
-					_content = _type == ASJS.ScriptLoader.TYPE_EVALUATE ? getEvaluatedScript() : getImportedScript();
+					_content = getScript();
 					_scope.free();
 				}
 				return _content;
@@ -59,28 +80,26 @@ ASJS.ScriptLoader = createClass( ASJS.Loader, null,
 		// private read only function
 		
 		// private function
-		function getEvaluatedScript() {
-			return new Function( _super.content + " return Main;" )();
+		function preparateScript() {
+			var h = _super.content.split( "ASJS.start(" );
+			var preparated = h.shift() + "return ";
+				h = h.shift().split( ");" );
+				preparated += h.shift() + ";" + h.join( ");" );
+			return preparated;
 		}
 		
-		function getImportedScript() {
-			var id = "ew" + ( ++ASJS.ScriptLoader.scripts );
-			var script = new ASJS.Tag( "script" );
-				script.setAttr( "type", "text/javascript" );
-				script.text = "ASJS." + id + " = function(){" + _super.content + "return Main;};";
-			_head.addChild( script );
-			_head.removeChild( script );
-			script = null;
-			return ASJS[ id ]();
+		function getScript() {
+			try {
+				return Function( "return " + preparateScript() )();
+			} catch ( e ) {
+				trace( "The external script must be wrapped" );
+			}
 		}
 	}
 );
 // public static const
-cnst( ASJS.ScriptLoader, "TYPE_EVALUATE", "ASJS-ScriptLoader-typeEvaluate" );
-cnst( ASJS.ScriptLoader, "TYPE_IMPORT",   "ASJS-ScriptLoader-typeImport" );
 
 // public static variable
-ASJS.ScriptLoader.scripts = 0;
 
 // public static property
 

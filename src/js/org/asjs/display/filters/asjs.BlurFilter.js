@@ -11,11 +11,11 @@ ASJS.BlurFilter = createClass( ASJS.AbstractFilter, null,
 		// protected variable
 		
 		// private variable
-		var _value;
+		_scope.value = 0;
 		
 		// constructor
 		_scope.new = function( value ) {
-			_value = value;
+			_scope.value = value;
 		}
 		
 		// public property
@@ -30,7 +30,7 @@ ASJS.BlurFilter = createClass( ASJS.AbstractFilter, null,
 		
 		// public function
 		_scope.execute = function() {
-			return "blur(" + _value + "px)";
+			return "blur(" + _scope.value + "px)";
 		}
 		
 		// protected read only function

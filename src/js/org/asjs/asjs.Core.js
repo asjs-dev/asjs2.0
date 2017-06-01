@@ -98,14 +98,16 @@ var stage;
 var ASJS = {
 	sourcePath: "",
 	includedScript: {},
-	inited: false,
+	initedClasses: [],
 	start: function( b ) {
-		if ( ASJS.inited ) return;
-		ASJS.inited = true;
-		
 		ASJS.Polyfill.instance();
-		stage = ASJS.Stage.instance();
-		stage.init();
-		new b();
+		if ( !stage ) {
+			stage = ASJS.Stage.instance();
+			stage.init();
+		}
+		if ( ASJS.initedClasses.indexOf( b ) == -1 ) {
+			ASJS.initedClasses.push( b );
+			new b();
+		}
 	}
 };

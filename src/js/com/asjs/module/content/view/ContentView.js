@@ -24,6 +24,7 @@ var ContentView = createClass( AbstractView, null,
 		var _button = new ASJS.Button();
 		var _animatedSprite = new ASJS.AnimatedSprite();
 		var _drag = false;
+		var _blurFilter = new ASJS.BlurFilter();
 		
 		// constructor
 		_scope.new = function() {
@@ -127,7 +128,9 @@ var ContentView = createClass( AbstractView, null,
 		}
 
 		function onStageMouseMove() {
-			_scope.filters = [ new ASJS.BlurFilter( ( Math.max( 0, stage.stageHeight / ( stage.stageHeight - _mouse.mouseY ) ) / 10 ) ) ];
+			_blurFilter.value = ( Math.max( 0, stage.stageHeight / ( stage.stageHeight - _mouse.mouseY ) ) / 10 );
+			
+			_scope.filters = [ _blurFilter ];
 			if ( !_drag ) return;
 			_animatedSprite.move( _mouse.mouseX - _animatedSprite.width * 0.5, _mouse.mouseY - _animatedSprite.height * 0.5 );
 		}
