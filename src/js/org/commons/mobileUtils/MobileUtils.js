@@ -16,6 +16,7 @@ createSingletonClass( MobileUtils, Object, null,
 		var _type;
 		var _useDPI;
 		var _useScreenSize;
+		var _isDesktop;
 		
 		// constructor
 		_scope.new = function() {
@@ -26,9 +27,17 @@ createSingletonClass( MobileUtils, Object, null,
 			_type = MobileUtils.TYPE_WIDTH;
 			_useDPI = false;
 			_useScreenSize = false;
+			
+			var _window = ASJS.Window.instance();
+			var navigator = _window.navigator;
+			var isIOS = new RegExp( "iPad", "i" ).test( navigator.userAgent ) || new RegExp( "iPhone", "i" ).test( navigator.userAgent );
+			_isDesktop = !isIOS && ( navigator.maxTouchPoints == null || navigator.maxTouchPoints == 0 );
 		}
 		
 		// public property
+		prop( _scope, "isDesktop", {
+			get: function() { return _isDesktop;}
+		});
 		prop( _scope, "width", {
 			get: function() { return _useScreenSize ? stage.screenWidth : stage.stageWidth; }
 		});
