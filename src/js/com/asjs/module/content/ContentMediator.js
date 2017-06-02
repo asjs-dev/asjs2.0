@@ -4,7 +4,7 @@ includeOnce( "com/asjs/model/proxy/DataProxy.js" );
 
 includeOnce( "com/asjs/module/content/view/ContentView.js" );
 
-includeOnce( "com/asjs/module/notificationWindow/mediator/NotificationWindowMediator.js" );
+includeOnce( "com/asjs/module/notificationWindow/NotificationWindowMediator.js" );
 includeOnce( "com/asjs/module/notificationWindow/model/vo/NotificationWindowDataVo.js" );
 
 var ContentMediator = createClass( AbstractResizeMediator, null, 

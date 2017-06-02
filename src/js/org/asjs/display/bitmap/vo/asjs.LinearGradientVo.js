@@ -1,6 +1,6 @@
 includeOnce( "org/asjs/geom/asjs.Rectangle.js" );
 
-ASJS.LinearGradientData = createClass( ASJS.Rectangle );
+ASJS.LinearGradientVo = createClass( ASJS.Rectangle );
 // public static const
 
 // public static variable

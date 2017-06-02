@@ -11,11 +11,11 @@ ASJS.OpacityBitmapFilter = createClass( ASJS.AbstractBitmapFilter, null,
 		// protected variable
 		
 		// private variable
-		var _adjustment;
+		_scope.adjustment;
 		
 		// constructor
 		_scope.new = function( adjustment ) {
-			_adjustment = adjustment || 1;
+			_scope.adjustment = adjustment;
 		}
 		
 		// public property
@@ -34,7 +34,7 @@ ASJS.OpacityBitmapFilter = createClass( ASJS.AbstractBitmapFilter, null,
 			var i = -4;
 			var l = d.length;
 			while ( ( i += 4 ) < l ) {
-				d[ i + 3 ] *= _adjustment;
+				d[ i + 3 ] *= _scope.adjustment;
 			}
 			return pixels;
 		}

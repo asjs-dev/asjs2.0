@@ -11,11 +11,11 @@ ASJS.ThresholdBitmapFilter = createClass( ASJS.AbstractBitmapFilter, null,
 		// protected variable
 		
 		// private variable
-		var _threshold;
+		_scope.threshold;
 		
 		// constructor
 		_scope.new = function( threshold ) {
-			_threshold = threshold;
+			_scope.threshold = threshold;
 		}
 		
 		// public property
@@ -37,7 +37,7 @@ ASJS.ThresholdBitmapFilter = createClass( ASJS.AbstractBitmapFilter, null,
 				var r = d[ i ];
 				var g = d[ i + 1 ];
 				var b = d[ i + 2 ];
-				var v = ( 0.2126 * r + 0.7152 * g + 0.0722 * b >= _threshold ) ? 255 : 0;
+				var v = ( 0.2126 * r + 0.7152 * g + 0.0722 * b >= _scope.threshold ) ? 255 : 0;
 				d[ i ] = d[ i + 1 ] = d[ i + 2 ] = v;
 			}
 			return pixels;

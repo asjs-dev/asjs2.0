@@ -12,17 +12,17 @@ ASJS.MaskBitmapFilter = createClass( ASJS.AbstractBitmapFilter, null,
 		// protected variable
 		
 		// private variable
-		var _mask;
-		var _pos;
-		var _invert;
-		var _cutout;
+		_scope.mask;
+		_scope.pos;
+		_scope.invert;
+		_scope.cutout;
 		
 		// constructor
 		_scope.new = function( mask, pos, invert, cutout ) {
-			_mask = mask;
-			_pos = pos;
-			_invert = invert;
-			_cutout = cutout == undefined ? true : cutout;
+			_scope.mask = mask;
+			_scope.pos = pos;
+			_scope.invert = invert;
+			_scope.cutout = cutout == undefined ? true : cutout;
 		}
 		
 		// public property
@@ -38,7 +38,7 @@ ASJS.MaskBitmapFilter = createClass( ASJS.AbstractBitmapFilter, null,
 		// public function
 		_scope.execute = function( pixels ) {
 			var srcD = pixels.data;
-			var maskPixels = mask.getImageData( 0, 0, mask.bitmapWidth, mask.bitmapHeight );
+			var maskPixels = mask.getImageData( 0, 0, _scope.mask.bitmapWidth, _scope.mask.bitmapHeight );
 	
 			var maskD = maskPixels.data;
 
@@ -47,8 +47,8 @@ ASJS.MaskBitmapFilter = createClass( ASJS.AbstractBitmapFilter, null,
 			var maskW = maskPixels.width;
 			var maskH = maskPixels.height;
 
-			var maxMaskW = _pos.x + maskW;
-			var maxMaskH = _pos.y + maskH;
+			var maxMaskW = _scope.pos.x + maskW;
+			var maxMaskH = _scope.pos.y + maskH;
 
 			var i = -4;
 			var l = srcD.length;
@@ -58,13 +58,13 @@ ASJS.MaskBitmapFilter = createClass( ASJS.AbstractBitmapFilter, null,
 					Math.floor( srcPixelLinearPos % srcW ),
 					Math.floor( srcPixelLinearPos / srcW )
 				);
-				if ( srcPixelPos.x >= _pos.x && srcPixelPos.y >= _pos.y && srcPixelPos.x < maxMaskW && srcPixelPos.y < maxMaskH ) {
-					var j = ( ( srcPixelPos.y - _pos.y ) * maskW + ( srcPixelPos.x - _pos.x ) ) * 4;
+				if ( srcPixelPos.x >= _scope.pos.x && srcPixelPos.y >= _scope.pos.y && srcPixelPos.x < maxMaskW && srcPixelPos.y < maxMaskH ) {
+					var j = ( ( srcPixelPos.y - _scope.pos.y ) * maskW + ( srcPixelPos.x - _scope.pos.x ) ) * 4;
 					var sA = srcD[ i + 3 ];
 					var mA = maskD[ j + 3 ];
 			
-					srcD[ i + 3 ] = Math.floor( sA * ( ( _invert ? ( 255 - mA ) : mA ) / 255 ) );
-				} else if ( _cutout ) srcD[ i + 3 ] = 0;
+					srcD[ i + 3 ] = Math.floor( sA * ( ( _scope.invert ? ( 255 - mA ) : mA ) / 255 ) );
+				} else if ( _scope.cutout ) srcD[ i + 3 ] = 0;
 			}
 
 			return pixels;

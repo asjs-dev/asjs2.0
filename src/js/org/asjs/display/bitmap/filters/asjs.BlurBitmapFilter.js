@@ -11,24 +11,28 @@ ASJS.BlurBitmapFilter = createClass( ASJS.AbstractConvoluteBitmapFilter, null,
 		// protected variable
 		
 		// private variable
-		var _blurValue;
+		var _value;
 		
 		// constructor
 		_scope.new = function( opaque, value ) {
-			_blurValue = Math.max( 1, value || 1 );
+			_scope.value = value;
 		}
 		
 		// public property
+		prop( _scope, "value", {
+			get: function() { return _value; },
+			set: function( v ) { _value = Math.max( 1, v || 1 ); }
+		});
 		
 		// protected property
 		prop( _scope, "_matrix", {
 			get: function() {
-				var value = 1 / Math.pow( _blurValue, 2 );
+				var value = 1 / Math.pow( _value, 2 );
 				var matrix = [];
 				var i = -1;
-				while ( ++i < _blurValue ) {
+				while ( ++i < _value ) {
 					var j = -1;
-					while ( ++j < _blurValue ) {
+					while ( ++j < _value ) {
 						matrix.push( value );
 					}
 				}

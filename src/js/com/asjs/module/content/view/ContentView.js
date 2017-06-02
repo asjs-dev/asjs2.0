@@ -1,6 +1,6 @@
 includeOnce( "com/asjs/model/Language.js" );
 includeOnce( "com/asjs/view/AbstractView.js" );
-includeOnce( "com/asjs/module/content/mediator/ContentMediator.js" );
+includeOnce( "com/asjs/module/content/ContentMediator.js" );
 
 var ContentView = createClass( AbstractView, null, 
 	function( _scope, _super ) {

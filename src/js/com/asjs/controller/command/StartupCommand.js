@@ -2,7 +2,7 @@ includeOnce( "com/asjs/controller/command/startup/ConfigLoaderCommand.js" );
 includeOnce( "com/asjs/controller/command/startup/LanguageLoaderCommand.js" );
 includeOnce( "com/asjs/controller/command/startup/EnvironmentCommand.js" );
 includeOnce( "com/asjs/controller/command/startup/ViewPrepCommand.js" );
-includeOnce( "com/asjs/module/content/mediator/ContentMediator.js" );
+includeOnce( "com/asjs/module/content/ContentMediator.js" );
 
 var StartupCommand = createClass( ASJS.AbstractCommand, null, 
 	function( _scope, _super ) {

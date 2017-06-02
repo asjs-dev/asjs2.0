@@ -30,7 +30,7 @@ ASJS.InvertBitmapFilter = createClass( ASJS.AbstractBitmapFilter, null,
 			var i = -4;
 			var l = d.length;
 			while ( ( i += 4 ) < l ) {
-				d[ i ] = 128 - ( d[ i ] - 128 );
+				d[ i ]     = 128 - ( d[ i ] - 128 );
 				d[ i + 1 ] = 128 - ( d[ i + 1 ] - 128 );
 				d[ i + 2 ] = 128 - ( d[ i + 2 ] - 128 );
 			}

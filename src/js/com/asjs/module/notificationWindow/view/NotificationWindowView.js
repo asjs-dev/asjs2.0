@@ -1,5 +1,5 @@
 includeOnce( "com/asjs/view/AbstractView.js" );
-includeOnce( "com/asjs/module/notificationWindow/mediator/NotificationWindowMediator.js" );
+includeOnce( "com/asjs/module/notificationWindow/NotificationWindowMediator.js" );
 
 var NotificationWindowView = createClass( AbstractView, null, 
 	function( _scope, _super ) {

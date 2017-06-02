@@ -16,10 +16,14 @@ ASJS.PixelateBitmapFilter = createClass( ASJS.AbstractBitmapFilter, null,
 		
 		// constructor
 		_scope.net = function( value ) {
-			_value = Math.max( 1, value || 1 );
+			_scope.value = value;
 		}
 		
 		// public property
+		prop( _scope, "value", {
+			get: function() { return _value; },
+			set: function( v ) { _value = Math.max( 1, v || 1 ); }
+		});
 		
 		// protected property
 		

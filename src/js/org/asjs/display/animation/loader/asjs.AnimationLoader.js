@@ -4,7 +4,7 @@ includeOnce( "org/asjs/event/asjs.LoaderEvent.js" );
 
 includeOnce( "org/asjs/utils/asjs.Deferred.js" );
 
-includeOnce( "org/asjs/display/animation/asjs.AnimationDescriptor.js" );
+includeOnce( "org/asjs/display/animation/vo/asjs.AnimationDescriptorVo.js" );
 
 includeOnce( "org/asjs/geom/asjs.Rectangle.js" );
 includeOnce( "org/asjs/geom/asjs.Point.js" );
@@ -57,7 +57,7 @@ ASJS.AnimationLoader = createClass( Object, null,
 		
 		// private function
 		function parseAnimationDescriptor( data ) {
-			var animationDescriptor = new ASJS.AnimationDescriptor(
+			var animationDescriptor = new ASJS.AnimationDescriptorVo(
 				data.id, 
 				data.image, 
 				new ASJS.Point( data.imageSize.w, data.imageSize.h ),  

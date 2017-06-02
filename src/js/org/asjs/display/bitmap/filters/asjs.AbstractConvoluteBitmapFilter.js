@@ -12,18 +12,18 @@ ASJS.AbstractConvoluteBitmapFilter = createClass( ASJS.AbstractBitmapFilter, nul
 		// protected variable
 		
 		// private variable
-		var _opaque;
+		_scope.opaque;
 		
 		// constructor
 		_scope.new = function( opaque ) {
-			_opaque = opaque;
+			_scope.opaque = opaque;
 		}
 		
 		// public property
 		
 		// protected property
 		prop( _scope, "_matrix", {
-			get: function() { return [1]; }
+			get: function() { return [ 1 ]; }
 		});
 		
 		// private property
@@ -61,7 +61,7 @@ ASJS.AbstractConvoluteBitmapFilter = createClass( ASJS.AbstractBitmapFilter, nul
 			var output = bitmapHelper.getImageData( 0, 0, w, h );
 			var dst = output.data;
 	
-			var alphaFac = _opaque ? 1 : 0;
+			var alphaFac = _scope.opaque ? 1 : 0;
 	
 			var y = -1;
 			while ( ++y < h ) {

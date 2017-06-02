@@ -1,5 +1,5 @@
-includeOnce( "com/asjs/module/content/mediator/ContentMediator.js" );
-includeOnce( "com/asjs/module/notificationWindow/mediator/NotificationWindowMediator.js" );
+includeOnce( "com/asjs/module/content/ContentMediator.js" );
+includeOnce( "com/asjs/module/notificationWindow/NotificationWindowMediator.js" );
 includeOnce( "com/asjs/model/Language.js" );
 
 var ViewPrepCommand = createClass( ASJS.AbstractCommand, null, 

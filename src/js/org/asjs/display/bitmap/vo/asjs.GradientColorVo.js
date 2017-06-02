@@ -1,31 +1,25 @@
-ASJS.RadialGradientData = createClass( Object, null, 
+ASJS.GradientColorVo = createClass( Object, null, 
 	function( _scope, _super ) {
 		// private object
 		
 		// private const
 		
 		// public variable
-		_scope.x0;
-		_scope.y0;
-		_scope.r0;
-		_scope.x1;
-		_scope.y1;
-		_scope.r1;
+		_scope.stop;
+		_scope.color;
+		_scope.alpha;
 		
 		// protected variable
 		
 		// private variable
 		
 		// constructor
-		_scope.new = function( x0, y0, r0, x1, y1, r1 ) {
-			_scope.x0 = x0 || 0;
-			_scope.y0 = y0 || 0;
-			_scope.r0 = r0 || 0;
-			_scope.x1 = x1 || 0;
-			_scope.y1 = y1 || 0;
-			_scope.r1 = r1 || 0;
+		_scope.new = function( stop, color, alpha ) {
+			_scope.stop = stop || 0;
+			_scope.color = color || "#0";
+			_scope.alpha = alpha || 1;
 		}
-		
+					
 		// public property
 		
 		// protected property

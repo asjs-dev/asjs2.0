@@ -11,14 +11,18 @@ ASJS.AlphaBitmapFilter = createClass( ASJS.AbstractBitmapFilter, null,
 		// protected variable
 		
 		// private variable
-		var _isDarkness;
+		var _type = ASJS.AlphaBitmapFilter.TYPE_DARKNESS;
 		
 		// constructor
 		_scope.new = function( type ) {
-			_isDarkness = type == ASJS.AlphaBitmapFilter.TYPE_DARKNESS;
+			_type = type;
 		}
 		
 		// public property
+		prop( _scope, "type", {
+			get: function() { return _type; },
+			set: function( v ) { _type = v; }
+		});
 		
 		// protected property
 		
@@ -30,12 +34,13 @@ ASJS.AlphaBitmapFilter = createClass( ASJS.AbstractBitmapFilter, null,
 		
 		// public function
 		_scope.execute = function( pixels ) {
+			var isDarkness = _type == ASJS.AlphaBitmapFilter.TYPE_DARKNESS;
 			var d = pixels.data;
 			var i = -4;
 			var l = d.length;
 			while ( ( i += 4 ) < l ) {
 				var average = ( ( d[ i ] + d[ i + 1 ] + d[ i + 2 ] ) / 3 );
-				var a = Math.round( _isDarkness ? 255 - average : average );
+				var a = Math.round( isDarkness ? 255 - average : average );
 				d[ i + 3 ] -= a;
 			}
 			return pixels;

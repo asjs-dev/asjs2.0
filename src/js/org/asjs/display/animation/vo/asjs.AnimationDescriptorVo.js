@@ -1,6 +1,6 @@
 includeOnce( "org/asjs/geom/asjs.Point.js" );
 
-ASJS.AnimationDescriptor = createClass( Object, null, 
+ASJS.AnimationDescriptorVo = createClass( Object, null, 
 	function( _scope, _super ) {
 		// private object
 		
