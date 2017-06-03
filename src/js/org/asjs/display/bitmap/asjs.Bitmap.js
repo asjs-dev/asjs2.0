@@ -46,12 +46,12 @@ ASJS.Bitmap = createClass( ASJS.DisplayObject, [ "canvas" ],
 		});
 
 		prop( _scope, "bitmapWidth", {
-			get: function() { return _scope.getAttr( "width" ); },
+			get: function() { return _scope.el.width; },
 			set: function( v ) { _scope.setAttr( "width", Math.max( 1, v || 1 ) ); }
 		});
 
 		prop( _scope, "bitmapHeight", {
-			get: function() { return _scope.getAttr( "height" ); },
+			get: function() { return _scope.el.height; },
 			set: function( v ) { _scope.setAttr( "height", Math.max( 1, v || 1 ) ); }
 		});
 

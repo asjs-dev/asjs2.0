@@ -38,7 +38,7 @@ ASJS.MaskBitmapFilter = createClass( ASJS.AbstractBitmapFilter, null,
 		// public function
 		_scope.execute = function( pixels ) {
 			var srcD = pixels.data;
-			var maskPixels = mask.getImageData( 0, 0, _scope.mask.bitmapWidth, _scope.mask.bitmapHeight );
+			var maskPixels = _scope.mask.getImageData( 0, 0, _scope.mask.bitmapWidth, _scope.mask.bitmapHeight );
 	
 			var maskD = maskPixels.data;
 
