@@ -1,6 +1,5 @@
 includeOnce( "com/asjs/module/content/ContentMediator.js" );
 includeOnce( "com/asjs/module/notificationWindow/NotificationWindowMediator.js" );
-includeOnce( "com/asjs/model/Language.js" );
 
 var ViewPrepCommand = createClass( ASJS.AbstractCommand, null, 
 	function( _scope, _super ) {
@@ -13,7 +12,6 @@ var ViewPrepCommand = createClass( ASJS.AbstractCommand, null,
 		// protected variable
 		
 		// private variable
-		var _language = Language.instance();
 		
 		// constructor
 		
@@ -30,9 +28,7 @@ var ViewPrepCommand = createClass( ASJS.AbstractCommand, null,
 		// public function
 		_scope.execute = function( app ) {
 			new ContentMediator( app.contentView );
-
-			var notificationWindowMediator = new NotificationWindowMediator( app.notificationWindowView );
-				notificationWindowMediator.setDefault( _language.getText( 'notification_ok_button' ), _language.getText( 'notification_cancel_button' ) );
+			new NotificationWindowMediator( app.notificationWindowView );
 		}
 		
 		// protected read only function

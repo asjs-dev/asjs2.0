@@ -1,6 +1,7 @@
 includeOnce( "com/asjs/mediator/AbstractResizeMediator.js" );
 includeOnce( "com/asjs/module/notificationWindow/view/NotificationWindowView.js" );
 includeOnce( "com/asjs/module/notificationWindow/model/vo/NotificationWindowDataVo.js" );
+includeOnce( "com/asjs/model/Language.js" );
 
 var NotificationWindowMediator = createClass( AbstractResizeMediator, null, 
 	function( _scope, _super ) {
@@ -14,6 +15,8 @@ var NotificationWindowMediator = createClass( AbstractResizeMediator, null,
 		_scope._handlers.push( NotificationWindowMediator.SHOW );
 		
 		// private variable
+		var _language = Language.instance();
+		
 		var _forceResize = true;
 		
 		var _pool = [];
@@ -25,6 +28,8 @@ var NotificationWindowMediator = createClass( AbstractResizeMediator, null,
 		// constructor
 		_scope.new = function() {
 			_notificationWindowView.addEventListener( NotificationWindowMediator.HIDE, hide );
+			_defaultOkLabel = _language.getText( 'notification_ok_button' );
+			_defaultCancelLabel = _language.getText( 'notification_cancel_button' );
 		}
 		
 		// public property
@@ -44,11 +49,6 @@ var NotificationWindowMediator = createClass( AbstractResizeMediator, null,
 				case NotificationWindowMediator.SHOW: show( data );
 				break;
 			}
-		}
-
-		_scope.setDefault = function( okLabel, cancelLabel ) {
-			_defaultOkLabel = okLabel;
-			_defaultCancelLabel = cancelLabel;
 		}
 		
 		// protected read only function
