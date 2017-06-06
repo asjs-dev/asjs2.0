@@ -66,11 +66,14 @@ var createClass = function( p, a, n ) {
 		if ( f ) {
 			if ( t.$f.indexOf( f ) == -1 ) t.$f.push( f );
 			t.new = null;
+			delete t.new;
 		}
 		if ( t.$n[ 0 ] == n ) {
 			t.$n = null;
+			delete t.$n;
 			while ( t.$f.length > 0 ) t.$f.shift().apply( t, arg );
 			t.$f = null;
+			delete t.$f;
 		}
 	}
 	
@@ -118,7 +121,7 @@ var ASJS = {
 			try {
 				new b();
 			} catch ( e ) {
-				console.log( e );
+				trace( e );
 			}
 		}
 	}
