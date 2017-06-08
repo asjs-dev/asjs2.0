@@ -8,6 +8,7 @@ createSingletonClass( ASJS.Polyfill, Object, null,
 		var _addEventListener    = "addEventListener";
 		var _removeEventListener = "removeEventListener";
 		var _dispatchEvent       = "dispatchEvent";
+		var _eventTypePrefix     = "";
 		
 		var _fullscreenAPI;
 
@@ -36,10 +37,19 @@ createSingletonClass( ASJS.Polyfill, Object, null,
 			get: function() { return _dispatchEvent; }
 		});
 		
+		prop( _scope, "eventTypePrefix", {
+			get: function() { return _eventTypePrefix; }
+		});
+	
 		prop( _scope, "fullscreenAPI", {
 			get: function() { return _fullscreenAPI; }
 		});
 		
+		_scope.convertEventType = function( type ) {
+			if ( type.indexOf( _eventTypePrefix ) != 0 ) return _eventTypePrefix + type;
+			return type;
+		}
+	
 		function checkCustomEvent() {
 			if ( typeof _win.CustomEvent === "function" ) return false;
 			trace( "window.CustomEvent is not supported, but replaceable" );
@@ -248,6 +258,7 @@ createSingletonClass( ASJS.Polyfill, Object, null,
 			_addEventListener    = "attachEvent";
 			_removeEventListener = "detachEvent";
 			_dispatchEvent       = "fireEvent";
+			_eventTypePrefix     = "on";
 		}
 
 		function checkMediaSource() {
