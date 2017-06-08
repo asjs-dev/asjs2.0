@@ -110,6 +110,10 @@ ASJS.Tag = createClass( Object, null,
 		
 		_scope.dispatchEvent = function( event, data, bubble ) {
 			try {
+				var type = event.type;
+				if ( type.indexOf( _polyfill.eventTypePrefix ) != 0 ) {
+					event.type = _polyfill.eventTypePrefix + type;
+				}
 				_scope.el[ _polyfill.dispatchEvent ]( ASJS.EventDispatcher.createEvent( event, data, bubble ) );
 			} catch ( error ) {}
 		}
@@ -117,7 +121,7 @@ ASJS.Tag = createClass( Object, null,
 		_scope.addEventListener = function( type, callback, capture ) {
 			var types = type.split( " " );
 			while ( types.length > 0 ) {
-				var t = types.shift();
+				var t = _polyfill.convertEventType( types.shift() );
 				if ( t != "" ) {
 					if ( _scope.hasEventListener( t, callback ) ) return;
 					if ( !_eventHandlers[ t ] ) _eventHandlers[ t ] = [];
@@ -129,27 +133,30 @@ ASJS.Tag = createClass( Object, null,
 
 		_scope.removeEventListeners = function() {
 			for ( var type in _eventHandlers ) {
-				var handlers = _eventHandlers[ type ];
-				while ( handlers.length > 0 ) _scope.removeEventListener( type, handlers[ 0 ] );
+				var t = _polyfill.convertEventType( type );
+				var handlers = _eventHandlers[ t ];
+				while ( handlers.length > 0 ) _scope.removeEventListener( t, handlers[ 0 ] );
 			}
 		}
 
 		_scope.removeEventListener = function( type, callback ) {
-			var handlers = _eventHandlers[ type ];
+			var t = _polyfill.convertEventType( type );
+			var handlers = _eventHandlers[ t ];
 			if ( !handlers ) return;
 			if ( callback ) {
 				var i = handlers.indexOf( callback );
 				if ( i == -1 ) return;
 				handlers.splice( i, 1 );
-				_scope.el[ _polyfill.removeEventListener ]( type, callback );
+				_scope.el[ _polyfill.removeEventListener ]( t, callback );
 			} else {
-				while ( handlers.length > 0 ) _scope.removeEventListener( type, handlers[ 0 ] );
+				while ( handlers.length > 0 ) _scope.removeEventListener( t, handlers[ 0 ] );
 			}
-			if ( handlers.length == 0 ) _eventHandlers[ type ] = null;
+			if ( handlers.length == 0 ) _eventHandlers[ t ] = null;
 		}
 
 		_scope.hasEventListener = function( type, callback ) {
-			var handlers = _eventHandlers[ type ];
+			var t = _polyfill.convertEventType( type );
+			var handlers = _eventHandlers[ t ];
 			if ( !handlers ) return false;
 			if ( !callback ) return true;
 			return handlers.indexOf( callback ) > -1;
