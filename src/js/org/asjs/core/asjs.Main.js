@@ -18,6 +18,7 @@ var ASJS = {
 		ASJS.Polyfill.instance();
 		stage = ASJS.Stage.instance();
 		if ( ASJS.initedClasses.indexOf( b ) == -1 ) {
+			trace( "<AS/JS> core version: 2.{{version}}" );
 			ASJS.initedClasses.push( b );
 			try {
 				new b();
