@@ -18,8 +18,7 @@ var Application = createClass( Object, null,
 		
 		// constructor
 		_scope.new = function() {
-			trace( "<AS/JS> app version: 2.{{version}}" );
-			trace( "<AS/JS> 2.0 Application" );
+			trace( "<AS/JS> Application 2.{{version}}" );
 			
 			stage.addChild( _scope.contentView );
 			stage.addChild( _scope.notificationWindowView );
