@@ -1,7 +1,7 @@
-includeOnce( "com/asjs/controller/command/startup/ConfigLoaderCommand.js" );
-includeOnce( "com/asjs/controller/command/startup/LanguageLoaderCommand.js" );
-includeOnce( "com/asjs/controller/command/startup/EnvironmentCommand.js" );
-includeOnce( "com/asjs/controller/command/startup/ViewPrepCommand.js" );
+includeOnce( "com/asjs/controller/startup/ConfigLoaderCommand.js" );
+includeOnce( "com/asjs/controller/startup/LanguageLoaderCommand.js" );
+includeOnce( "com/asjs/controller/startup/EnvironmentCommand.js" );
+includeOnce( "com/asjs/controller/startup/ViewPrepCommand.js" );
 includeOnce( "com/asjs/module/content/ContentMediator.js" );
 
 var StartupCommand = createClass( ASJS.AbstractCommand, null, 
@@ -43,11 +43,11 @@ var StartupCommand = createClass( ASJS.AbstractCommand, null,
 		
 		// private function
 		function loadConfig() {
-			( new ConfigLoaderCommand() ).execute().resolve( loadLanguage );
+			( new ConfigLoaderCommand() ).execute().done( loadLanguage );
 		}
 
 		function loadLanguage() {
-			( new LanguageLoaderCommand() ).execute().resolve( initApplication );
+			( new LanguageLoaderCommand() ).execute().done( initApplication );
 		}
 
 		function initApplication() {

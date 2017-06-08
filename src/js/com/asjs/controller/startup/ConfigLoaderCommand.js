@@ -30,7 +30,7 @@ var ConfigLoaderCommand = createClass( ASJS.AbstractCommand, null,
 		// public function
 		_scope.execute = function() {
 			var promise = _dataProxy.loadJSON( "json/config.json" );
-				promise.resolve(function( response ) {
+				promise.done(function( response ) {
 					_config.data = response;
 				});
 	

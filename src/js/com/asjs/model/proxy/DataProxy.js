@@ -27,7 +27,7 @@ createSingletonClass( DataProxy, Object, null,
 		
 		// public function
 		_scope.loadJSON = function( url ) {
-			var dfd = new ASJS.Deferred();
+			var dfd = new ASJS.Promise();
 	
 			var loader = new JSONLoader();
 				loader.method = ASJS.RequestMethod.GET;
@@ -39,7 +39,7 @@ createSingletonClass( DataProxy, Object, null,
 				});
 				loader.load( url );
 	
-			return dfd.promise;
+			return dfd;
 		}
 
 		_scope.loadAnimation = function( url ) {

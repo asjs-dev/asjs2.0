@@ -2,7 +2,7 @@ includeOnce( "org/asjs/net/asjs.Loader.js" );
 includeOnce( "org/asjs/net/asjs.RequestMethod.js" );
 includeOnce( "org/asjs/event/asjs.LoaderEvent.js" );
 
-includeOnce( "org/asjs/utils/asjs.Deferred.js" );
+includeOnce( "org/asjs/utils/asjs.Promise.js" );
 
 includeOnce( "org/asjs/display/animation/vo/asjs.AnimationDescriptorVo.js" );
 
@@ -37,7 +37,7 @@ ASJS.AnimationLoader = createClass( Object, null,
 		
 		// public function
 		_scope.load = function( url ) {
-			_dfd = new ASJS.Deferred();
+			_dfd = new ASJS.Promise();
 	
 			_loader = new ASJS.Loader();
 			_loader.addEventListener( ASJS.LoaderEvent.LOAD, onLoad );
@@ -46,7 +46,7 @@ ASJS.AnimationLoader = createClass( Object, null,
 			_loader.responseType = "json";
 			_loader.load( url );
 	
-			return _dfd.promise;
+			return _dfd;
 		}
 		
 		// protected read only function

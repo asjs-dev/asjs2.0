@@ -73,7 +73,7 @@ var ContentMediator = createClass( AbstractResizeMediator, null,
 				_scope.sendNotification( NotificationWindowMediator.SHOW, notificationWindowDataVo );
 			});
 	
-			_dataProxy.loadAnimation( "json/animation/contentAnimation.json" ).resolve( onLoadAnimation );
+			_dataProxy.loadAnimation( "json/animation/contentAnimation.json" ).done( onLoadAnimation );
 
 			if ( _forceResize ) _scope._onResize();
 		}

@@ -5,13 +5,8 @@ createSingletonClass( ASJS.Polyfill, Object, null,
 		var _doc = document;
 		var _win = window;
 		
-		var _addEventListener    = "addEventListener";
-		var _removeEventListener = "removeEventListener";
-		var _dispatchEvent       = "dispatchEvent";
-		var _eventTypePrefix     = "";
+		var _eventTypePrefix = "";
 		
-		var _fullscreenAPI;
-
 		_scope.new = function() {
 			checkCustomEvent();
 			checkEventListeners();
@@ -25,26 +20,10 @@ createSingletonClass( ASJS.Polyfill, Object, null,
 			checkMediaSource();
 		}
 		
-		prop( _scope, "addEventListener", {
-			get: function() { return _addEventListener; }
-		});
-		
-		prop( _scope, "removeEventListener", {
-			get: function() { return _removeEventListener; }
-		});
-		
-		prop( _scope, "dispatchEvent", {
-			get: function() { return _dispatchEvent; }
-		});
-		
 		prop( _scope, "eventTypePrefix", {
 			get: function() { return _eventTypePrefix; }
 		});
 	
-		prop( _scope, "fullscreenAPI", {
-			get: function() { return _fullscreenAPI; }
-		});
-		
 		_scope.convertEventType = function( type ) {
 			if ( type.indexOf( _eventTypePrefix ) != 0 ) return _eventTypePrefix + type;
 			return type;
@@ -116,11 +95,11 @@ createSingletonClass( ASJS.Polyfill, Object, null,
 		};
 
 		function checkFullscreenEnabled() {
-			var pollute = true;
 			var api;
 			var vendor;
 			var apis = {
 					w3: {
+						fullscreen: "fullScreen",
 						enabled: "fullscreenEnabled",
 						element: "fullscreenElement",
 						request: "requestFullscreen",
@@ -131,6 +110,7 @@ createSingletonClass( ASJS.Polyfill, Object, null,
 						}
 					},
 					webkit: {
+						fullscreen: "webkitFullScreen",
 						enabled: "webkitFullscreenEnabled",
 						element: "webkitCurrentFullScreenElement",
 						request: "webkitRequestFullscreen",
@@ -141,6 +121,7 @@ createSingletonClass( ASJS.Polyfill, Object, null,
 						}
 					},
 					moz: {
+						fullscreen: "mozFullScreen",
 						enabled: "mozFullScreenEnabled",
 						element: "mozFullScreenElement",
 						request: "mozRequestFullScreen",
@@ -151,6 +132,7 @@ createSingletonClass( ASJS.Polyfill, Object, null,
 						}
 					},
 					ms: {
+						fullscreen: "msFullScreen",
 						enabled: "msFullscreenEnabled",
 						element: "msFullscreenElement",
 						request: "msRequestFullscreen",
@@ -170,72 +152,13 @@ createSingletonClass( ASJS.Polyfill, Object, null,
 				}
 			}
 
-			function dispatch( type, target ) {
-				var event = _doc.createEvent( "Event" );
-					event.initEvent( type, true, false );
-				target[ _dispatchEvent ]( event );
-			}
-
-			function handleChange( e ) {
-				e.stopPropagation();
-				e.stopImmediatePropagation();
-
-				_doc[ w3.enabled ] = _doc[ api.enabled ];
-				_doc[ w3.element ] = _doc[ api.element ];
-
-				//dispatch( w3.events.change, e.target );
-			}
-
-			function handleError( e ) {
-				//dispatch( w3.events.error, e.target );
-			}
-
-			function createResolver( method ) {
-				return function resolver( resolve, reject ) {
-					if ( method === w3.exit && !_doc[ api.element ] ) {
-						setTimeout(function() {
-							reject( new TypeError() );
-						}, 1 );
-						return;
-					}
-
-					function change() {
-						resolve();
-						_doc[ _removeEventListener ]( api.events.change, change, false );
-					}
-
-					function error() {
-						reject( new TypeError() );
-						_doc[ _removeEventListener ]( api.events.error, error, false );
-					}
-
-					_doc[ _addEventListener ]( api.events.change, change, false );
-					_doc[ _addEventListener ]( api.events.error,  error,  false );
-				};
-			}
-
-			_fullscreenAPI = {
-				enabled: ""
-			};
-			
-			if ( pollute && !( w3.enabled in _doc ) && api ) {
-				_doc[ _addEventListener ]( api.events.change, handleChange, false );
-				_doc[ _addEventListener ]( api.events.error,  handleError,  false );
-
-				_doc[ w3.enabled ] = _doc[ api.enabled ];
-				_doc[ w3.element ] = _doc[ api.element ];
+			if ( !( w3.enabled in _doc ) && api ) {
+				_doc[ "fullscreenEnabled" ] = _doc[ api.enabled ];
+				_doc[ "fullscreen" ] = _doc[ api.fullscreen ];
+				_doc[ "fullscreenElement" ] = _doc[ api.element ];
+				_doc[ "exitFullscreen" ] = _doc[ api.exit ];
 				
-				_fullscreenAPI = api;
-
-				_doc[ w3.exit ] = function() {
-					var result = _doc[ api.exit ]();
-					return !result && _win.Promise ? new Promise( createResolver( w3.exit ) ) : result;
-				};
-
-				Element.prototype[ w3.request ] = function () {
-					var result = this[ api.request ].apply( this, arguments );
-					return !result && _win.Promise ? new Promise( createResolver( w3.request ) ) : result;
-				};
+				Element.prototype.requestFullscreen = Element.prototype[ api.request ];
 			}
 		};
 
@@ -252,13 +175,14 @@ createSingletonClass( ASJS.Polyfill, Object, null,
 
 		function checkEventListeners() {
 			var p = _doc.createElement( "p" );
-	
+			
 			if ( p.addEventListener ) return;
 			
-			_addEventListener    = "attachEvent";
-			_removeEventListener = "detachEvent";
-			_dispatchEvent       = "fireEvent";
-			_eventTypePrefix     = "on";
+			Element.prototype.addEventListener    = Element.prototype.attachEvent;
+			Element.prototype.removeEventListener = Element.prototype.detachEvent;
+			Element.prototype.dispatchEvent       = Element.prototype.fireEvent;
+			
+			_eventTypePrefix = "on";
 		}
 
 		function checkMediaSource() {

@@ -15,13 +15,19 @@ createSingletonClass( ASJS.Stage, ASJS.Sprite, [ document.body ],
 		// protected variable
 		
 		// private variable
-		var _inited = false;
-		var _mouse = ASJS.Mouse.instance();
 		var _window = ASJS.Window.instance();
 		var _stageWidth = 0;
 		var _stageHeight = 0;
 		
 		// constructor
+		_scope.new = function() {
+			_scope.clear();
+			_scope.setSize( "100%", "100%" );
+			_window.addEventListener( ASJS.WindowEvent.RESIZE, recalcStageSize );
+			recalcStageSize();
+	
+			ASJS.Mouse.instance().init();
+		}
 		
 		// public property
 		prop( _scope, "title", {
@@ -48,17 +54,6 @@ createSingletonClass( ASJS.Stage, ASJS.Sprite, [ document.body ],
 		// public read only function
 		
 		// public function
-		_scope.init = function() {
-			if ( _inited ) return;
-			_inited = true;
-	
-			_scope.clear();
-			_scope.setSize( "100%", "100%" );
-			_window.addEventListener( ASJS.WindowEvent.RESIZE, recalcStageSize );
-			recalcStageSize();
-	
-			_mouse.init();
-		};
 		
 		// protected read only function
 		

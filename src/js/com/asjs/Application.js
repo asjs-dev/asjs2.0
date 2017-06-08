@@ -1,6 +1,6 @@
 sourcePath( "./" );
 
-includeOnce( "com/asjs/controller/command/StartupCommand.js" );
+includeOnce( "com/asjs/controller/StartupCommand.js" );
 
 var Application = createClass( Object, null, 
 	function( _scope, _super ) {

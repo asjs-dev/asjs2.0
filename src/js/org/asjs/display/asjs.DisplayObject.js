@@ -1,5 +1,4 @@
 includeOnce( "org/asjs/display/asjs.PrimitiveDisplayObject.js" );
-includeOnce( "org/asjs/asjs.Polyfill.js" );
 includeOnce( "org/asjs/utils/asjs.Mouse.js" );
 includeOnce( "org/asjs/geom/asjs.GeomUtils.js" );
 includeOnce( "org/asjs/geom/asjs.Rectangle.js" );
@@ -15,7 +14,6 @@ ASJS.DisplayObject = createClass( ASJS.PrimitiveDisplayObject, null,
 		// protected variable
 		
 		// private variable
-		var _polyfill = ASJS.Polyfill.instance();
 		var _mouse = ASJS.Mouse.instance();
 		var _filters = [];
 		var _rotation = 0;
@@ -168,13 +166,13 @@ ASJS.DisplayObject = createClass( ASJS.PrimitiveDisplayObject, null,
 		
 		// public function
 		_scope.requestFullscreen = function() {
-			if ( !document[ _polyfill.fullscreenAPI.enabled ] ) return;
-			_scope.el[ _polyfill.fullscreenAPI.request ]();
+			if ( !document.fullscreenEnabled ) return;
+			_scope.el.requestFullscreen();
 		};
 
 		_scope.exitFullscreen = function() {
-			if ( !document[ _polyfill.fullscreenAPI.enabled ] ) return;
-			document[ _polyfill.fullscreenAPI.exit ]();
+			if ( !document.fullscreenEnabled ) return;
+			document.exitFullscreen();
 		};
 
 		_scope.scale = function( scaleX, scaleY ) {

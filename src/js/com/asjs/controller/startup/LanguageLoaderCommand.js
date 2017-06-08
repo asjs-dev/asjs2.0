@@ -30,7 +30,7 @@ var LanguageLoaderCommand = createClass( ASJS.AbstractCommand, null,
 		// public function
 		_scope.execute = function() {
 			var promise = _dataProxy.loadJSON( "json/language.json" );
-				promise.resolve(function( response ) {
+				promise.done(function( response ) {
 					_language.data = response;
 				});
 	

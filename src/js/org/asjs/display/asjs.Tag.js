@@ -1,6 +1,7 @@
 includeOnce( "org/asjs/event/asjs.MouseEvent.js" );
 includeOnce( "org/asjs/window/asjs.Window.js" );
 includeOnce( "org/asjs/geom/asjs.Rectangle.js" );
+includeOnce( "org/asjs/core/asjs.Polyfill.js" );
 
 ASJS.Tag = createClass( Object, null, 
 	function( _scope, _super ) {
@@ -110,12 +111,10 @@ ASJS.Tag = createClass( Object, null,
 		
 		_scope.dispatchEvent = function( event, data, bubble ) {
 			try {
-				var type = event.type;
-				if ( type.indexOf( _polyfill.eventTypePrefix ) != 0 ) {
-					event.type = _polyfill.eventTypePrefix + type;
-				}
-				_scope.el[ _polyfill.dispatchEvent ]( ASJS.EventDispatcher.createEvent( event, data, bubble ) );
-			} catch ( error ) {}
+				_scope.el.dispatchEvent( ASJS.EventDispatcher.createEvent( event, data, bubble ) );
+			} catch ( error ) {
+				trace( error.message );
+			}
 		}
 
 		_scope.addEventListener = function( type, callback, capture ) {
@@ -126,7 +125,7 @@ ASJS.Tag = createClass( Object, null,
 					if ( _scope.hasEventListener( t, callback ) ) return;
 					if ( !_eventHandlers[ t ] ) _eventHandlers[ t ] = [];
 					_eventHandlers[ t ].push( callback );
-					_scope.el[ _polyfill.addEventListener ]( t, callback, capture );
+					_scope.el.addEventListener( t, callback, capture );
 				}
 			}
 		}
@@ -147,7 +146,7 @@ ASJS.Tag = createClass( Object, null,
 				var i = handlers.indexOf( callback );
 				if ( i == -1 ) return;
 				handlers.splice( i, 1 );
-				_scope.el[ _polyfill.removeEventListener ]( t, callback );
+				_scope.el.removeEventListener( t, callback );
 			} else {
 				while ( handlers.length > 0 ) _scope.removeEventListener( t, handlers[ 0 ] );
 			}

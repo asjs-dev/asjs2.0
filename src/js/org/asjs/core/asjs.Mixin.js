@@ -86,43 +86,8 @@ var c0 = createClass;
 
 var createSingletonClass = function( sc, p, a, n ) {
 	roFunc( sc, "instance", function() {
-		if ( !sc.$i ) cnst( sc, "$i", new ( createClass( p, a, n ) )() );
+		if ( !sc.$i ) cnst( sc, "$i", new ( c0( p, a, n ) )() );
 		return sc.$i;
 	});
 }
 var c1 = createSingletonClass;
-
-function sourcePath( v ) {
-	if ( ASJS.sourcePath == "" ) ASJS.sourcePath = v;
-}
-
-function includeOnce( f ) {
-	if ( ASJS.includedScript[ f ] ) return;
-	ASJS.includedScript[ f ] = 1;
-	var script = ASJS.Tag( "script" );
-		script.setAttr( "type", "text/javascript" );
-		script.setAttr( "src", ASJS.sourcePath + f );
-	( ASJS.Head.instance() ).addChild( script );
-}
-
-var stage;
-var ASJS = {
-	sourcePath: "",
-	includedScript: {},
-	initedClasses: [],
-	start: function( b ) {
-		ASJS.Polyfill.instance();
-		if ( !stage ) {
-			stage = ASJS.Stage.instance();
-			stage.init();
-		}
-		if ( ASJS.initedClasses.indexOf( b ) == -1 ) {
-			ASJS.initedClasses.push( b );
-			try {
-				new b();
-			} catch ( e ) {
-				trace( e );
-			}
-		}
-	}
-};
