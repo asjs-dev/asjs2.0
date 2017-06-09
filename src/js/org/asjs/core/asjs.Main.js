@@ -1,25 +1,30 @@
 var stage;
-var ASJS = {
-	sourcePath: "",
-	includedScript: {},
-	initedClasses: [],
-	sourcePath: function( v ) {
-		if ( ASJS.sourcePath == "" ) ASJS.sourcePath = v;
-	},
-	includeOnce: function( f ) {
-		if ( ASJS.includedScript[ f ] ) return;
-		ASJS.includedScript[ f ] = 1;
+var ASJS = (function() {
+	var _scope = {};
+	
+	var _sourcePath     = "";
+	var _includedScript = {};
+	var _initedClasses  = [];
+	
+	_scope.sourcePath = function( v ) {
+		if ( _sourcePath == "" ) _sourcePath = v;
+	}
+	
+	_scope.includeOnce = function( f ) {
+		if ( _includedScript[ f ] ) return;
+		_includedScript[ f ] = 1;
 		var script = ASJS.Tag( "script" );
 			script.setAttr( "type", "text/javascript" );
-			script.setAttr( "src", ASJS.sourcePath + f );
+			script.setAttr( "src",  _sourcePath + f );
 		( ASJS.Head.instance() ).addChild( script );
-	},
-	start: function( b ) {
+	}
+	
+	_scope.start = function( b ) {
 		ASJS.Polyfill.instance();
 		stage = ASJS.Stage.instance();
-		if ( ASJS.initedClasses.indexOf( b ) == -1 ) {
+		if ( _initedClasses.indexOf( b ) == -1 ) {
 			trace( "<AS/JS> core version: 2.{{version}}" );
-			ASJS.initedClasses.push( b );
+			_initedClasses.push( b );
 			try {
 				new b();
 			} catch ( e ) {
@@ -27,6 +32,8 @@ var ASJS = {
 			}
 		}
 	}
-};
+	
+	return _scope;
+})();
 var sourcePath = ASJS.sourcePath;
 var includeOnce = ASJS.includeOnce;
