@@ -1,6 +1,7 @@
 includeOnce( "org/asjs/window/asjs.Head.js" );
 includeOnce( "org/asjs/window/asjs.Window.js" );
 includeOnce( "org/asjs/display/asjs.PrimitiveDisplayObject.js" );
+includeOnce( "org/asjs/core/asjs.Polyfill.js" );
 
 ASJS.CSS = {};
 createSingletonClass( ASJS.CSS, Object, null,
@@ -178,6 +179,58 @@ createSingletonClass( ASJS.CSS, Object, null,
 );
 
 // public static const
+cnst( ASJS.CSS, "ADD_PIXEL_TYPES", [ "width", "height", "top", "left" ] );
+
+cnst( ASJS.CSS, "SELECTOR", [
+	'fullscreen',
+	'placeholder'
+]);
+
+cnst( ASJS.CSS, "DECLARATION", [
+	'flex',
+	'order',
+	'filter',
+	'grid-end',
+	'flex-flow',
+	'flex-grow',
+	'flex-wrap',
+	'grid-start',
+	'align-self',
+	'appearance',
+	'flex-basis',
+	'mask-border',
+	'align-items',
+	'flex-shrink',
+	'break-props',
+	'writing-mode',
+	'border-image',
+	'align-content',
+	'border-radius',
+	'block-logical',
+	'grid-template',
+	'inline-logical',
+	'grid-row-align',
+	'grid-column-align',
+	'transform',
+	'transform-decl',
+	'flex-direction',
+	'image-rendering',
+	'justify-content',
+	'background-size',
+	'text-emphasis-position'
+]);
+
+cnst( ASJS.CSS, "VALUE", [
+	'gradient',
+	'intrinsic',
+	'pixelated',
+	'image-set',
+	'cross-fade',
+	'flex-values',
+	'display-flex',
+	'display-grid',
+	'filter-value'
+]);
 
 // public static variable
 
@@ -215,4 +268,53 @@ roFunc( ASJS.CSS, "replaceHyphen", function( s ) {
 	return s.replace( /-./g, function( v ) {
 		return v.replace( "-", "" ).toUpperCase();
 	});
+});
+
+roFunc( ASJS.CSS, "convertProperty", function( k ) {
+	var nk = k;
+	var i = -1;
+	var l = ASJS.CSS.DECLARATION.length;
+	while ( ++i < l ) {
+		if ( nk.indexOf( ASJS.CSS.DECLARATION[ i ] ) > -1 ) {
+			nk = ASJS.Polyfill.instance().stylePrefixCSS + nk;
+			i = l;
+			break;
+		}
+	}
+	
+	i = -1;
+	l = ASJS.CSS.SELECTOR.length;
+	while ( ++i < l ) {
+		if ( nk.indexOf( ":" + ASJS.CSS.SELECTOR[ i ] ) > -1 ) {
+			nk = nk.replace( ":" + ASJS.CSS.SELECTOR[ i ], ":" + ASJS.Polyfill.instance().stylePrefixCSS + ASJS.CSS.SELECTOR[ i ] );
+			i = l;
+			break;
+		}
+	}
+	
+	return nk;
+});
+
+roFunc( ASJS.CSS, "convertValue", function( v ) {
+	var i = -1;
+	var l = ASJS.CSS.VALUE.length;
+	while ( ++i < l ) {
+		if ( String( v ).indexOf( ASJS.CSS.VALUE[ i ] ) > -1 ) return ASJS.Polyfill.instance().stylePrefixCSS + v;
+	}
+	return v;
+});
+
+roFunc( ASJS.CSS, "setCSS", function( t, k, v ) {
+	v = ASJS.CSS.ADD_PIXEL_TYPES.indexOf( k ) > -1 && typeof v == "number" ? v + "px" : v;
+	var nk = ASJS.CSS.convertProperty( k );
+	var nv = ASJS.CSS.convertValue( v );
+	t.el.style[ ASJS.CSS.replaceHyphen( k ) ] = v;
+	t.el.style[ ASJS.CSS.replaceHyphen( nk ) ] = nv;
+});
+
+roFunc( ASJS.CSS, "getCSS", function( t, k ) {
+	var style = window.getComputedStyle( t.el );
+	var v = style.getPropertyValue( k );
+	if ( v == "" ) v = t.el.style[ ASJS.CSS.replaceHyphen( k ) ];
+	return ASJS.CSS.ADD_PIXEL_TYPES.indexOf( k ) > -1 ? parseFloat( v ) : v;
 });

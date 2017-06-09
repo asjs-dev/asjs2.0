@@ -210,8 +210,6 @@ ASJS.DisplayObject = createClass( ASJS.PrimitiveDisplayObject, null,
 		
 		// private function
 		function drawTransform() {
-			_scope.setCSS( "-ms-transform", 'rotate(' + _rotation + 'deg) scaleX(' + _scaleX + ') scaleY(' + _scaleY + ')' );
-			_scope.setCSS( "-webkit-transform", 'rotate(' + _rotation + 'deg) scaleX(' + _scaleX + ') scaleY(' + _scaleY + ')' );
 			_scope.setCSS( "transform", 'rotate(' + _rotation + 'deg) scaleX(' + _scaleX + ') scaleY(' + _scaleY + ')' );
 		}
 	}

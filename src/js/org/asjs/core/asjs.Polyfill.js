@@ -6,6 +6,8 @@ createSingletonClass( ASJS.Polyfill, Object, null,
 		var _win = window;
 		
 		var _eventTypePrefix = "";
+		var _stylePrefixJS = "";
+		var _stylePrefixCSS = "";
 		
 		_scope.new = function() {
 			checkCustomEvent();
@@ -18,10 +20,19 @@ createSingletonClass( ASJS.Polyfill, Object, null,
 			checkFullscreenEnabled();
 			checkFunctionName();
 			checkMediaSource();
+			checkCSSPrefix();
 		}
 		
 		prop( _scope, "eventTypePrefix", {
 			get: function() { return _eventTypePrefix; }
+		});
+	
+		prop( _scope, "stylePrefixJS", {
+			get: function() { return _stylePrefixJS; }
+		});
+	
+		prop( _scope, "stylePrefixCSS", {
+			get: function() { return _stylePrefixCSS; }
 		});
 	
 		_scope.convertEventType = function( type ) {
@@ -187,6 +198,31 @@ createSingletonClass( ASJS.Polyfill, Object, null,
 
 		function checkMediaSource() {
 			_win.MediaSource = _win.MediaSource || _win.WebKitMediaSource;
+		}
+		
+		function checkCSSPrefix() {
+			var jsCssMap = {
+				Moz: '-moz-',
+				ms: '-ms-',
+				O: '-o-',
+				Webkit: '-webkit-'
+			};
+			
+			var style = document.createElement('p').style;
+			var testProp = 'Transform';
+
+			for ( var key in jsCssMap ) {
+				if ( ( key + testProp ) in style ) {
+					_stylePrefixJS = key;
+					_stylePrefixCSS = jsCssMap[ key ];
+					break;
+				}
+			}
+
+			if ( _stylePrefixJS === 'Webkit' && 'msHyphens' in style ) {
+				_stylePrefixJS = 'ms'
+				_stylePrefixCSS = jsCssMap.ms;
+			}
 		}
 	}
 );

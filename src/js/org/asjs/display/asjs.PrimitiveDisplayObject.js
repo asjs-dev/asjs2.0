@@ -7,10 +7,8 @@ includeOnce( "org/asjs/utils/asjs.CSS.js" );
 ASJS.PrimitiveDisplayObject = createClass( ASJS.Tag, null, 
 	function( _scope, _super ) {
 		// private object
-		var priv = {};
 		
 		// private const
-		cnst( priv, "ADD_PIXEL_TYPES", [ "width", "height", "top", "left" ] );
 		
 		// public variable
 		
@@ -52,15 +50,11 @@ ASJS.PrimitiveDisplayObject = createClass( ASJS.Tag, null,
 		
 		// public function
 		_scope.getCSS = function( k ) {
-			var style = window.getComputedStyle( _scope.el );
-			var v = style.getPropertyValue( k );
-			if ( v == "" ) v = _scope.el.style[ ASJS.CSS.replaceHyphen( k ) ];
-			return priv.ADD_PIXEL_TYPES.indexOf( k ) > -1 ? parseFloat( v ) : v;
+			return ASJS.CSS.getCSS( _scope, k );
 		}
 
 		_scope.setCSS = function( k, v ) {
-			k = ASJS.CSS.replaceHyphen( k );
-			_scope.el.style[ k ] = priv.ADD_PIXEL_TYPES.indexOf( k ) > -1 && typeof v == "number" ? v + "px" : v;
+			ASJS.CSS.setCSS( _scope, k, v );
 		}
 		
 		// protected read only function
