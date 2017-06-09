@@ -220,7 +220,7 @@ createSingletonClass( ASJS.Polyfill, Object, null,
 			}
 
 			if ( _stylePrefixJS === 'Webkit' && 'msHyphens' in style ) {
-				_stylePrefixJS = 'ms'
+				_stylePrefixJS = 'ms';
 				_stylePrefixCSS = jsCssMap.ms;
 			}
 		}
