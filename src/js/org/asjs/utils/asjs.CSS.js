@@ -186,40 +186,6 @@ cnst( ASJS.CSS, "SELECTOR", [
 	'placeholder'
 ]);
 
-cnst( ASJS.CSS, "DECLARATION", [
-	'flex',
-	'order',
-	'filter',
-	'grid-end',
-	'flex-flow',
-	'flex-grow',
-	'flex-wrap',
-	'grid-start',
-	'align-self',
-	'appearance',
-	'flex-basis',
-	'mask-border',
-	'align-items',
-	'flex-shrink',
-	'break-props',
-	'writing-mode',
-	'border-image',
-	'align-content',
-	'border-radius',
-	'block-logical',
-	'grid-template',
-	'inline-logical',
-	'grid-row-align',
-	'grid-column-align',
-	'transform',
-	'transform-decl',
-	'flex-direction',
-	'image-rendering',
-	'justify-content',
-	'background-size',
-	'text-emphasis-position'
-]);
-
 cnst( ASJS.CSS, "VALUE", [
 	'gradient',
 	'intrinsic',
@@ -271,19 +237,9 @@ roFunc( ASJS.CSS, "replaceHyphen", function( s ) {
 });
 
 roFunc( ASJS.CSS, "convertProperty", function( k ) {
-	var nk = k;
+	var nk = ASJS.Polyfill.instance().stylePrefixCSS + nk;
 	var i = -1;
-	var l = ASJS.CSS.DECLARATION.length;
-	while ( ++i < l ) {
-		if ( nk.indexOf( ASJS.CSS.DECLARATION[ i ] ) > -1 ) {
-			nk = ASJS.Polyfill.instance().stylePrefixCSS + nk;
-			i = l;
-			break;
-		}
-	}
-	
-	i = -1;
-	l = ASJS.CSS.SELECTOR.length;
+	var l = ASJS.CSS.SELECTOR.length;
 	while ( ++i < l ) {
 		if ( nk.indexOf( ":" + ASJS.CSS.SELECTOR[ i ] ) > -1 ) {
 			nk = nk.replace( ":" + ASJS.CSS.SELECTOR[ i ], ":" + ASJS.Polyfill.instance().stylePrefixCSS + ASJS.CSS.SELECTOR[ i ] );
