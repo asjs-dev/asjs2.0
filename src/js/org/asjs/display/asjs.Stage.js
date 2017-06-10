@@ -5,7 +5,7 @@ includeOnce( "org/asjs/window/asjs.Window.js" );
 
 ASJS.Stage = {};
 createSingletonClass( ASJS.Stage, ASJS.Sprite, [ document.body ], 
-	function( _scope, _super ) {
+	function( _scope ) {
 		// private object
 		
 		// private const

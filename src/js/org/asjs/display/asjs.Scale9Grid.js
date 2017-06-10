@@ -26,7 +26,7 @@ ASJS.Scale9Grid = createClass( ASJS.Sprite, null,
 				_blocks[ i ].setCSS( "background-repeat", "no-repeat" );
 				_scope.addChild( _blocks[ i ] );
 			}
-
+			
 			_blocks[ 0 ].setCSS( "background-position", "left top" );
 			_blocks[ 2 ].setCSS( "background-position", "right top" );
 			_blocks[ 6 ].setCSS( "background-position", "left bottom" );
@@ -77,10 +77,6 @@ ASJS.Scale9Grid = createClass( ASJS.Sprite, null,
 		// public read only function
 		
 		// public function
-		_scope.setSize = function( w, h ) {
-			_super.setSize( w, h );
-		}
-
 		_scope.render = function() {
 			var rightSize = _size.x - ( _rectangle.x + _rectangle.width );
 			var bottomSize = _size.y - ( _rectangle.y + _rectangle.height );
@@ -98,11 +94,6 @@ ASJS.Scale9Grid = createClass( ASJS.Sprite, null,
 			var tl = new ASJS.Point(
 				- ( percent.x * _rectangle.x ) * 2,
 				- ( percent.y * _rectangle.y ) * 2
-			);
-
-			var br = new ASJS.Point(
-				percent.x * rightSize,
-				percent.y * bottomSize
 			);
 
 			var ps = new ASJS.Point(
@@ -129,20 +120,11 @@ ASJS.Scale9Grid = createClass( ASJS.Sprite, null,
 			_blocks[ 7 ].move( _blocks[ 6 ].width, _blocks[ 6 ].y );
 			_blocks[ 8 ].move( _blocks[ 7 ].x + _blocks[ 7 ].width, _blocks[ 6 ].y );
 
-			_blocks[ 1 ].setCSS( "background-position", tl.x + "px top" );
-			_blocks[ 1 ].setCSS( "background-size", ps.x + "px " + _size.y + "px" );
-
-			_blocks[ 3 ].setCSS( "background-position", "left " + tl.y + "px" );
-			_blocks[ 3 ].setCSS( "background-size",  _size.x + "px " + ps.y + "px" );
-
-			_blocks[ 4 ].setCSS( "background-position", tl.x + "px " + tl.y + "px" );
-			_blocks[ 4 ].setCSS( "background-size",  ps.x + "px " + ps.y + "px" );
-
-			_blocks[ 5 ].setCSS( "background-position", "right " + tl.y + "px" );
-			_blocks[ 5 ].setCSS( "background-size",  _size.x + "px " + ps.y + "px" );
-
-			_blocks[ 7 ].setCSS( "background-position", tl.x + "px bottom" );
-			_blocks[ 7 ].setCSS( "background-size", ps.x + "px " + _size.y + "px" );
+			drawBackground( _blocks[ 1 ], tl.x,    "top",    ps.x,    _size.y );
+			drawBackground( _blocks[ 3 ], "left",  tl.y,     _size.x, ps.y );
+			drawBackground( _blocks[ 4 ], tl.x,    tl.y,     ps.x,    ps.y );
+			drawBackground( _blocks[ 5 ], "right", tl.y,     _size.x, ps.y );
+			drawBackground( _blocks[ 7 ], tl.x,    "bottom", ps.x,    _size.y );
 		}
 		
 		// protected read only function
@@ -152,6 +134,14 @@ ASJS.Scale9Grid = createClass( ASJS.Sprite, null,
 		// private read only function
 		
 		// private function
+		function drawBackground( block, a, b, c, d ) {
+			block.setCSS( "background-position", addPixel( a ) + " " + addPixel( b ) );
+			block.setCSS( "background-size", addPixel( c ) + " " + addPixel( d ) );
+		}
+		
+		function addPixel( a ) {
+			return a + ( typeof a == "number" ? "px" : "" );
+		}
 	}
 );
 // public static const

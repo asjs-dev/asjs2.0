@@ -1,7 +1,7 @@
 includeOnce( "org/asjs/mvc/asjs.NotificationDispatcher.js" );
 
 ASJS.AbstractMediator = createClass( ASJS.NotificationDispatcher, null,
-	function( _scope, _super ) {
+	function( _scope, _super, _protected ) {
 		// private object
 		
 		// private const
@@ -9,13 +9,13 @@ ASJS.AbstractMediator = createClass( ASJS.NotificationDispatcher, null,
 		// public variable
 		
 		// protected variable
-		_scope._view;
+		_protected.view;
 		
 		// private variable
 		
 		// constructor
 		_scope.new = function( view ) {
-			_scope._view = view;
+			_protected.view = view;
 		}
 		
 		// public property

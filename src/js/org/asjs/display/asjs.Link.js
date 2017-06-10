@@ -1,7 +1,7 @@
 includeOnce( "org/asjs/display/asjs.Sprite.js" );
 
 ASJS.Link = createClass( ASJS.Sprite, [ "a" ], 
-	function( _scope, _super ) {
+	function( _scope ) {
 		// private object
 		
 		// private const

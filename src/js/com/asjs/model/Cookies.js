@@ -1,6 +1,6 @@
 var Cookies = {};
-createSingletonClass( Cookies, Object, null, 
-	function( _scope, _super ) {
+createSingletonClass( Cookies, ASJS.BaseClass, null, 
+	function( _scope ) {
 		// private object
 		
 		// private const

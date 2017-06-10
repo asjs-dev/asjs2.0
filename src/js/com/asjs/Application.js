@@ -2,8 +2,8 @@ sourcePath( "./" );
 
 includeOnce( "com/asjs/controller/StartupCommand.js" );
 
-var Application = createClass( Object, null, 
-	function( _scope, _super ) {
+var Application = createClass( ASJS.BaseClass, null, 
+	function( _scope ) {
 		// private object
 		
 		// private const

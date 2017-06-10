@@ -1,6 +1,6 @@
 ASJS.NotificationHandler = {};
-createSingletonClass( ASJS.NotificationHandler, Object, null, 
-	function( _scope, _super ) {
+createSingletonClass( ASJS.NotificationHandler, ASJS.BaseClass, null, 
+	function( _scope ) {
 		// private object
 		
 		// private const
@@ -23,24 +23,24 @@ createSingletonClass( ASJS.NotificationHandler, Object, null,
 		// public read only function
 		
 		// public function
-		_scope.register = function( dispatcher ) {
-			if ( !dispatcher || !dispatcher._handlers ) return;
+		_scope.register = function( dispatcher, handlers ) {
+			if ( !dispatcher || !handlers ) return;
 			var i = -1;
-			var l = dispatcher._handlers.length;
+			var l = handlers.length;
 			while ( ++i < l ) {
-				var type = dispatcher._handlers[ i ];
+				var type = handlers[ i ];
 				if ( _handlers[ type ] && _handlers[ type ].indexOf( dispatcher ) > -1 ) break;
 				if ( !_handlers[ type ] ) _handlers[ type ] = [];
 				_handlers[ type ].push( dispatcher );
 			}
 		}
 
-		_scope.remove = function( dispatcher ) {
-			if ( !dispatcher._handlers ) return;
+		_scope.remove = function( dispatcher, handlers ) {
+			if ( !dispatcher || !handlers ) return;
 			var i = -1;
-			var l = dispatcher._handlers.length;
+			var l = handlers.length;
 			while ( ++i < l ) {
-				var type = dispatcher._handlers[ i ];
+				var type = handlers[ i ];
 				if ( _handlers[ type ] ) {
 					var index = _handlers[ type ].indexOf( dispatcher );
 					if ( index > -1 ) _handlers[ type ].splice( index, 1 );

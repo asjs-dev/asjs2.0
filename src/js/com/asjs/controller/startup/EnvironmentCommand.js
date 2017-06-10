@@ -4,7 +4,7 @@ includeOnce( "com/asjs/model/Config.js" );
 includeOnce( "com/asjs/model/Cookies.js" );
 
 var EnvironmentCommand = createClass( ASJS.AbstractCommand, null, 
-	function( _scope, _super ) {
+	function( _scope ) {
 		// private object
 		
 		// private const

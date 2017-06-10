@@ -1,14 +1,12 @@
 includeOnce( "org/asjs/geom/asjs.Point.js" );
 
 ASJS.Rectangle = createClass( ASJS.Point, null, 
-	function( _scope, _super ) {
+	function( _scope ) {
 		// private object
 		
 		// private const
 		
 		// public variable
-		_scope.width;
-		_scope.height;
 		
 		// protected variable
 		

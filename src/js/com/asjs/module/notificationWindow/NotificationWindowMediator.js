@@ -4,7 +4,7 @@ includeOnce( "com/asjs/module/notificationWindow/model/vo/NotificationWindowData
 includeOnce( "com/asjs/model/Language.js" );
 
 var NotificationWindowMediator = createClass( AbstractResizeMediator, null, 
-	function( _scope, _super ) {
+	function( _scope, _super, _protected ) {
 		// private object
 		
 		// private const
@@ -12,7 +12,7 @@ var NotificationWindowMediator = createClass( AbstractResizeMediator, null,
 		// public variable
 		
 		// protected variable
-		_scope._handlers.push( NotificationWindowMediator.SHOW );
+		_protected.handlers.push( NotificationWindowMediator.SHOW );
 		
 		// private variable
 		var _language = Language.instance();
@@ -54,9 +54,9 @@ var NotificationWindowMediator = createClass( AbstractResizeMediator, null,
 		// protected read only function
 		
 		// protected function
-		_scope._onResize = function() {
+		_protected.onResize = function() {
 			_forceResize = true;
-			if ( !_scope._view.contains( _notificationWindowView ) ) return;
+			if ( !_protected.view.contains( _notificationWindowView ) ) return;
 			_notificationWindowView.render();
 			_forceResize = false;
 		}
@@ -82,7 +82,7 @@ var NotificationWindowMediator = createClass( AbstractResizeMediator, null,
 		}
 		
 		function hideWindow() {
-			_scope._view.removeChild( _notificationWindowView );
+			_protected.view.removeChild( _notificationWindowView );
 			_showed = false;
 		}
 
@@ -92,9 +92,9 @@ var NotificationWindowMediator = createClass( AbstractResizeMediator, null,
 			_showed = true;
 			_notificationWindowView.showWindow( notificationItem );
 	
-			if ( !_scope._view.contains( _notificationWindowView ) ) _scope._view.addChild( _notificationWindowView );
+			if ( !_protected.view.contains( _notificationWindowView ) ) _protected.view.addChild( _notificationWindowView );
 			
-			if ( _forceResize ) _scope._onResize();
+			if ( _forceResize ) _protected.onResize();
 		}
 	}
 );

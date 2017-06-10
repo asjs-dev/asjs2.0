@@ -5,7 +5,7 @@ includeOnce( "org/asjs/geom/asjs.Rectangle.js" );
 includeOnce( "org/asjs/utils/asjs.CSS.js" );
 
 ASJS.PrimitiveDisplayObject = createClass( ASJS.Tag, null, 
-	function( _scope, _super ) {
+	function( _scope ) {
 		// private object
 		
 		// private const
@@ -64,9 +64,6 @@ ASJS.PrimitiveDisplayObject = createClass( ASJS.Tag, null,
 		// private read only function
 		
 		// private function
-		function getAbsoluteValue( v ) {
-			return typeof v == "string" && v.indexOf( "%" ) > -1 && _scope.parent ? ( _scope.parent.width / 100 ) * parseFloat( v ) : v;
-		}
 	}
 );
 // public static const

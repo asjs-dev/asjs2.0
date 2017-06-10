@@ -1,7 +1,7 @@
 includeOnce( "org/asjs/display/asjs.DisplayObject.js" );
 
 ASJS.Form = createClass( ASJS.Sprite, [ "form" ], 
-	function( _scope, _super ) {
+	function( _scope ) {
 		// private object
 		
 		// private const

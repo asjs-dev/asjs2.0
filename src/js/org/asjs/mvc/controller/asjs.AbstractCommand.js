@@ -1,7 +1,7 @@
 includeOnce( "org/asjs/mvc/asjs.NotificationDispatcher.js" );
 
 ASJS.AbstractCommand = createClass( ASJS.NotificationDispatcher, null,
-	function( _scope, _super ) {
+	function( _scope ) {
 		// private object
 		
 		// private const

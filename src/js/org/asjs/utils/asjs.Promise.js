@@ -1,7 +1,7 @@
 includeOnce( "org/asjs/event/asjs.EventDispatcher.js" );
 
-ASJS.Promise = createClass( Object, null,
-	function( _scope, _super ) {
+ASJS.Promise = createClass( ASJS.BaseClass, null,
+	function( _scope ) {
 		// private object
 		
 		// private const

@@ -1,17 +1,10 @@
-var GeolocationData = createClass( Object, null, 
-	function( _scope, _super ) {
+var GeolocationData = createClass( ASJS.BaseClass, null, 
+	function( _scope ) {
 		// private object
 		
 		// private const
 		
 		// public variable
-		_scope.latitude;
-		_scope.longitude;
-		_scope.altitude;
-		_scope.accuracy;
-		_scope.altitudeAccuracy;
-		_scope.heading;
-		_scope.speed;
 		
 		// protected variable
 		

@@ -2,7 +2,7 @@ includeOnce( "org/asjs/display/asjs.Sprite.js" );
 includeOnce( "org/asjs/display/list/asjs.Cell.js" );
 
 ASJS.CustomList = createClass( ASJS.Sprite, null, 
-	function( _scope, _super ) {
+	function( _scope ) {
 		// private object
 		
 		// private const

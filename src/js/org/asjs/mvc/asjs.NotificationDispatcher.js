@@ -1,7 +1,7 @@
 includeOnce( "org/asjs/mvc/asjs.NotificationHandler.js" );
 
-ASJS.NotificationDispatcher = createClass( Object, null,
-	function( _scope, _super ) {
+ASJS.NotificationDispatcher = createClass( ASJS.BaseClass, null,
+	function( _scope, _super, _protected ) {
 		// private object
 		
 		// private const
@@ -9,7 +9,7 @@ ASJS.NotificationDispatcher = createClass( Object, null,
 		// public variable
 		
 		// protected variable
-		_scope._handlers = [];
+		_protected.handlers = [];
 		
 		// private variable
 		var _nHandler = ASJS.NotificationHandler.instance();
@@ -46,11 +46,11 @@ ASJS.NotificationDispatcher = createClass( Object, null,
 		
 		// private function
 		function registerHandlers() {
-			_nHandler.register( _scope );
+			_nHandler.register( _scope, _protected.handlers );
 		}
 
 		function removeHandlers() {
-			_nHandler.remove( _scope );
+			_nHandler.remove( _scope, _protected.handlers );
 		}
 	}
 );

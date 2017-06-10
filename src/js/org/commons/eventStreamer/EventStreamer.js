@@ -1,5 +1,5 @@
 var EventStreamer = createClass( ASJS.EventDispatcher, null, 
-	function( _scope, _super ) {
+	function( _scope ) {
 		// private object
 		
 		// private const

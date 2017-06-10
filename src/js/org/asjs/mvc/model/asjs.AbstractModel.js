@@ -1,7 +1,7 @@
 includeOnce( "org/asjs/event/asjs.EventDispatcher.js" );
 
 ASJS.AbstractModel = createClass( ASJS.EventDispatcher, null,
-	function( _scope, _super ) {
+	function( _scope ) {
 		// private object
 		var priv = {};
 		

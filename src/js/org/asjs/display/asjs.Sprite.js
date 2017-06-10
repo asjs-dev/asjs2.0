@@ -149,15 +149,16 @@ ASJS.Sprite = createClass( ASJS.DisplayObject, null,
 			return null;
 		}
 		
+		_scope.sendParentChangeEvent = function() {
+			_super.sendParentChangeEvent();
+			var i = -1;
+			var l = _scope.numChildren;
+			while ( ++i < l ) _scope.getChildAt( i ).sendParentChangeEvent();
+		}
+		
 		// protected read only function
 		
 		// protected function
-		_scope._sendParentChangeEvent = function() {
-			_super._sendParentChangeEvent();
-			var i = -1;
-			var l = _scope.numChildren;
-			while ( ++i < l ) _scope.getChildAt( i )._sendParentChangeEvent();
-		}
 		
 		// private read only function
 		

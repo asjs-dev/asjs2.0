@@ -1,16 +1,10 @@
-ASJS.RadialGradientVo = createClass( Object, null, 
-	function( _scope, _super ) {
+ASJS.RadialGradientVo = createClass( ASJS.BaseClass, null, 
+	function( _scope ) {
 		// private object
 		
 		// private const
 		
 		// public variable
-		_scope.x0;
-		_scope.y0;
-		_scope.r0;
-		_scope.x1;
-		_scope.y1;
-		_scope.r1;
 		
 		// protected variable
 		

@@ -1,7 +1,7 @@
 includeOnce( "org/asjs/display/asjs.DisplayObject.js" );
 
 ASJS.VideoTrack = createClass( ASJS.DisplayObject, [ "track" ], 
-	function( _scope, _super ) {
+	function( _scope ) {
 		// private object
 		
 		// private const

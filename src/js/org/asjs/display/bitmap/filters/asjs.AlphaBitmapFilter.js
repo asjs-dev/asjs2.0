@@ -1,7 +1,7 @@
 includeOnce( "org/asjs/display/bitmap/filters/asjs.AbstractBitmapFilter.js" );
 
 ASJS.AlphaBitmapFilter = createClass( ASJS.AbstractBitmapFilter, null, 
-	function( _scope, _super ) {
+	function( _scope ) {
 		// private object
 		
 		// private const
@@ -11,18 +11,13 @@ ASJS.AlphaBitmapFilter = createClass( ASJS.AbstractBitmapFilter, null,
 		// protected variable
 		
 		// private variable
-		var _type = ASJS.AlphaBitmapFilter.TYPE_DARKNESS;
 		
 		// constructor
 		_scope.new = function( type ) {
-			_type = type;
+			_scope.type = type || ASJS.AlphaBitmapFilter.TYPE_DARKNESS;
 		}
 		
 		// public property
-		prop( _scope, "type", {
-			get: function() { return _type; },
-			set: function( v ) { _type = v; }
-		});
 		
 		// protected property
 		
@@ -34,7 +29,7 @@ ASJS.AlphaBitmapFilter = createClass( ASJS.AbstractBitmapFilter, null,
 		
 		// public function
 		_scope.execute = function( pixels ) {
-			var isDarkness = _type == ASJS.AlphaBitmapFilter.TYPE_DARKNESS;
+			var isDarkness = _scope.type == ASJS.AlphaBitmapFilter.TYPE_DARKNESS;
 			var d = pixels.data;
 			var i = -4;
 			var l = d.length;

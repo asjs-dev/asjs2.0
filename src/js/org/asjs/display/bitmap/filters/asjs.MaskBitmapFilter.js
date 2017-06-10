@@ -2,7 +2,7 @@ includeOnce( "org/asjs/display/bitmap/filters/asjs.AbstractBitmapFilter.js" );
 includeOnce( "org/asjs/geom/asjs.Point.js" );
 
 ASJS.MaskBitmapFilter = createClass( ASJS.AbstractBitmapFilter, null, 
-	function( _scope, _super ) {
+	function( _scope ) {
 		// private object
 		
 		// private const
@@ -12,10 +12,6 @@ ASJS.MaskBitmapFilter = createClass( ASJS.AbstractBitmapFilter, null,
 		// protected variable
 		
 		// private variable
-		_scope.mask;
-		_scope.pos;
-		_scope.invert;
-		_scope.cutout;
 		
 		// constructor
 		_scope.new = function( mask, pos, invert, cutout ) {

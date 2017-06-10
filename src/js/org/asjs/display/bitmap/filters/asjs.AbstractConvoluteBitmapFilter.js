@@ -2,7 +2,7 @@ includeOnce( "org/asjs/display/bitmap/filters/asjs.AbstractBitmapFilter.js" );
 includeOnce( "org/asjs/display/bitmap/asjs.Bitmap.js" );
 
 ASJS.AbstractConvoluteBitmapFilter = createClass( ASJS.AbstractBitmapFilter, null, 
-	function( _scope, _super ) {
+	function( _scope, _super, _protected ) {
 		// private object
 		
 		// private const
@@ -12,7 +12,6 @@ ASJS.AbstractConvoluteBitmapFilter = createClass( ASJS.AbstractBitmapFilter, nul
 		// protected variable
 		
 		// private variable
-		_scope.opaque;
 		
 		// constructor
 		_scope.new = function( opaque ) {
@@ -22,7 +21,7 @@ ASJS.AbstractConvoluteBitmapFilter = createClass( ASJS.AbstractBitmapFilter, nul
 		// public property
 		
 		// protected property
-		prop( _scope, "_matrix", {
+		prop( _protected, "matrix", {
 			get: function() { return [ 1 ]; }
 		});
 		
@@ -46,7 +45,7 @@ ASJS.AbstractConvoluteBitmapFilter = createClass( ASJS.AbstractBitmapFilter, nul
 		
 		// private function
 		function convolute( pixels ) {
-			var weights = _scope._matrix;
+			var weights = _protected.matrix;
 			var side = Math.round( Math.sqrt( weights.length ) );
 			var halfSide = Math.floor( side * 0.5 );
 	

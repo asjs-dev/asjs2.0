@@ -3,8 +3,8 @@ includeOnce( "org/asjs/window/asjs.Window.js" );
 includeOnce( "org/asjs/geom/asjs.Rectangle.js" );
 includeOnce( "org/asjs/core/asjs.Polyfill.js" );
 
-ASJS.Tag = createClass( Object, null, 
-	function( _scope, _super ) {
+ASJS.Tag = createClass( ASJS.BaseClass, null, 
+	function( _scope ) {
 		// private object
 		var priv = {};
 		
@@ -54,7 +54,7 @@ ASJS.Tag = createClass( Object, null,
 			set: function( v ) {
 				if ( v == null || v.getChildIndex( _scope ) > -1 ) {
 					_parent = v;
-					_scope._sendParentChangeEvent();
+					_scope.sendParentChangeEvent();
 				}
 			}
 		});
@@ -161,14 +161,15 @@ ASJS.Tag = createClass( Object, null,
 			return handlers.indexOf( callback ) > -1;
 		}
 		
-		// protected read only function
-		
-		// protected function
-		_scope._sendParentChangeEvent = function() {
+		_scope.sendParentChangeEvent = function() {
 			var state = _scope.stage ? ASJS.Stage.ADDED_TO_STAGE : ASJS.Stage.REMOVED_FROM_STAGE;
 			if ( _state != priv.CREATED || state != ASJS.Stage.REMOVED_FROM_STAGE ) _scope.dispatchEvent( state, null, false );
 			_state = state;
 		}
+		
+		// protected read only function
+		
+		// protected function
 		
 		// private read only function
 		

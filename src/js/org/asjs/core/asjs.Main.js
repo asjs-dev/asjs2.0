@@ -33,6 +33,17 @@ var ASJS = (function() {
 		}
 	}
 	
+	_scope.BaseClass = createClass( Object, null,
+		function( _scope ) {
+			var _protected = {};
+			
+			prop( _scope, "protected", {
+				get: function() { return _protected; },
+				set: function( v ) { _protected = v; }
+			});
+		}
+	);
+	
 	return _scope;
 })();
 var sourcePath = ASJS.sourcePath;

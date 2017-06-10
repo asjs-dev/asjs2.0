@@ -1,8 +1,8 @@
 includeOnce( "org/asjs/display/asjs.Stage.js" );
 includeOnce( "org/asjs/utils/asjs.Cycler.js" );
 
-ASJS.Easing = createClass( Object, null, 
-	function( _scope, _super ) {
+ASJS.Easing = createClass( ASJS.BaseClass, null, 
+	function( _scope ) {
 		// private object
 		
 		// private const

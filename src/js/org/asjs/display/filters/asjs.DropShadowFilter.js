@@ -1,7 +1,7 @@
 includeOnce( "org/asjs/display/filters/asjs.AbstractFilter.js" );
 
 ASJS.DropShadowFilter = createClass( ASJS.AbstractFilter, null, 
-	function( _scope, _super ) {
+	function( _scope ) {
 		// private object
 		
 		// private const
@@ -11,19 +11,14 @@ ASJS.DropShadowFilter = createClass( ASJS.AbstractFilter, null,
 		// protected variable
 		
 		// private variable
-		_scope.h      = 0;
-		_scope.v      = 0;
-		_scope.blur   = 0;
-		_scope.spread = 0;
-		_scope.color  = "#000000";
 		
 		// constructor
 		_scope.new = function( h, v, blur, spread, color ) {
-			_scope.h      = h;
-			_scope.v      = v;
-			_scope.blur   = blur;
-			_scope.spread = spread;
-			_scope.color  = color;
+			_scope.h      = h || 0;
+			_scope.v      = v || 0;
+			_scope.blur   = blur || 0;
+			_scope.spread = spread || 0;
+			_scope.color  = color || "#000000";
 		}
 		
 		// public property

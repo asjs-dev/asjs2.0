@@ -1,6 +1,6 @@
 var Media = {};
-createSingletonClass( Media, Object, null, 
-	function( _scope, _super ) {
+createSingletonClass( Media, ASJS.BaseClass, null, 
+	function( _scope ) {
 		// private object
 		
 		// private const

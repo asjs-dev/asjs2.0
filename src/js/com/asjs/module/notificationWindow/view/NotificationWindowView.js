@@ -2,7 +2,7 @@ includeOnce( "com/asjs/view/AbstractView.js" );
 includeOnce( "com/asjs/module/notificationWindow/NotificationWindowMediator.js" );
 
 var NotificationWindowView = createClass( AbstractView, null, 
-	function( _scope, _super ) {
+	function( _scope, _super, _protected ) {
 		// private object
 		
 		// private const
@@ -62,7 +62,7 @@ var NotificationWindowView = createClass( AbstractView, null,
 		
 		// public function
 		_scope.hideWindow = function() {
-			_scope._animateTo( 0, function() {
+			_protected.animateTo( 0, function() {
 				_scope.dispatchEvent( NotificationWindowMediator.HIDE );
 				
 				_title.html = "";

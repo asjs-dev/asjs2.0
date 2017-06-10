@@ -1,5 +1,5 @@
 var JSONLoader = createClass( ASJS.Loader, null, 
-	function( _scope, _super ) {
+	function( _scope ) {
 		// private object
 		
 		// private const

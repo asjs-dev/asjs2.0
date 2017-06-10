@@ -1,8 +1,8 @@
 includeOnce( "com/asjs/services/JSONLoader.js" );
 
 var DataProxy = {};
-createSingletonClass( DataProxy, Object, null, 
-	function( _scope, _super ) {
+createSingletonClass( DataProxy, ASJS.BaseClass, null, 
+	function( _scope ) {
 		// private object
 		
 		// private const

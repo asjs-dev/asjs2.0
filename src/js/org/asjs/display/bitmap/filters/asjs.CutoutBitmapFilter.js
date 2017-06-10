@@ -1,7 +1,7 @@
 includeOnce( "org/asjs/display/bitmap/filters/asjs.AbstractBitmapFilter.js" );
 
 ASJS.CutoutBitmapFilter = createClass( ASJS.AbstractBitmapFilter, null, 
-	function( _scope, _super ) {
+	function( _scope ) {
 		// private object
 		
 		// private const
@@ -11,7 +11,6 @@ ASJS.CutoutBitmapFilter = createClass( ASJS.AbstractBitmapFilter, null,
 		// protected variable
 		
 		// private variable
-		_scope.adjustment;
 		
 		// constructor
 		_scope.new = function( adjustment ) {

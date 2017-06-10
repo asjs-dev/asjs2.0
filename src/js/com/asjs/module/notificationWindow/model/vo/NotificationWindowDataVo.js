@@ -1,26 +1,28 @@
-var NotificationWindowDataVo = createClass( Object, null, 
-	function( _scope, _super ) {
+var NotificationWindowDataVo = createClass( ASJS.BaseClass, null, 
+	function( _scope ) {
 		// private object
 		
 		// private const
 		
 		// public variable
-		_scope.title = "";
-		_scope.content = "";
-		_scope.showOk = true;
-		_scope.showCancel = false;
-		_scope.okCallback = null;
-		_scope.cancelCallback = null;
-		_scope.okLabel = null;
-		_scope.cancelLabel = null;
-		_scope.width = 500;
-		_scope.height = 200;
 		
 		// protected variable
 		
 		// private variable
 		
 		// constructor
+		_scope.new = function() {
+			_scope.title = "";
+			_scope.content = "";
+			_scope.showOk = true;
+			_scope.showCancel = false;
+			_scope.okCallback = null;
+			_scope.cancelCallback = null;
+			_scope.okLabel = null;
+			_scope.cancelLabel = null;
+			_scope.width = 500;
+			_scope.height = 200;
+		}
 		
 		// public property
 		

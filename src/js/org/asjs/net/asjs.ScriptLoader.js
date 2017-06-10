@@ -6,7 +6,7 @@ includeOnce( "org/asjs/display/asjs.Tag.js" );
 	How to use:
 	// external script (js/test.js)
 	(function() {
-		var Application = createClass( Object, null,
+		var Application = createClass( ASJS.BaseClass, null,
 			function( _scope, _super ) {
 				_scope.new = function() {
 					trace( "Create external script" );

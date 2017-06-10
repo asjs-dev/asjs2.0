@@ -1,11 +1,10 @@
-ASJS.CellDataVo = createClass( Object, null, 
-	function( _scope, _super ) {
+ASJS.CellDataVo = createClass( ASJS.BaseClass, null, 
+	function( _scope ) {
 		// private object
 		
 		// private const
 		
 		// public variable
-		_scope.id;
 		
 		// protected variable
 		

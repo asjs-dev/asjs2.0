@@ -1,7 +1,7 @@
 includeOnce( "org/asjs/display/asjs.PrimitiveDisplayObject.js" );
 
 ASJS.DropDownOption = createClass( ASJS.PrimitiveDisplayObject, [ "option" ], 
-	function( _scope, _super ) {
+	function( _scope ) {
 		// private object
 		
 		// private const

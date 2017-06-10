@@ -51,15 +51,15 @@ var createClass = function( p, a, n ) {
 		for ( var i = 0; i < arguments.length; i++ ) {
 			arg.push( arguments[ i ] );
 		}
-		
+
 		if ( !t.$n ) t.$n = [];
 		t.$n.push( n );
-		
+
 		p.apply( t, arg );
-		
+
 		var s = extendProperties( t );
-		
-		if ( n ) n( t, s );
+		var sp = extendProperties( t.protected );
+		if ( n ) n( t, s, s.protected );
 		
 		if ( !t.$f ) t.$f = [];
 		var f = t.new;
@@ -71,15 +71,24 @@ var createClass = function( p, a, n ) {
 		if ( t.$n[ 0 ] == n ) {
 			t.$n = null;
 			delete t.$n;
+			
 			while ( t.$f.length > 0 ) t.$f.shift().apply( t, arg );
+			
 			t.$f = null;
 			delete t.$f;
+			
+			t.protected = null;
+			delete t.protected;
+			
+			s.protected = sp;
 		}
+		s = null;
+		t = null;
 	}
 	
 	c.prototype = Object.create( p.prototype );
 	c.prototype.constructor = c;
-	
+
 	return c;
 }
 var c0 = createClass;

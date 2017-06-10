@@ -1,6 +1,6 @@
 var MobileUtils = {};
-createSingletonClass( MobileUtils, Object, null, 
-	function( _scope, _super ) {
+createSingletonClass( MobileUtils, ASJS.BaseClass, null, 
+	function( _scope ) {
 		// private object
 		
 		// private const

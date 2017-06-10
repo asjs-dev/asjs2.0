@@ -1,12 +1,10 @@
-ASJS.Point = createClass( Object, null, 
-	function( _scope, _super ) {
+ASJS.Point = createClass( ASJS.BaseClass, null, 
+	function( _scope ) {
 		// private object
 		
 		// private const
 		
 		// public variable
-		_scope.x;
-		_scope.y;
 		
 		// protected variable
 		

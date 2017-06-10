@@ -5,7 +5,7 @@ includeOnce( "com/asjs/controller/startup/ViewPrepCommand.js" );
 includeOnce( "com/asjs/module/content/ContentMediator.js" );
 
 var StartupCommand = createClass( ASJS.AbstractCommand, null, 
-	function( _scope, _super ) {
+	function( _scope ) {
 		// private object
 		
 		// private const

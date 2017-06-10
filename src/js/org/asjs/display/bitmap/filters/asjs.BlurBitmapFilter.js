@@ -1,7 +1,7 @@
 includeOnce( "org/asjs/display/bitmap/filters/asjs.AbstractConvoluteBitmapFilter.js" );
 
 ASJS.BlurBitmapFilter = createClass( ASJS.AbstractConvoluteBitmapFilter, null, 
-	function( _scope, _super ) {
+	function( _scope, _super, _protected ) {
 		// private object
 		
 		// private const
@@ -11,7 +11,6 @@ ASJS.BlurBitmapFilter = createClass( ASJS.AbstractConvoluteBitmapFilter, null,
 		// protected variable
 		
 		// private variable
-		var _value;
 		
 		// constructor
 		_scope.new = function( opaque, value ) {
@@ -19,20 +18,16 @@ ASJS.BlurBitmapFilter = createClass( ASJS.AbstractConvoluteBitmapFilter, null,
 		}
 		
 		// public property
-		prop( _scope, "value", {
-			get: function() { return _value; },
-			set: function( v ) { _value = Math.max( 1, v || 1 ); }
-		});
 		
 		// protected property
-		prop( _scope, "_matrix", {
+		prop( _protected, "matrix", {
 			get: function() {
-				var value = 1 / Math.pow( _value, 2 );
+				var value = 1 / Math.pow( _scope.value, 2 );
 				var matrix = [];
 				var i = -1;
-				while ( ++i < _value ) {
+				while ( ++i < _scope.value ) {
 					var j = -1;
-					while ( ++j < _value ) {
+					while ( ++j < _scope.value ) {
 						matrix.push( value );
 					}
 				}

@@ -2,8 +2,8 @@ includeOnce( "org/asjs/event/asjs.KeyboardEvent.js" );
 includeOnce( "org/asjs/event/asjs.FocusEvent.js" );
 includeOnce( "org/asjs/window/asjs.Window.js" );
 
-ASJS.Keyboard = createClass( Object, null,
-	function( _scope, _super ) {
+ASJS.Keyboard = createClass( ASJS.BaseClass, null,
+	function( _scope ) {
 		// private object
 		
 		// private const

@@ -1,5 +1,5 @@
-var Task = createClass( Object, null, 
-	function( _scope, _super ) {
+var Task = createClass( ASJS.BaseClass, null, 
+	function( _scope, _super, _protected ) {
 		// private object
 		
 		// private const
@@ -12,7 +12,7 @@ var Task = createClass( Object, null,
 		
 		// constructor
 		_scope.new = function() {
-			self.addEventListener( 'message', _scope._onMessage, false);
+			self.addEventListener( 'message', _protected.onMessage, false);
 		}
 		
 		// public property
@@ -30,9 +30,9 @@ var Task = createClass( Object, null,
 		// protected read only function
 		
 		// protected function
-		_scope._onMessage = function( e ) {};
+		_protected.onMessage = function( e ) {};
 
-		_scope._postMessage = function( data ) {
+		_protected.postMessage = function( data ) {
 			self.postMessage( data );
 		};
 		

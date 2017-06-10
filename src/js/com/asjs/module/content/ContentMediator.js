@@ -8,7 +8,7 @@ includeOnce( "com/asjs/module/notificationWindow/NotificationWindowMediator.js" 
 includeOnce( "com/asjs/module/notificationWindow/model/vo/NotificationWindowDataVo.js" );
 
 var ContentMediator = createClass( AbstractResizeMediator, null, 
-	function( _scope, _super ) {
+	function( _scope, _super, _protected ) {
 		// private object
 		
 		// private const
@@ -16,7 +16,7 @@ var ContentMediator = createClass( AbstractResizeMediator, null,
 		// public variable
 		
 		// protected variable
-		_scope._handlers.push( ContentMediator.SHOW );
+		_protected.handlers.push( ContentMediator.SHOW );
 		
 		// private variable
 		var _forceResize = true;
@@ -49,9 +49,9 @@ var ContentMediator = createClass( AbstractResizeMediator, null,
 		// protected read only function
 		
 		// protected function
-		_scope._onResize = function() {
+		_protected.onResize = function() {
 			_forceResize = true;
-			if ( !_scope._view.contains( _contentView ) ) return;
+			if ( !_protected.view.contains( _contentView ) ) return;
 			_contentView.render();
 			_forceResize = false;
 		}
@@ -61,7 +61,7 @@ var ContentMediator = createClass( AbstractResizeMediator, null,
 		// private function
 		function onLoadAnimation( data ) {
 			_contentView.init( data );
-			_scope._view.addChild( _contentView );
+			_protected.view.addChild( _contentView );
 		}
 
 		function onShow() {
@@ -75,7 +75,7 @@ var ContentMediator = createClass( AbstractResizeMediator, null,
 	
 			_dataProxy.loadAnimation( "json/animation/contentAnimation.json" ).done( onLoadAnimation );
 
-			if ( _forceResize ) _scope._onResize();
+			if ( _forceResize ) _protected.onResize();
 		}
 	}
 );

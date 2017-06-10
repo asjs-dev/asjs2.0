@@ -1,7 +1,7 @@
 includeOnce( "org/asjs/display/asjs.Sprite.js" );
 
 ASJS.AbstractMediaPlayer = createClass( ASJS.Sprite, null, 
-	function( _scope, _super ) {
+	function( _scope ) {
 		// private object
 		
 		// private const

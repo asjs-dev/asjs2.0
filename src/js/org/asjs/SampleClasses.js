@@ -1,5 +1,5 @@
-var EmptyClass = createClass( [Object | parentClass], [null | [p1, p2, ..., pn]],
-	function( _scope, _super ) {
+var EmptyClass = createClass( [ASJS.BaseClass | parentClass], [null | [p1, p2, ..., pn]],
+	function( _scope[, _super, _protected] ) {
 		// private object
 		
 		// private const
@@ -37,8 +37,8 @@ var EmptyClass = createClass( [Object | parentClass], [null | [p1, p2, ..., pn]]
 );
 // SINGLETON
 var EmptyClass = {};
-createSingletonClass( EmptyClass, [Object | parentClass], [null | [p1, p2, ..., pn]],
-	function( _scope, _super ) {
+createSingletonClass( EmptyClass, [ASJS.BaseClass | parentClass], [null | [p1, p2, ..., pn]],
+	function( _scope[, _super, _protected] ) {
 		// private object
 		
 		// private const
@@ -85,8 +85,8 @@ createSingletonClass( EmptyClass, [Object | parentClass], [null | [p1, p2, ..., 
 // public static function
 
 // ---------------------------------------------------------------------- //
-var BaseClass = createClass( [Object | parentClass], [null | [p1, p2, ..., pn]],
-	function( _scope, _super ) {
+var BaseClass = createClass( [ASJS.BaseClass | parentClass], [null | [p1, p2, ..., pn]],
+	function( _scope[, _super, _protected] ) {
 		// private object
 		var priv = {};
 		
@@ -97,7 +97,7 @@ var BaseClass = createClass( [Object | parentClass], [null | [p1, p2, ..., pn]],
 		_scope.publicVar = 0;
 		
 		// protected variable
-		_scope._protectedVar = 0;
+		_protected.protectedVar = 0;
 		
 		// private variable
 		var _privateVar;
@@ -114,7 +114,7 @@ var BaseClass = createClass( [Object | parentClass], [null | [p1, p2, ..., pn]],
 		});
 		
 		// protected property
-		prop( _scope, "_val", {
+		prop( _protected, "val", {
 			get: function() { return _privateVar; },
 			set: function( v ) { _privateVar = v; }
 		});
@@ -132,10 +132,10 @@ var BaseClass = createClass( [Object | parentClass], [null | [p1, p2, ..., pn]],
 		_scope.publicFunction = function() {};
 		
 		// protected read only function
-		roFunc( _scope, "_protectedFunction", function() {});
+		roFunc( _protected, "protectedFunction", function() {});
 		
 		// protected function
-		_scope._protectedFunction = function() {};
+		_protected.protectedFunction = function() {};
 		
 		// private read only function
 		roFunc( priv, "privateFunction", function() {});
@@ -153,8 +153,8 @@ var BaseClass = createClass( [Object | parentClass], [null | [p1, p2, ..., pn]],
 );
 // SINGLETON
 var BaseClass = {};
-createSingletonClass( BaseClass, [Object | parentClass], [null | [p1, p2, ..., pn]],
-	function( _scope, _super ) {
+createSingletonClass( BaseClass, [ASJS.BaseClass | parentClass], [null | [p1, p2, ..., pn]],
+	function( _scope[, _super, _protected] ) {
 		// private object
 		var priv = {};
 		
@@ -165,7 +165,7 @@ createSingletonClass( BaseClass, [Object | parentClass], [null | [p1, p2, ..., p
 		_scope.publicVar = 0;
 		
 		// protected variable
-		_scope._protectedVar = 0;
+		_protected.protectedVar = 0;
 		
 		// private variable
 		var _privateVar;
@@ -182,7 +182,7 @@ createSingletonClass( BaseClass, [Object | parentClass], [null | [p1, p2, ..., p
 		});
 		
 		// protected property
-		prop( _scope, "_val", {
+		prop( _protected, "val", {
 			get: function() { return _privateVar; },
 			set: function( v ) { _privateVar = v; }
 		});
@@ -200,10 +200,10 @@ createSingletonClass( BaseClass, [Object | parentClass], [null | [p1, p2, ..., p
 		_scope.publicFunction = function() {};
 		
 		// protected read only function
-		roFunc( _scope, "_protectedFunction", function() {});
+		roFunc( _protected, "protectedFunction", function() {});
 		
 		// protected function
-		_scope._protectedFunction = function() {};
+		_protected.protectedFunction = function() {};
 		
 		// private read only function
 		roFunc( priv, "privateFunction", function() {});

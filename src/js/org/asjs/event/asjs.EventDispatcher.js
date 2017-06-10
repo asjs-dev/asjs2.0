@@ -1,5 +1,5 @@
-ASJS.EventDispatcher = createClass( Object, null, 
-	function( _scope, _super ) {
+ASJS.EventDispatcher = createClass( ASJS.BaseClass, null, 
+	function( _scope ) {
 		// private object
 		
 		// private const

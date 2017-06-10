@@ -1,8 +1,10 @@
 var WS = createClass( ASJS.EventDispatcher, null, 
-	function( _scope, _super ) {
+	function( _scope ) {
 		// private object
+		var priv = {};
 		
 		// private const
+		cnst( priv, "RECONNECT_INTERVALS", [ 1, 2, 3, 15, 30, 60, 120, 240, 300 ] );
 		
 		// public variable
 		
@@ -10,7 +12,6 @@ var WS = createClass( ASJS.EventDispatcher, null,
 		
 		// private variable
 		var _window = ASJS.Window.instance();
-		var RECONNECT_INTERVALS = [ 1, 2, 3, 15, 30, 60, 120, 240, 300 ];
 		var _reconnectCounter = 0;
 		var _tryToReconnect;
 		var _reconnectTimeoutId;
@@ -92,8 +93,8 @@ var WS = createClass( ASJS.EventDispatcher, null,
 		function onClose( e ) {
 			_scope.dispatchEvent( WS.ON_CLOSED );
 			if ( !e.wasClean && _scope.tryToReconnect ) {
-				_reconnectCounter = Math.min( RECONNECT_INTERVALS.length - 1, _reconnectCounter + 1 );
-				var timeout = RECONNECT_INTERVALS[ _reconnectCounter ];
+				_reconnectCounter = Math.min( priv.RECONNECT_INTERVALS.length - 1, _reconnectCounter + 1 );
+				var timeout = priv.RECONNECT_INTERVALS[ _reconnectCounter ];
 				_scope.dispatchEvent( WS.ON_RECONNECT, timeout );
 				_window.clearTimeout( _reconnectTimeoutId );
 				_reconnectTimeoutId = _window.setTimeout( reconnect, timeout * 1000 );

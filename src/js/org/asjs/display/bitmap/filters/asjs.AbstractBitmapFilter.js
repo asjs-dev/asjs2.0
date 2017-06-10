@@ -1,5 +1,5 @@
-ASJS.AbstractBitmapFilter = createClass( Object, null, 
-	function( _scope, _super ) {
+ASJS.AbstractBitmapFilter = createClass( ASJS.BaseClass, null, 
+	function( _scope ) {
 		// private object
 		
 		// private const

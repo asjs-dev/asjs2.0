@@ -9,8 +9,8 @@ includeOnce( "org/asjs/display/animation/vo/asjs.AnimationDescriptorVo.js" );
 includeOnce( "org/asjs/geom/asjs.Rectangle.js" );
 includeOnce( "org/asjs/geom/asjs.Point.js" );
 
-ASJS.AnimationLoader = createClass( Object, null, 
-	function( _scope, _super ) {
+ASJS.AnimationLoader = createClass( ASJS.BaseClass, null, 
+	function( _scope ) {
 		// private object
 		
 		// private const

@@ -1,5 +1,5 @@
 var AbstractView = createClass( ASJS.Sprite, null, 
-	function( _scope, _super ) {
+	function( _scope, _super, _protected ) {
 		// private object
 		
 		// private const
@@ -32,7 +32,7 @@ var AbstractView = createClass( ASJS.Sprite, null,
 		// protected read only function
 		
 		// protected function
-		_scope._animateTo = function( to, completeCallback ) {
+		_protected.animateTo = function( to, completeCallback ) {
 			_easingTarget = { alpha: _scope.alpha };
 			_easing.stop();
 			_easing.play( _easingTarget, { alpha: to }, 1000, "easeInOutExpo",
@@ -48,7 +48,7 @@ var AbstractView = createClass( ASJS.Sprite, null,
 		// private function
 		function addedToStage() {
 			_scope.alpha = 0;
-			_scope._animateTo( 1 );
+			_protected.animateTo( 1 );
 		}
 	}
 );

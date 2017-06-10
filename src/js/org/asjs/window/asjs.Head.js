@@ -1,6 +1,6 @@
 ASJS.Head = {};
-createSingletonClass( ASJS.Head, Object, null, 
-	function( _scope, _super ) {
+createSingletonClass( ASJS.Head, ASJS.BaseClass, null, 
+	function( _scope ) {
 		// private object
 		
 		// private const

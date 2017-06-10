@@ -2,7 +2,7 @@ includeOnce( "com/asjs/module/content/ContentMediator.js" );
 includeOnce( "com/asjs/module/notificationWindow/NotificationWindowMediator.js" );
 
 var ViewPrepCommand = createClass( ASJS.AbstractCommand, null, 
-	function( _scope, _super ) {
+	function( _scope ) {
 		// private object
 		
 		// private const

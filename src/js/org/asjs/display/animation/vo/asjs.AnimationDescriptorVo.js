@@ -1,18 +1,12 @@
 includeOnce( "org/asjs/geom/asjs.Point.js" );
 
-ASJS.AnimationDescriptorVo = createClass( Object, null, 
-	function( _scope, _super ) {
+ASJS.AnimationDescriptorVo = createClass( ASJS.BaseClass, null, 
+	function( _scope ) {
 		// private object
 		
 		// private const
 		
 		// public variable
-		_scope.name;
-		_scope.spriteSheet;
-		_scope.size;
-		_scope.frameDelay;
-		_scope.repeat;
-		_scope.sequenceList;
 		
 		// protected variable
 		

@@ -2,7 +2,7 @@ includeOnce( "org/commons/geolocation/GeolocationData.js" );
 
 var Geolocation = {};
 createSingletonClass( Geolocation, ASJS.EventDispatcher, null, 
-	function( _scope, _super ) {
+	function( _scope ) {
 		// private object
 		
 		// private const

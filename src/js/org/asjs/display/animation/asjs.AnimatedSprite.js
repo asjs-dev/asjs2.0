@@ -4,7 +4,7 @@ includeOnce( "org/asjs/event/asjs.LoaderEvent.js" );
 includeOnce( "org/asjs/utils/asjs.Cycler.js" );
 
 ASJS.AnimatedSprite = createClass( ASJS.DisplayObject, null, 
-	function( _scope, _super ) {
+	function( _scope ) {
 		// private object
 		
 		// private const

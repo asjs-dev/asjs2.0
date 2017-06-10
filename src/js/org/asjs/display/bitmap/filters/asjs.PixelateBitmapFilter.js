@@ -2,7 +2,7 @@ includeOnce( "org/asjs/display/bitmap/filters/asjs.AbstractBitmapFilter.js" );
 includeOnce( "org/asjs/geom/asjs.Point.js" );
 
 ASJS.PixelateBitmapFilter = createClass( ASJS.AbstractBitmapFilter, null, 
-	function( _scope, _super ) {
+	function( _scope ) {
 		// private object
 		
 		// private const
@@ -12,18 +12,13 @@ ASJS.PixelateBitmapFilter = createClass( ASJS.AbstractBitmapFilter, null,
 		// protected variable
 		
 		// private variable
-		var _value;
 		
 		// constructor
-		_scope.net = function( value ) {
+		_scope.new = function( value ) {
 			_scope.value = value;
 		}
 		
 		// public property
-		prop( _scope, "value", {
-			get: function() { return _value; },
-			set: function( v ) { _value = Math.max( 1, v || 1 ); }
-		});
 		
 		// protected property
 		
@@ -38,7 +33,7 @@ ASJS.PixelateBitmapFilter = createClass( ASJS.AbstractBitmapFilter, null,
 		// public function
 		_scope.execute = function( pixels ) {
 			var d = pixels.data;
-			var pixS = _value;
+			var pixS = _scope.value;
 
 			var w = pixels.width;
 			var h = pixels.height;

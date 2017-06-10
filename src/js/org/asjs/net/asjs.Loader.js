@@ -3,7 +3,7 @@ includeOnce( "org/asjs/event/asjs.LoaderEvent.js" );
 includeOnce( "org/asjs/net/asjs.RequestMethod.js" );
 
 ASJS.Loader = createClass( ASJS.EventDispatcher, null,
-	function( _scope, _super ) {
+	function( _scope ) {
 		// private object
 		
 		// private const

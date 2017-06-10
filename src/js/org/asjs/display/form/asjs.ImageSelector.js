@@ -1,7 +1,7 @@
 includeOnce( "org/asjs/display/form/asjs.FileSelector.js" );
 
 ASJS.ImageSelector = createClass( ASJS.FileSelector, null, 
-	function( _scope, _super ) {
+	function( _scope, _super, _protected ) {
 		// private object
 		
 		// private const
@@ -33,8 +33,8 @@ ASJS.ImageSelector = createClass( ASJS.FileSelector, null,
 		// protected read only function
 		
 		// protected function
-		_scope._onChange = function() {
-			var target = _scope._fileInput.el;
+		_protected.onChange = function() {
+			var target = _protected.fileInput.el;
 			if ( target.files && target.files[ 0 ] ) {
 				_scope.dispatchEvent( ASJS.ImageSelector.ON_CHANGE_START );
 				_reader.readAsDataURL( target.files[ 0 ] );

@@ -2,7 +2,7 @@ includeOnce( "com/asjs/model/Language.js" );
 includeOnce( "com/asjs/model/proxy/DataProxy.js" );
 
 var LanguageLoaderCommand = createClass( ASJS.AbstractCommand, null, 
-	function( _scope, _super ) {
+	function( _scope ) {
 		// private object
 		
 		// private const

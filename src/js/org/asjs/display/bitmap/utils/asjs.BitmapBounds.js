@@ -14,8 +14,9 @@ roFunc( ASJS.BitmapBounds, "execute", function( bitmap ) {
 	
 	var d = pixels.data;
 	var w = pixels.width;
+	var h = pixels.height;
 	
-	var size = new ASJS.Rectangle( pixels.width, pixels.height, 0, 0 );
+	var size = new ASJS.Rectangle( w, h, 0, 0 );
 	
 	var i = -4;
 	var l = d.length;

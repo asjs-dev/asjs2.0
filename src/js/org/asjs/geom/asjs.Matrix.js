@@ -1,16 +1,10 @@
-ASJS.Matrix = createClass( Object, null, 
-	function( _scope, _super ) {
+ASJS.Matrix = createClass( ASJS.BaseClass, null, 
+	function( _scope ) {
 		// private object
 		
 		// private const
 		
 		// public variable
-		_scope.a;
-		_scope.b;
-		_scope.c;
-		_scope.d;
-		_scope.e;
-		_scope.f;
 		
 		// protected variable
 		
@@ -36,18 +30,18 @@ ASJS.Matrix = createClass( Object, null,
 		
 		// public function
 		_scope.translate = function( tx, ty ) {
-			matrix.e = tx;
-			matrix.f = ty;
+			_scope.e = tx;
+			_scope.f = ty;
 		}
 
 		_scope.skew = function( sx, sy ) {
-			matrix.b = sx;
-			matrix.c = sy;
+			_scope.b = sx;
+			_scope.c = sy;
 		}
 
 		_scope.scale = function( sw, sh ) {
-			matrix.a = sw;
-			matrix.d = sh;
+			_scope.a = sw;
+			_scope.d = sh;
 		}
 		
 		// protected read only function

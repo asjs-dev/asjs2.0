@@ -1,7 +1,7 @@
 includeOnce( "org/asjs/display/bitmap/filters/asjs.AbstractBitmapFilter.js" );
 
 ASJS.TintBitmapFilter = createClass( ASJS.AbstractBitmapFilter, null, 
-	function( _scope, _super ) {
+	function( _scope ) {
 		// private object
 		
 		// private const
@@ -11,10 +11,6 @@ ASJS.TintBitmapFilter = createClass( ASJS.AbstractBitmapFilter, null,
 		// protected variable
 		
 		// private variable
-		_scope.r;
-		_scope.g;
-		_scope.b;
-		_scope.a;
 		
 		// constructor
 		_scope.new = function( r, g, b, a ) {

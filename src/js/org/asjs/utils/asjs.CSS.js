@@ -4,8 +4,8 @@ includeOnce( "org/asjs/display/asjs.PrimitiveDisplayObject.js" );
 includeOnce( "org/asjs/core/asjs.Polyfill.js" );
 
 ASJS.CSS = {};
-createSingletonClass( ASJS.CSS, Object, null,
-	function( _scope, _super ) {
+createSingletonClass( ASJS.CSS, ASJS.BaseClass, null,
+	function( _scope ) {
 		// private object
 		
 		// private const
@@ -123,8 +123,8 @@ createSingletonClass( ASJS.CSS, Object, null,
 		}
 		
 		// internal classes
-		var Rule = createClass( Object, null,
-			function( _scope, _super ) {
+		var Rule = createClass( ASJS.BaseClass, null,
+			function( _scope ) {
 				// private object
 	
 				// private const

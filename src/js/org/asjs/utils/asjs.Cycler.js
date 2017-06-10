@@ -1,8 +1,8 @@
 includeOnce( "org/asjs/window/asjs.Window.js" );
 
 ASJS.Cycler = {};
-createSingletonClass( ASJS.Cycler, Object, null, 
-	function( _scope, _super ) {
+createSingletonClass( ASJS.Cycler, ASJS.BaseClass, null, 
+	function( _scope ) {
 		// private object
 		
 		// private const

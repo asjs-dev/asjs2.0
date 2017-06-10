@@ -1,5 +1,5 @@
 var AbstractResizeMediator = createClass( ASJS.AbstractMediator, null, 
-	function( _scope, _super ) {
+	function( _scope, _super, _protected ) {
 		// private object
 		
 		// private const
@@ -7,7 +7,7 @@ var AbstractResizeMediator = createClass( ASJS.AbstractMediator, null,
 		// public variable
 		
 		// protected variable
-		_scope._handlers = [ ASJS.Stage.RESIZE ];
+		_protected.handlers = [ ASJS.Stage.RESIZE ];
 		
 		// private variable
 		
@@ -26,7 +26,7 @@ var AbstractResizeMediator = createClass( ASJS.AbstractMediator, null,
 		// public function
 		_scope.reciveNotification = function( type, data ) {
 			switch ( type ) {
-				case ASJS.Stage.RESIZE: _scope._onResize();
+				case ASJS.Stage.RESIZE: _protected.onResize();
 				break;
 			}
 		}
@@ -34,7 +34,7 @@ var AbstractResizeMediator = createClass( ASJS.AbstractMediator, null,
 		// protected read only function
 		
 		// protected function
-		_scope._onResize = function() {}
+		_protected.onResize = function() {}
 		
 		// private read only function
 		

@@ -1,6 +1,6 @@
 var Facebook = {};
 createSingletonClass( Facebook, ASJS.DisplayObject, null, 
-	function( _scope, _super ) {
+	function( _scope ) {
 		// private object
 		
 		// private const

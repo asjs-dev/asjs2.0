@@ -1,7 +1,7 @@
 includeOnce( "org/asjs/display/bitmap/filters/asjs.AbstractBitmapFilter.js" );
 
 ASJS.OpacityBitmapFilter = createClass( ASJS.AbstractBitmapFilter, null, 
-	function( _scope, _super ) {
+	function( _scope ) {
 		// private object
 		
 		// private const
@@ -11,7 +11,6 @@ ASJS.OpacityBitmapFilter = createClass( ASJS.AbstractBitmapFilter, null,
 		// protected variable
 		
 		// private variable
-		_scope.adjustment;
 		
 		// constructor
 		_scope.new = function( adjustment ) {
@@ -33,9 +32,7 @@ ASJS.OpacityBitmapFilter = createClass( ASJS.AbstractBitmapFilter, null,
 			var d = pixels.data;
 			var i = -4;
 			var l = d.length;
-			while ( ( i += 4 ) < l ) {
-				d[ i + 3 ] *= _scope.adjustment;
-			}
+			while ( ( i += 4 ) < l ) d[ i + 3 ] *= _scope.adjustment;
 			return pixels;
 		}
 		

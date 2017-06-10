@@ -1,7 +1,7 @@
 includeOnce( "org/asjs/display/filters/asjs.AbstractFilter.js" );
 
 ASJS.ContrastFilter = createClass( ASJS.AbstractFilter, null, 
-	function( _scope, _super ) {
+	function( _scope ) {
 		// private object
 		
 		// private const
@@ -11,7 +11,6 @@ ASJS.ContrastFilter = createClass( ASJS.AbstractFilter, null,
 		// protected variable
 		
 		// private variable
-		_scope.value = 0;
 		
 		// constructor
 		_scope.new = function( value ) {

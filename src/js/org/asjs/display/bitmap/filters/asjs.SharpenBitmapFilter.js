@@ -1,7 +1,7 @@
 includeOnce( "org/asjs/display/bitmap/filters/asjs.AbstractConvoluteBitmapFilter.js" );
 
 ASJS.SharpenBitmapFilter = createClass( ASJS.AbstractConvoluteBitmapFilter, null, 
-	function( _scope, _super ) {
+	function( _scope, _super, _protected ) {
 		// private object
 		
 		// private const
@@ -17,7 +17,7 @@ ASJS.SharpenBitmapFilter = createClass( ASJS.AbstractConvoluteBitmapFilter, null
 		// public property
 		
 		// protected property
-		prop( _scope, "_matrix", {
+		prop( _protected, "matrix", {
 			get: function() {
 				return [
 					0, -1, 0,

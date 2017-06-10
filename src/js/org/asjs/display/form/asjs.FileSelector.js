@@ -4,7 +4,7 @@ includeOnce( "org/asjs/event/asjs.MouseEvent.js" );
 includeOnce( "org/asjs/event/asjs.Event.js" );
 
 ASJS.FileSelector = createClass( ASJS.FormElement, null, 
-	function( _scope, _super ) {
+	function( _scope, _super, _protected ) {
 		// private object
 		
 		// private const
@@ -12,17 +12,17 @@ ASJS.FileSelector = createClass( ASJS.FormElement, null,
 		// public variable
 		
 		// protected variable
-		_scope._fileInput = new ASJS.DisplayObject( "input" );
+		_protected.fileInput = new ASJS.DisplayObject( "input" );
 		
 		// private variable
 		var _preview = new ASJS.Sprite();
 		
 		// constructor
 		_scope.new = function() {
-			_scope._fileInput.setAttr( "type", "file" );
-			_scope._fileInput.addEventListener( ASJS.Event.CHANGE, _scope._onChange );
-			_scope._fileInput.visible = false;
-			_scope.addChild( _scope._fileInput );
+			_protected.fileInput.setAttr( "type", "file" );
+			_protected.fileInput.addEventListener( ASJS.Event.CHANGE, _protected.onChange );
+			_protected.fileInput.visible = false;
+			_scope.addChild( _protected.fileInput );
 	
 			_preview.setSize( "100%", "100%" );
 			_preview.move( 0, 0 );
@@ -37,7 +37,7 @@ ASJS.FileSelector = createClass( ASJS.FormElement, null,
 		});
 
 		prop( _scope, "val", {
-			get: function() { return _scope._fileInput.el.value; }
+			get: function() { return _protected.fileInput.el.value; }
 		});
 
 		prop( _scope, "fileInput", {
@@ -46,14 +46,14 @@ ASJS.FileSelector = createClass( ASJS.FormElement, null,
 		
 		prop( _scope, "enabled", {
 			set: function( v ) {
-				_super.enabled = _scope._fileInput.enabled = v;
+				_super.enabled = _protected.fileInput.enabled = v;
 				_scope.render();
 			}
 		});
 		
 		prop( _scope, "name", {
-			get: function() { return _scope._fileInput.getAttr( "name" ); },
-			set: function( v ) { _scope._fileInput.setAttr( "name", v ); }
+			get: function() { return _protected.fileInput.getAttr( "name" ); },
+			set: function( v ) { _protected.fileInput.setAttr( "name", v ); }
 		});
 		
 		// protected property
@@ -69,7 +69,7 @@ ASJS.FileSelector = createClass( ASJS.FormElement, null,
 		// protected read only function
 		
 		// protected function
-		_scope._onChange = function() {
+		_protected.onChange = function() {
 			_preview.text = _scope.val;
 			_scope.dispatchEvent( ASJS.FileSelector.ON_CHANGE );
 		}
@@ -78,8 +78,8 @@ ASJS.FileSelector = createClass( ASJS.FormElement, null,
 		
 		// private function
 		function onClick( e ) {
-			if ( e.target == _scope._fileInput.el ) return;
-			_scope._fileInput.el.click();
+			if ( e.target == _protected.fileInput.el ) return;
+			_protected.fileInput.el.click();
 		}
 	}
 );

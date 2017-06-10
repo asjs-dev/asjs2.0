@@ -21,7 +21,6 @@ createSingletonClass( Language, ASJS.AbstractModel, null,
 		prop( _scope, "selectedLanguage", {
 			get: function() { return _super.data.selectedLanguage; }
 		});
-
 		
 		// protected property
 		

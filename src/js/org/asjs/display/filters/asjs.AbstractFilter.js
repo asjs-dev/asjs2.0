@@ -1,5 +1,5 @@
-ASJS.AbstractFilter = createClass( Object, null, 
-	function( _scope, _super ) {
+ASJS.AbstractFilter = createClass( ASJS.BaseClass, null, 
+	function( _scope ) {
 		// private object
 		
 		// private const
