@@ -38,6 +38,7 @@ createSingletonClass( MobileUtils, ASJS.BaseClass, null,
 		prop( _scope, "isDesktop", {
 			get: function() { return _isDesktop;}
 		});
+		
 		prop( _scope, "width", {
 			get: function() { return _useScreenSize ? stage.screenWidth : stage.stageWidth; }
 		});
