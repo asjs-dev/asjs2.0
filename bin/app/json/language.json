@@ -28,6 +28,9 @@
 		},
 		"notification_content": {
 			"en": "Press \"OK\" in this window and click the fireworks animation.<br>Or drag the animation."
+		},
+		"show_external_application_button_label": {
+			"en": "Show External Application"
 		}
 	}
 }

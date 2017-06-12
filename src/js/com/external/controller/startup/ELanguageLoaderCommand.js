@@ -1,8 +1,7 @@
-includeOnce( "com/asjs/module/content/ContentMediator.js" );
-includeOnce( "com/asjs/module/externalApplication/ExternalApplicationMediator.js" );
-includeOnce( "com/asjs/module/notificationWindow/NotificationWindowMediator.js" );
+includeOnce( "com/asjs/model/Language.js" );
+includeOnce( "com/asjs/model/proxy/DataProxy.js" );
 
-var ViewPrepCommand = createClass( ASJS.AbstractCommand, null, 
+var ELanguageLoaderCommand = createClass( ASJS.AbstractCommand, null, 
 	function( _scope ) {
 		// private object
 		
@@ -13,6 +12,8 @@ var ViewPrepCommand = createClass( ASJS.AbstractCommand, null,
 		// protected variable
 		
 		// private variable
+		var _language = Language.instance();
+		var _dataProxy = DataProxy.instance();
 		
 		// constructor
 		
@@ -27,10 +28,13 @@ var ViewPrepCommand = createClass( ASJS.AbstractCommand, null,
 		// public read only function
 		
 		// public function
-		_scope.execute = function( app ) {
-			new ContentMediator( app.contentView );
-			new ExternalApplicationMediator( app.externalApplicationView );
-			new NotificationWindowMediator( app.notificationWindowView );
+		_scope.execute = function() {
+			var promise = _dataProxy.loadJSON( "json/external/language.json" );
+				promise.done(function( response ) {
+					_language.data = response;
+				});
+	
+			return promise;
 		}
 		
 		// protected read only function

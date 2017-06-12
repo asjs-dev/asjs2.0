@@ -7,6 +7,8 @@ includeOnce( "com/asjs/module/content/view/ContentView.js" );
 includeOnce( "com/asjs/module/notificationWindow/NotificationWindowMediator.js" );
 includeOnce( "com/asjs/module/notificationWindow/model/vo/NotificationWindowDataVo.js" );
 
+includeOnce( "com/asjs/module/externalApplication/ExternalApplicationMediator.js" );
+
 var ContentMediator = createClass( AbstractResizeMediator, null, 
 	function( _scope, _super, _protected ) {
 		// private object
@@ -19,13 +21,15 @@ var ContentMediator = createClass( AbstractResizeMediator, null,
 		_protected.handlers.push( ContentMediator.SHOW );
 		
 		// private variable
-		var _forceResize = true;
-		
 		var _dataProxy = DataProxy.instance();
 		var _language = Language.instance();
 		var _contentView = new ContentView();
 		
 		// constructor
+		_scope.new = function() {
+			_contentView.addEventListener( ContentMediator.ON_SHOW_NOTIFICATION_WINDOW, showNotificationWindow );
+			_contentView.addEventListener( ContentMediator.ON_SHOW_EXTERNAL_APPLICATION, showExternalApplication );
+		}
 		
 		// public property
 		
@@ -49,39 +53,42 @@ var ContentMediator = createClass( AbstractResizeMediator, null,
 		// protected read only function
 		
 		// protected function
-		_protected.onResize = function() {
-			_forceResize = true;
-			if ( !_protected.view.contains( _contentView ) ) return;
-			_contentView.render();
-			_forceResize = false;
-		}
 		
 		// private read only function
 		
 		// private function
 		function onLoadAnimation( data ) {
 			_contentView.init( data );
-			_protected.view.addChild( _contentView );
+			if ( !_protected.view.contains( _contentView ) ) _protected.view.addChild( _contentView );
 		}
 
 		function onShow() {
-			_contentView.addEventListener( ContentMediator.ON_SHOW_NOTIFICATION_WINDOW_CLICK, function() {
-				var notificationWindowDataVo = new NotificationWindowDataVo();
-					notificationWindowDataVo.title = _language.getText( "notification_title" );
-					notificationWindowDataVo.content = _language.getText( "notification_content" );
-					notificationWindowDataVo.height = 230;
-				_scope.sendNotification( NotificationWindowMediator.SHOW, notificationWindowDataVo );
-			});
-	
 			_dataProxy.loadAnimation( "json/animation/contentAnimation.json" ).done( onLoadAnimation );
-
-			if ( _forceResize ) _protected.onResize();
+			
+			_protected.showView();
+		}
+		
+		function onHide() {
+			if ( _protected.view.contains( _contentView ) ) _protected.view.removeChild( _contentView );
+		}
+		
+		function showNotificationWindow() {
+			var notificationWindowDataVo = new NotificationWindowDataVo();
+				notificationWindowDataVo.title = _language.getText( "notification_title" );
+				notificationWindowDataVo.content = _language.getText( "notification_content" );
+				notificationWindowDataVo.height = 230;
+			_scope.sendNotification( NotificationWindowMediator.SHOW, notificationWindowDataVo );
+		}
+		
+		function showExternalApplication() {
+			_scope.sendNotification( ExternalApplicationMediator.SHOW );
 		}
 	}
 );
 // public static const
-cnst( ContentMediator, "SHOW",                              "ContentMediator-show" );
-cnst( ContentMediator, "ON_SHOW_NOTIFICATION_WINDOW_CLICK", "ContentMediator-onShowNotificationWindowClick" );
+cnst( ContentMediator, "SHOW",                         "ContentMediator-show" );
+cnst( ContentMediator, "ON_SHOW_EXTERNAL_APPLICATION", "ContentMediator-onShowExternalApplication" );
+cnst( ContentMediator, "ON_SHOW_NOTIFICATION_WINDOW",  "ContentMediator-onShowNotificationWindow" );
 
 // public static variable
 

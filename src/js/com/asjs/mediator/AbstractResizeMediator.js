@@ -8,6 +8,7 @@ var AbstractResizeMediator = createClass( ASJS.AbstractMediator, null,
 		
 		// protected variable
 		_protected.handlers = [ ASJS.Stage.RESIZE ];
+		_protected.forceResize = true;
 		
 		// private variable
 		
@@ -34,7 +35,22 @@ var AbstractResizeMediator = createClass( ASJS.AbstractMediator, null,
 		// protected read only function
 		
 		// protected function
-		_protected.onResize = function() {}
+		_protected.showView = function() {
+			if ( _protected.forceResize ) _protected.onResize();
+		}
+		
+		_protected.onResize = function() {
+			_protected.forceResize = true;
+			
+			var child = _protected.view.getChildAt( 0 );
+			
+			if ( child == null ) return;
+			
+			child.render();
+			
+			_protected.forceResize = false;
+			
+		}
 		
 		// private read only function
 		

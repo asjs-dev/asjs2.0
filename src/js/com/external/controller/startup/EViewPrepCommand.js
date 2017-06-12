@@ -1,8 +1,6 @@
-includeOnce( "com/asjs/module/content/ContentMediator.js" );
-includeOnce( "com/asjs/module/externalApplication/ExternalApplicationMediator.js" );
-includeOnce( "com/asjs/module/notificationWindow/NotificationWindowMediator.js" );
+includeOnce( "com/external/module/content/EContentMediator.js" );
 
-var ViewPrepCommand = createClass( ASJS.AbstractCommand, null, 
+var EViewPrepCommand = createClass( ASJS.AbstractCommand, null, 
 	function( _scope ) {
 		// private object
 		
@@ -28,9 +26,7 @@ var ViewPrepCommand = createClass( ASJS.AbstractCommand, null,
 		
 		// public function
 		_scope.execute = function( app ) {
-			new ContentMediator( app.contentView );
-			new ExternalApplicationMediator( app.externalApplicationView );
-			new NotificationWindowMediator( app.notificationWindowView );
+			new EContentMediator( app.contentView );
 		}
 		
 		// protected read only function

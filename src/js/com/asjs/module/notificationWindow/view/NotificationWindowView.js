@@ -21,7 +21,7 @@ var NotificationWindowView = createClass( AbstractView, null,
 		
 		// constructor
 		_scope.new = function() {
-			_scope.setCSS( "background-color", "rgba( 0, 0, 0, 0.4 )" );
+			_scope.addClass( "notification-window-view" );
 			_scope.setCSS( "position", "fixed" );
 	
 			_window.size = new ASJS.Point( 30, 80 );
@@ -95,6 +95,7 @@ var NotificationWindowView = createClass( AbstractView, null,
 
 		_scope.render = function() {
 			_scope.setSize( stage.stageWidth, stage.stageHeight );
+			
 			_window.setSize( Math.max( 150, Math.min( stage.stageWidth, _notificationItem.width ) ), Math.max( 150, Math.min( stage.stageHeight, _notificationItem.height ) ) );
 			_window.move( ( stage.stageWidth - _window.width ) * 0.5, Math.max( 0, ( stage.stageHeight - _window.height ) * 0.5 ) );
 			_window.render();

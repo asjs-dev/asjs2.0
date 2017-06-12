@@ -3,7 +3,7 @@ includeOnce( "com/asjs/model/Language.js" );
 includeOnce( "com/asjs/model/Config.js" );
 includeOnce( "com/asjs/model/Cookies.js" );
 
-var EnvironmentCommand = createClass( ASJS.AbstractCommand, null, 
+var EEnvironmentCommand = createClass( ASJS.AbstractCommand, null, 
 	function( _scope ) {
 		// private object
 		
@@ -36,8 +36,6 @@ var EnvironmentCommand = createClass( ASJS.AbstractCommand, null,
 		// public function
 		_scope.execute = function() {
 			setupLanguage();
-			setupCycler();
-			setupStage();
 		}
 		
 		// protected read only function
@@ -57,27 +55,8 @@ var EnvironmentCommand = createClass( ASJS.AbstractCommand, null,
 			_language.set( "selectedLanguage", selectedLanguage );
 
 			_cookies.createCookie( 'language', _language.selectedLanguage );
-			stage.title = _language.getText( "title" );
 		}
 
-		function setupCycler() {
-			_cycler.fps = _config.get( "fps" );
-			_cycler.start();
-		}
-
-		function setupStage() {
-			stage.addEventListener( ASJS.Stage.RESIZE, onStageResize );
-		}
-
-		function onStageResize() {
-			_sleepToResizeId = _window.clearTimeout( _sleepToResizeId );
-			_sleepToResizeId = _window.setTimeout( onTimeout, _config.get( "resizeInterval" ) );
-		}
-
-		function onTimeout() {
-			_sleepToResizeId = _window.clearTimeout( _sleepToResizeId );
-			_scope.sendNotification( ASJS.Stage.RESIZE );
-		}
 	}
 );
 // public static const

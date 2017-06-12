@@ -1,6 +1,7 @@
 includeOnce( "com/asjs/model/Language.js" );
 includeOnce( "com/asjs/view/AbstractView.js" );
 includeOnce( "com/asjs/module/content/ContentMediator.js" );
+includeOnce( "com/asjs/module/content/view/assets/Box.js" );
 
 var ContentView = createClass( AbstractView, null, 
 	function( _scope ) {
@@ -19,9 +20,8 @@ var ContentView = createClass( AbstractView, null,
 		var _language = Language.instance();
 		var _mouse = ASJS.Mouse.instance();
 		var _background = new ASJS.Sprite();
-		var _box = new ASJS.Sprite();
-		var _label = new ASJS.Label();
-		var _button = new ASJS.Button();
+		var _box = new Box();
+		var _externalApplicationButton = new ASJS.Button();
 		var _animatedSprite = new ASJS.AnimatedSprite();
 		var _drag = false;
 		var _blurFilter = new ASJS.BlurFilter();
@@ -29,6 +29,7 @@ var ContentView = createClass( AbstractView, null,
 		// constructor
 		_scope.new = function() {
 			_scope.addEventListener( ASJS.Stage.ADDED_TO_STAGE, addedToStage );
+			_scope.addEventListener( ASJS.Stage.REMOVED_FROM_STAGE, removedFromStage );
 		}
 		
 		// public property
@@ -45,6 +46,7 @@ var ContentView = createClass( AbstractView, null,
 		_scope.render = function() {
 			_background.setSize( stage.stageWidth, stage.stageHeight );
 			_box.x = ( stage.stageWidth - _box.width ) * 0.5;
+			_externalApplicationButton.move( _box.x, _box.y + _box.height + 20 );
 		}
 
 		_scope.init = function( data ) {
@@ -53,23 +55,10 @@ var ContentView = createClass( AbstractView, null,
 			_background.alpha = 0.5;
 			_scope.addChild( _background );
 	
-			_box.addClass( "content-view--box" );
 			_box.setSize( 320, 130 );
 			_box.y = 100;
+			_box.render();
 			_scope.addChild( _box );
-	
-			_label.text = _language.getText( "new_asjs_base_site" );
-			_label.addClass( "content-view--box--label" );
-			_label.setSize( 320, 30 );
-			_label.move( 0, 34 );
-			_box.addChild( _label );
-	
-			_button.label = _language.getText( "show_notification_window" );
-			_button.addClass( "content-view--box--button" );
-			_button.setSize( 320, 40 );
-			_button.move( 0, _box.height - _button.height );
-			_button.addEventListener( ASJS.MouseEvent.CLICK, onButtonClick );
-			_box.addChild( _button );
 	
 			_animatedSprite.addAnimationDescriptorList( data );
 			_animatedSprite.move( 10, 10 );
@@ -77,12 +66,12 @@ var ContentView = createClass( AbstractView, null,
 	
 			_animatedSprite.addEventListener( ASJS.MouseEvent.CLICK, onAnimatedSpriteClick );
 			_animatedSprite.addEventListener( ASJS.MouseEvent.MOUSE_DOWN + " " + ASJS.MouseEvent.TOUCH_START, onAnimatedSpriteMouseDown );
-	
-			stage.addEventListener( ASJS.MouseEvent.MOUSE_UP + " " + ASJS.MouseEvent.TOUCH_END, onDragStop );
-			stage.addEventListener( ASJS.MouseEvent.MOUSE_LEAVE, onDragStop );
-			stage.addEventListener( ASJS.MouseEvent.MOUSE_MOVE + " " + ASJS.MouseEvent.TOUCH_MOVE, onStageMouseMove );
-	
-			_scope.addEventListener( ASJS.MouseEvent.CLICK, onMouseClick );
+			
+			_externalApplicationButton.label = _language.getText( "show_external_application_button_label" );
+			_externalApplicationButton.addClass( "content-view--show-external-application-button" );
+			_externalApplicationButton.setSize( 320, 40 );
+			_externalApplicationButton.addEventListener( ASJS.MouseEvent.CLICK, onExternalApplicationButtonClick );
+			_scope.addChild( _externalApplicationButton );
 			
 			_scope.render();
 		}
@@ -95,11 +84,23 @@ var ContentView = createClass( AbstractView, null,
 		
 		// private function
 		function addedToStage() {
+			stage.addEventListener( ASJS.MouseEvent.MOUSE_UP + " " + ASJS.MouseEvent.TOUCH_END, onDragStop );
+			stage.addEventListener( ASJS.MouseEvent.MOUSE_LEAVE, onDragStop );
+			stage.addEventListener( ASJS.MouseEvent.MOUSE_MOVE + " " + ASJS.MouseEvent.TOUCH_MOVE, onStageMouseMove );
+	
+			_scope.addEventListener( ASJS.MouseEvent.CLICK, onMouseClick );
+			
 			playFireworksAnimation();
 		}
-
-		function onButtonClick() {
-			_scope.dispatchEvent( ContentMediator.ON_SHOW_NOTIFICATION_WINDOW_CLICK );
+		
+		function removedFromStage() {
+			stage.removeEventListener( ASJS.MouseEvent.MOUSE_UP + " " + ASJS.MouseEvent.TOUCH_END, onDragStop );
+			stage.removeEventListener( ASJS.MouseEvent.MOUSE_LEAVE, onDragStop );
+			stage.removeEventListener( ASJS.MouseEvent.MOUSE_MOVE + " " + ASJS.MouseEvent.TOUCH_MOVE, onStageMouseMove );
+	
+			_scope.removeEventListener( ASJS.MouseEvent.CLICK, onMouseClick );
+			
+			_animatedSprite.stop();
 		}
 
 		function playExplodeAnimation() {
@@ -137,7 +138,11 @@ var ContentView = createClass( AbstractView, null,
 
 		function onMouseClick() {
 			var hitTest = _box.hitTest( new ASJS.Point( _mouse.mouseX, _mouse.mouseY ) );
-			_label.text = _language.getText( hitTest ? "hit_test_inside" : "hit_test_outside" );
+			_box.label.text = _language.getText( hitTest ? "hit_test_inside" : "hit_test_outside" );
+		}
+		
+		function onExternalApplicationButtonClick() {
+			_scope.dispatchEvent( ContentMediator.ON_SHOW_EXTERNAL_APPLICATION );
 		}
 	}
 );

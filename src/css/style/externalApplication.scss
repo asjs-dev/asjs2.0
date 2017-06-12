@@ -1,0 +1,14 @@
+.external-application-view {
+	background-color: rgba( 0, 0, 0, 0.4 );
+	
+	&--container {
+		background-color: #FFFFFF;
+	}
+	
+	&--close-button {
+		background-position: center center;
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-image: url(../images/close_icon.png);
+	}
+}

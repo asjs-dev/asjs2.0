@@ -1,8 +1,8 @@
 sourcePath( "./" );
 
-includeOnce( "com/asjs/controller/StartupCommand.js" );
+includeOnce( "com/external/controller/EStartupCommand.js" );
 
-var Application = createClass( ASJS.BaseClass, null, 
+var EApplication = createClass( ASJS.Sprite, null, 
 	function( _scope ) {
 		// private object
 		
@@ -14,31 +14,25 @@ var Application = createClass( ASJS.BaseClass, null,
 		
 		// private variable
 		var _contentView = new ASJS.Sprite();
-		var _externalApplicationView = new ASJS.Sprite();
-		var _notificationWindowView = new ASJS.Sprite();
 		
 		// constructor
 		_scope.new = function() {
-			trace( "<AS/JS> Application 2.{{version}}" );
+			trace( "<AS/JS> External Application" );
 			
-			stage.addChild( _scope.contentView );
-			stage.addChild( _scope.externalApplicationView );
-			stage.addChild( _scope.notificationWindowView );
+			var styleLoader = new ASJS.StyleLoader();
+				styleLoader.addEventListener( ASJS.LoaderEvent.LOAD, function() {
+					styleLoader.useStyle();
+					( new EStartupCommand() ).execute( _scope );
+				});
+				styleLoader.load( "css/external/application.css" );
 			
-			( new StartupCommand() ).execute( _scope );
+			_scope.addChild( _scope.contentView );
+			
 		}
 		
 		// public property
 		prop( _scope, "contentView", {
 			get: function() { return _contentView; }
-		});
-		
-		prop( _scope, "externalApplicationView", {
-			get: function() { return _externalApplicationView; }
-		});
-		
-		prop( _scope, "notificationWindowView", {
-			get: function() { return _notificationWindowView; }
 		});
 		
 		// protected property
@@ -71,4 +65,4 @@ var Application = createClass( ASJS.BaseClass, null,
 // public static function
 
 // -------------------- //
-ASJS.start( Application );
+ASJS.start( EApplication );

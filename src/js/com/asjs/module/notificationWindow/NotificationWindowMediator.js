@@ -17,8 +17,6 @@ var NotificationWindowMediator = createClass( AbstractResizeMediator, null,
 		// private variable
 		var _language = Language.instance();
 		
-		var _forceResize = true;
-		
 		var _pool = [];
 		var _showed = false;
 		var _defaultOkLabel = "";
@@ -54,12 +52,6 @@ var NotificationWindowMediator = createClass( AbstractResizeMediator, null,
 		// protected read only function
 		
 		// protected function
-		_protected.onResize = function() {
-			_forceResize = true;
-			if ( !_protected.view.contains( _notificationWindowView ) ) return;
-			_notificationWindowView.render();
-			_forceResize = false;
-		}
 		
 		// private read only function
 		
@@ -94,7 +86,7 @@ var NotificationWindowMediator = createClass( AbstractResizeMediator, null,
 	
 			if ( !_protected.view.contains( _notificationWindowView ) ) _protected.view.addChild( _notificationWindowView );
 			
-			if ( _forceResize ) _protected.onResize();
+			_protected.showView();
 		}
 	}
 );
