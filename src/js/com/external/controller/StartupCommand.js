@@ -1,10 +1,10 @@
-includeOnce( "com/external/controller/startup/EConfigLoaderCommand.js" );
-includeOnce( "com/external/controller/startup/ELanguageLoaderCommand.js" );
-includeOnce( "com/external/controller/startup/EEnvironmentCommand.js" );
-includeOnce( "com/external/controller/startup/EViewPrepCommand.js" );
-includeOnce( "com/external/module/content/EContentMediator.js" );
+includeOnce( "com/external/controller/startup/ConfigLoaderCommand.js" );
+includeOnce( "com/external/controller/startup/LanguageLoaderCommand.js" );
+includeOnce( "com/external/controller/startup/EnvironmentCommand.js" );
+includeOnce( "com/external/controller/startup/ViewPrepCommand.js" );
+includeOnce( "com/external/module/content/ContentMediator.js" );
 
-var EStartupCommand = createClass( ASJS.AbstractCommand, null, 
+var StartupCommand = createClass( ASJS.AbstractCommand, null, 
 	function( _scope ) {
 		// private object
 		
@@ -43,18 +43,18 @@ var EStartupCommand = createClass( ASJS.AbstractCommand, null,
 		
 		// private function
 		function loadConfig() {
-			( new EConfigLoaderCommand() ).execute().done( loadLanguage );
+			( new ConfigLoaderCommand() ).execute().done( loadLanguage );
 		}
 
 		function loadLanguage() {
-			( new ELanguageLoaderCommand() ).execute().done( initApplication );
+			( new LanguageLoaderCommand() ).execute().done( initApplication );
 		}
 
 		function initApplication() {
-			( new EEnvironmentCommand() ).execute();
-			( new EViewPrepCommand() ).execute( _app );
+			( new EnvironmentCommand() ).execute();
+			( new ViewPrepCommand() ).execute( _app );
 			
-			_scope.sendNotification( EContentMediator.SHOW );
+			_scope.sendNotification( ContentMediator.SHOW );
 		}
 	}
 );

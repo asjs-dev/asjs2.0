@@ -3,7 +3,7 @@ includeOnce( "com/asjs/model/Language.js" );
 includeOnce( "com/asjs/model/Config.js" );
 includeOnce( "com/asjs/model/Cookies.js" );
 
-var EEnvironmentCommand = createClass( ASJS.AbstractCommand, null, 
+var EnvironmentCommand = createClass( ASJS.AbstractCommand, null, 
 	function( _scope ) {
 		// private object
 		

@@ -1,7 +1,7 @@
 includeOnce( "com/asjs/mediator/AbstractResizeMediator.js" );
-includeOnce( "com/external/module/content/view/EContentView.js" );
+includeOnce( "com/external/module/content/view/ContentView.js" );
 
-var EContentMediator = createClass( AbstractResizeMediator, null, 
+var ContentMediator = createClass( AbstractResizeMediator, null, 
 	function( _scope, _super, _protected ) {
 		// private object
 		
@@ -10,10 +10,10 @@ var EContentMediator = createClass( AbstractResizeMediator, null,
 		// public variable
 		
 		// protected variable
-		_protected.handlers.push( EContentMediator.SHOW );
+		_protected.handlers.push( ContentMediator.SHOW );
 		
 		// private variable
-		var _contentView = new EContentView();
+		var _contentView = new ContentView();
 		
 		// constructor
 		_scope.new = function() {
@@ -33,7 +33,7 @@ var EContentMediator = createClass( AbstractResizeMediator, null,
 		_scope.reciveNotification = function( type, data ) {
 			_super.reciveNotification( type, data );
 			switch ( type ) {
-				case EContentMediator.SHOW: onShow();
+				case ContentMediator.SHOW: onShow();
 				break;
 			}
 		}
@@ -57,7 +57,7 @@ var EContentMediator = createClass( AbstractResizeMediator, null,
 	}
 );
 // public static const
-cnst( EContentMediator, "SHOW", "EContentMediator-show" );
+cnst( ContentMediator, "SHOW", "ExternalContentMediator-show" );
 
 // public static variable
 

@@ -1,6 +1,6 @@
-includeOnce( "com/external/module/content/EContentMediator.js" );
+includeOnce( "com/external/module/content/ContentMediator.js" );
 
-var EViewPrepCommand = createClass( ASJS.AbstractCommand, null, 
+var ViewPrepCommand = createClass( ASJS.AbstractCommand, null, 
 	function( _scope ) {
 		// private object
 		
@@ -26,7 +26,7 @@ var EViewPrepCommand = createClass( ASJS.AbstractCommand, null,
 		
 		// public function
 		_scope.execute = function( app ) {
-			new EContentMediator( app.contentView );
+			new ContentMediator( app.contentView );
 		}
 		
 		// protected read only function

@@ -1,8 +1,8 @@
 sourcePath( "./" );
 
-includeOnce( "com/external/controller/EStartupCommand.js" );
+includeOnce( "com/external/controller/StartupCommand.js" );
 
-var EApplication = createClass( ASJS.Sprite, null, 
+var Application = createClass( ASJS.Sprite, null, 
 	function( _scope ) {
 		// private object
 		
@@ -22,7 +22,7 @@ var EApplication = createClass( ASJS.Sprite, null,
 			var styleLoader = new ASJS.StyleLoader();
 				styleLoader.addEventListener( ASJS.LoaderEvent.LOAD, function() {
 					styleLoader.useStyle();
-					( new EStartupCommand() ).execute( _scope );
+					( new StartupCommand() ).execute( _scope );
 				});
 				styleLoader.load( "css/external/application.css" );
 			
@@ -65,4 +65,4 @@ var EApplication = createClass( ASJS.Sprite, null,
 // public static function
 
 // -------------------- //
-ASJS.start( EApplication );
+ASJS.start( Application );

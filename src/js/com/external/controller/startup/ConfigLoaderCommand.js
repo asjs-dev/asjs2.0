@@ -1,7 +1,7 @@
 includeOnce( "com/asjs/model/Config.js" );
 includeOnce( "com/asjs/model/proxy/DataProxy.js" );
 
-var EConfigLoaderCommand = createClass( ASJS.AbstractCommand, null, 
+var ConfigLoaderCommand = createClass( ASJS.AbstractCommand, null, 
 	function( _scope ) {
 		// private object
 		

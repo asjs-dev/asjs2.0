@@ -1,8 +1,8 @@
 includeOnce( "com/asjs/model/Language.js" );
 includeOnce( "com/asjs/view/AbstractView.js" );
-includeOnce( "com/external/module/content/EContentMediator.js" );
+includeOnce( "com/external/module/content/ContentMediator.js" );
 
-var EContentView = createClass( AbstractView, null, 
+var ContentView = createClass( AbstractView, null, 
 	function( _scope ) {
 		// private object
 		
@@ -41,7 +41,6 @@ var EContentView = createClass( AbstractView, null,
 		
 		// public function
 		_scope.render = function() {
-			trace( "external:", _language.getText( "title" ) );
 			if ( !_parent ) return;
 			_background.setSize( _parent.width, _parent.height );
 		}
