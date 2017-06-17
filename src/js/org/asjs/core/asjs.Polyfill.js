@@ -8,6 +8,7 @@ createSingletonClass( ASJS.Polyfill, ASJS.BaseClass, null,
 		var _eventTypePrefix = "";
 		var _stylePrefixJS = "";
 		var _stylePrefixCSS = "";
+		var _sid = {};
 		
 		_scope.new = function() {
 			checkCustomEvent();

@@ -223,6 +223,8 @@ createSingletonClass( BaseClass, [ASJS.BaseClass | parentClass], [null | [p1, p2
 
 // public static const
 cnst( BaseClass, "PUBLIC_STATIC_CONST", 10 );
+// unique public static string const
+msg( BaseClass, "PUBLIC_STATIC_CONST", "MESSAGE" );
 
 // public static variable
 BaseClass.publicStaticVar = 0;

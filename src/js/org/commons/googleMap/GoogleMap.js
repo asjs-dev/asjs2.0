@@ -116,7 +116,7 @@ var GoogleMap = createClass( ASJS.Sprite, [ "p" ],
 	}
 );
 // public static const
-cnst( GoogleMap, "CLICK", "GoogleMap-click" );
+msg( GoogleMap, "CLICK", "click" );
 
 // public static variable
 

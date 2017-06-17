@@ -20,10 +20,11 @@ var ContentView = createClass( AbstractView, null,
 		
 		// constructor
 		_scope.new = function() {
+			_scope.addClass( "external-content-view" );
 			_scope.addEventListener( ASJS.Stage.ADDED_TO_STAGE, addedToStage );
 			_scope.addEventListener( ASJS.Stage.REMOVED_FROM_STAGE, removedFromStage );
 			
-			_background.addClass( "external-content-view--background" );
+			_background.addClass( "background" );
 			_scope.addChild( _background );
 			
 			_scope.render();

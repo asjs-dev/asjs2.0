@@ -1,7 +1,7 @@
 .notification-window-view {
 	background-color: rgba( 0, 0, 0, 0.4 );
 	
-	&--button {
+	.button {
 		font-size: 0.14rem;
 		font-weight: 500;
 		line-height: 42px;
@@ -23,13 +23,13 @@
 		}
 	}
 	
-	&--title-label {
+	.title-label {
 		font-size: 0.2rem;
 		font-weight: 700;
 		color: #FFFFFF;
 	}
 	
-	&--content-label {
+	.content-label {
 		font-size: 0.14rem;
 		font-weight: 500;
 		color: #393939;

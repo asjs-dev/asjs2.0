@@ -57,7 +57,7 @@ var ContentMediator = createClass( AbstractResizeMediator, null,
 	}
 );
 // public static const
-cnst( ContentMediator, "SHOW", "ExternalContentMediator-show" );
+msg( ContentMediator, "SHOW", "show" );
 
 // public static variable
 

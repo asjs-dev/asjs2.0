@@ -147,8 +147,8 @@ ASJS.AnimatedSprite = createClass( ASJS.DisplayObject, null,
 	}
 );
 // public static const
-cnst( ASJS.AnimatedSprite, "PLAY_NORMAL",  "ASJS-AnimatedSprite-playNormal" );
-cnst( ASJS.AnimatedSprite, "PLAY_REVERSE", "ASJS-AnimatedSprite-playReverse" );
+msg( ASJS.AnimatedSprite, "PLAY_NORMAL",  "playNormal" );
+msg( ASJS.AnimatedSprite, "PLAY_REVERSE", "playReverse" );
 
 // public static variable
 

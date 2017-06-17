@@ -80,9 +80,9 @@ createSingletonClass( ASJS.Stage, ASJS.Sprite, [ document.body ],
 	}
 );
 // public static const
-cnst( ASJS.Stage, "RESIZE",             "ASJS-Stage-resize" );
-cnst( ASJS.Stage, "ADDED_TO_STAGE",     "ASJS-Stage-addedToStage" );
-cnst( ASJS.Stage, "REMOVED_FROM_STAGE", "ASJS-Stage-removedFromStage" );
+msg( ASJS.Stage, "RESIZE",             "resize" );
+msg( ASJS.Stage, "ADDED_TO_STAGE",     "addedToStage" );
+msg( ASJS.Stage, "REMOVED_FROM_STAGE", "removedFromStage" );
 
 // public static variable
 

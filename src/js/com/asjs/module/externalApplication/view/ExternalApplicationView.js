@@ -18,6 +18,7 @@ var ExternalApplicationView = createClass( AbstractView, null,
 		var _mouse = ASJS.Mouse.instance();
 		
 		var _container = new ASJS.Sprite();
+		var _title = new ASJS.Label();
 		var _closeButton = new ASJS.Button();
 		var _externalApplication;
 		
@@ -26,15 +27,21 @@ var ExternalApplicationView = createClass( AbstractView, null,
 			_scope.addClass( "external-application-view" );
 			_scope.setCSS( "position", "fixed" );
 			
-			_container.addClass( "external-application-view--container" );
+			_container.addClass( "container" );
 			_scope.addChild( _container );
 			
-			_closeButton.addClass( "external-application-view--close-button" );
+			_title.addClass( "title-label" );
+			_container.addChild( _title );
+			
+			_closeButton.addClass( "close-button" );
 			_closeButton.addEventListener( ASJS.MouseEvent.CLICK, onCloseClick );
 			_container.addChild( _closeButton );
 		}
 		
 		// public property
+		prop( _scope, "title", {
+			set: function( v ) { _title.text = v; }
+		});
 		
 		// protected property
 		
@@ -53,6 +60,9 @@ var ExternalApplicationView = createClass( AbstractView, null,
 			_closeButton.setSize( 30, 30 );
 			_closeButton.move( _container.width - _closeButton.width - 10, 10 );
 			
+			_title.move( 10, 10 );
+			_title.setSize( _closeButton.x - _title.x * 2, _closeButton.height );
+			
 			if ( _externalApplication && _container.contains( _externalApplication ) ) {
 				_externalApplication.move( 10, _closeButton.y * 2 + _closeButton.height );
 				_externalApplication.setSize( _container.width - _externalApplication.x * 2, _container.height - _externalApplication.y - _closeButton.y );
@@ -69,6 +79,7 @@ var ExternalApplicationView = createClass( AbstractView, null,
 		_scope.removeExternalApplication = function() {
 			if ( !_externalApplication ) return;
 			_container.removeChild( _externalApplication );
+			_externalApplication.destruct();
 			_externalApplication = null;
 		}
 		

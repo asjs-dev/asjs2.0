@@ -78,8 +78,8 @@ createSingletonClass( Geolocation, ASJS.EventDispatcher, null,
 	}
 );
 // public static const
-cnst( Geolocation, "UPDATED", "Geolocation-updated" );
-cnst( Geolocation, "ERROR",   "Geolocation-error" );
+msg( Geolocation, "UPDATED", "updated" );
+msg( Geolocation, "ERROR",   "error" );
 
 // public static variable
 

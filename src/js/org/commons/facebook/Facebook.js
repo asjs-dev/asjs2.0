@@ -106,11 +106,11 @@ createSingletonClass( Facebook, ASJS.DisplayObject, null,
 	}
 );
 // public static const
-cnst( Facebook, "CONNECTED",      "Facebook-connected" );
-cnst( Facebook, "NOT_AUTHORIZED", "Facebook-notAuthorized" );
-cnst( Facebook, "UNKNOW",         "Facebook-unknow" );
-cnst( Facebook, "LOGOUT",         "Facebook-logout" );
-cnst( Facebook, "POST_COMPLETE",  "Facebook-postComplete" );
+msg( Facebook, "CONNECTED",      "connected" );
+msg( Facebook, "NOT_AUTHORIZED", "notAuthorized" );
+msg( Facebook, "UNKNOW",         "unknow" );
+msg( Facebook, "LOGOUT",         "logout" );
+msg( Facebook, "POST_COMPLETE",  "postComplete" );
 
 // public static variable
 

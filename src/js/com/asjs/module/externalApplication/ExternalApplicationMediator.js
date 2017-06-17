@@ -15,10 +15,14 @@ var ExternalApplicationMediator = createClass( AbstractResizeMediator, null,
 		// private variable
 		var _externalApplicationView = new ExternalApplicationView();
 		var _loader = new ASJS.ScriptLoader();
+		var _externalApp;
 		
 		// constructor
 		_scope.new = function() {
 			_externalApplicationView.addEventListener( ExternalApplicationMediator.CLOSE, onClose );
+			
+			_loader.addEventListener( ASJS.LoaderEvent.LOAD, onLoadExternalApplication );
+			_loader.addEventListener( ASJS.LoaderEvent.PROGRESS, onProgressExternalApplication );
 		}
 		
 		// public property
@@ -67,27 +71,36 @@ var ExternalApplicationMediator = createClass( AbstractResizeMediator, null,
 		
 		function loadExternalApplication() {
 			unloadExternalApplication();
-			
-			_loader.addEventListener( ASJS.LoaderEvent.LOAD, onLoadExternalApplication );
-			_loader.load( "js/external/application.js?" + ( new Date() ).valueOf() );
+			_loader.load( "js/external/application.js" );
 		}
 		
 		function unloadExternalApplication() {
 			_externalApplicationView.removeExternalApplication();
 			_loader.cancel();
 			_loader.unload();
+			
+			_externalApp = null;
 		}
 		
 		function onLoadExternalApplication( e ) {
-			_externalApplicationView.addExternalApplication( new _loader.content() );
+			_externalApp = new _loader.content();
+			_externalApp.addEventListener( ASJS.LoaderEvent.LOAD, function() {
+				_externalApplicationView.title = _externalApp.title;
+			});
+			
+			_externalApplicationView.addExternalApplication( _externalApp );
 			_loader.unload();
+		}
+		
+		function onProgressExternalApplication( e ) {
+			_externalApplicationView.title = ( ( e.detail.loaded / e.detail.total ) * 100 ) + "%";
 		}
 	}
 );
 // public static const
-cnst( ExternalApplicationMediator, "SHOW",  "ExternalApplicationMediator-show" );
-cnst( ExternalApplicationMediator, "HIDE",  "ExternalApplicationMediator-hide" );
-cnst( ExternalApplicationMediator, "CLOSE", "ExternalApplicationMediator-close" );
+msg( ExternalApplicationMediator, "SHOW",  "show" );
+msg( ExternalApplicationMediator, "HIDE",  "hide" );
+msg( ExternalApplicationMediator, "CLOSE", "close" );
 
 // public static variable
 

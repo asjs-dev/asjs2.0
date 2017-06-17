@@ -74,8 +74,8 @@ ASJS.AbstractModel = createClass( ASJS.EventDispatcher, null,
 	}
 );
 // public static const
-cnst( ASJS.AbstractModel, "CHANGED", "ASJS-AbstractModel-changed" );
-cnst( ASJS.AbstractModel, "CLEARED", "ASJS-AbstractModel-cleared" );
+msg( ASJS.AbstractModel, "CHANGED", "changed" );
+msg( ASJS.AbstractModel, "CLEARED", "cleared" );
 
 // public static variable
 

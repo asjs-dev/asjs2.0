@@ -137,12 +137,12 @@ createSingletonClass( MobileUtils, ASJS.BaseClass, null,
 	}
 );
 // public static const
-cnst( MobileUtils, "ORIENTATION_LANDSCAPE", "MobileUtils-orientationLandscape" );
-cnst( MobileUtils, "ORIENTATION_PORTRAIT",  "MobileUtils-orientationPortrait" );
-cnst( MobileUtils, "TYPE_MINIMUM",          "MobileUtils-typeMin" );
-cnst( MobileUtils, "TYPE_MAXIMUM",          "MobileUtils-typeMax" );
-cnst( MobileUtils, "TYPE_WIDTH",            "MobileUtils-typeWidth" );
-cnst( MobileUtils, "TYPE_HEIGHT",           "MobileUtils-typeHeight" );
+msg( MobileUtils, "ORIENTATION_LANDSCAPE", "orientationLandscape" );
+msg( MobileUtils, "ORIENTATION_PORTRAIT",  "orientationPortrait" );
+msg( MobileUtils, "TYPE_MINIMUM",          "typeMin" );
+msg( MobileUtils, "TYPE_MAXIMUM",          "typeMax" );
+msg( MobileUtils, "TYPE_WIDTH",            "typeWidth" );
+msg( MobileUtils, "TYPE_HEIGHT",           "typeHeight" );
 
 // public static variable
 

@@ -84,7 +84,7 @@ ASJS.FileSelector = createClass( ASJS.FormElement, null,
 	}
 );
 // public static const
-cnst( ASJS.FileSelector, "ON_CHANGE", "ASJS-FileSelector-onChange" );
+msg( ASJS.FileSelector, "ON_CHANGE", "onChange" );
 
 // public static variable
 

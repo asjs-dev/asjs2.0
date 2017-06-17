@@ -155,7 +155,7 @@ var PitchDetect = createClass( ASJS.EventDispatcher, null,
 	}
 );
 // public static const
-cnst( PitchDetect, "DETECTED", "PitchDetect-detected" );
+msg( PitchDetect, "DETECTED", "detected" );
 cnst( PitchDetect, "A", 440 );
 
 // public static variable

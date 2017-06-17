@@ -125,8 +125,13 @@ ASJS.Loader = createClass( ASJS.EventDispatcher, null,
 		
 		// private function
 		function reset() {
-			_request = null;
+			if ( _request ) {
+				_scope.cancel();
+				_request = null;
+			}
+			
 			_request = new XMLHttpRequest();
+			
 			if ( "withCredentials" in _request ) {
 			} else if ( typeof XDomainRequest != "undefined" ) _request = new XDomainRequest();
 			else _request = null;

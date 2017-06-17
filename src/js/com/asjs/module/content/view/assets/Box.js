@@ -18,14 +18,14 @@ var Box = createClass( ASJS.Sprite, null,
 		
 		// constructor
 		_scope.new = function() {
-			_scope.addClass( "content-view--box" );
+			_scope.addClass( "box" );
 			
 			_label.text = _language.getText( "new_asjs_base_site" );
-			_label.addClass( "content-view--box--label" );
+			_label.addClass( "label" );
 			_scope.addChild( _label );
 	
 			_button.label = _language.getText( "show_notification_window" );
-			_button.addClass( "content-view--box--button" );
+			_button.addClass( "button" );
 			_button.addEventListener( ASJS.MouseEvent.CLICK, onButtonClick );
 			_scope.addChild( _button );
 		}

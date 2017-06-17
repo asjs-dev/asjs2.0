@@ -120,11 +120,11 @@ cnst( WS, "CONNECTING",   0 );
 cnst( WS, "OPEN",         1 );
 cnst( WS, "CLOSING",      2 );
 cnst( WS, "CLOSED",       3 );
-cnst( WS, "ON_OPEN",      "WS-onOpen" );
-cnst( WS, "ON_CLOSED",    "WS-onClosed" );
-cnst( WS, "ON_ERROR",     "WS-onError" );
-cnst( WS, "ON_MESSAGE",   "WS-onMessage" );
-cnst( WS, "ON_RECONNECT", "WS-onReconnect" );
+msg( WS, "ON_OPEN",      "onOpen" );
+msg( WS, "ON_CLOSED",    "onClosed" );
+msg( WS, "ON_ERROR",     "onError" );
+msg( WS, "ON_MESSAGE",   "onMessage" );
+msg( WS, "ON_RECONNECT", "onReconnect" );
 
 // public static variable
 

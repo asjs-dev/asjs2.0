@@ -198,7 +198,7 @@ ASJS.CustomList = createClass( ASJS.Sprite, null,
 	}
 );
 // public static const
-cnst( ASJS.CustomList, "CHANGE", "ASJS-CustomList-change" );
+msg( ASJS.CustomList, "CHANGE", "change" );
 
 // public static variable
 

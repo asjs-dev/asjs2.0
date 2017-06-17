@@ -25,21 +25,26 @@ var constant = function( t, pn, v ) {
 }
 var cnst = constant;
 
+var message = function( t, pn, v ) {
+	cnst( t, pn, v + "_" + ( new Date() ).valueOf() + message.id++ );
+}
+message.id = 0;
+var msg = message;
+
 var readOnlyFunction = cnst;
 var roFunc = readOnlyFunction;
 
-var createClass = function( p, a, n ) {
-	function extendProperties( t ) {
-		var s = {};
-		for ( var k in t ) {
-			if ( k != "$i" && k != "$n" && k != "$f" && k != "new" && k != "constructor" ) {
-				if ( Object.getOwnPropertyDescriptor( t, k ).writable ) s[ k ] = t[ k ];
-				else prop( s, k, Object.getOwnPropertyDescriptor( t, k ) );
-			}
+var extendProperties = function( t ) {
+	var s = {};
+	for ( var k in t ) {
+		if ( k != "$i" && k != "$n" && k != "$f" && k != "new" && k != "constructor" ) {
+			if ( Object.getOwnPropertyDescriptor( t, k ).writable ) s[ k ] = t[ k ];
+			else prop( s, k, Object.getOwnPropertyDescriptor( t, k ) );
 		}
-		return s;
 	}
-
+	return s;
+}
+var createClass = function( p, a, n ) {
 	function c() {
 		var t = this;
 		var arg = [];
@@ -62,9 +67,8 @@ var createClass = function( p, a, n ) {
 		if ( n ) n( t, s, s.protected );
 		
 		if ( !t.$f ) t.$f = [];
-		var f = t.new;
-		if ( f ) {
-			if ( t.$f.indexOf( f ) == -1 ) t.$f.push( f );
+		if ( t.new ) {
+			if ( t.$f.indexOf( t.new ) == -1 ) t.$f.push( t.new );
 			t.new = null;
 			delete t.new;
 		}

@@ -7,7 +7,7 @@ includeOnce( "org/asjs/display/asjs.Tag.js" );
 	// external script (js/test.js)
 	(function() {
 		var Application = createClass( ASJS.BaseClass, null,
-			function( _scope, _super ) {
+			function( _scope ) {
 				_scope.new = function() {
 					trace( "Create external script" );
 				}
@@ -80,17 +80,21 @@ ASJS.ScriptLoader = createClass( ASJS.Loader, null,
 		// private read only function
 		
 		// private function
-		function preparateScript() {
+		function getPreparateScript() {
 			var h = _super.content.split( "ASJS.start(" );
-			var preparated = h.shift() + "return ";
+			var prep = h.shift() + "return ";
 				h = h.shift().split( ");" );
-				preparated += h.shift() + ";" + h.join( ");" );
-			return preparated;
+				prep += h.shift() + "; " + h.join( ");" );
+			return prep;
 		}
 		
 		function getScript() {
 			try {
-				return Function( "return " + preparateScript() )();
+				var ps = "return " + getPreparateScript();
+				var s = Function( ps )();
+					ps = "";
+					ps = null;
+				return s;
 			} catch ( e ) {
 				trace( "The external script must be wrapped" );
 			}

@@ -91,8 +91,8 @@ var NotificationWindowMediator = createClass( AbstractResizeMediator, null,
 	}
 );
 // public static const
-cnst( NotificationWindowMediator, "SHOW", "NotificationWindowMediator-show" );
-cnst( NotificationWindowMediator, "HIDE", "NotificationWindowMediator-hide" );
+msg( NotificationWindowMediator, "SHOW", "show" );
+msg( NotificationWindowMediator, "HIDE", "hide" );
 
 // public static variable
 

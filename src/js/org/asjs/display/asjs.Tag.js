@@ -125,7 +125,7 @@ ASJS.Tag = createClass( ASJS.BaseClass, null,
 					if ( _scope.hasEventListener( t, callback ) ) return;
 					if ( !_eventHandlers[ t ] ) _eventHandlers[ t ] = [];
 					_eventHandlers[ t ].push( callback );
-					_scope.el.addEventListener( t, callback, capture );
+					_scope.el.addEventListener( t, callback, capture || false );
 				}
 			}
 		}

@@ -51,7 +51,7 @@ ASJS.ImageSelector = createClass( ASJS.FileSelector, null,
 	}
 );
 // public static const
-cnst( ASJS.ImageSelector, "ON_CHANGE_START", "ASJS-ImageSelector-onChangeStart" );
+msg( ASJS.ImageSelector, "ON_CHANGE_START", "onChangeStart" );
 
 // public static variable
 

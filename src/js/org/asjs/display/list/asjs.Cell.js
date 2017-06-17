@@ -71,7 +71,7 @@ ASJS.Cell = createClass( ASJS.Sprite, [ "li" ],
 	}
 );
 // public static const
-cnst( ASJS.Cell, "CLICK", "ASJS-Cell-click" );
+msg( ASJS.Cell, "CLICK", "click" );
 
 // public static variable
 

@@ -29,7 +29,7 @@ createSingletonClass( ASJS.NotificationHandler, ASJS.BaseClass, null,
 			var l = handlers.length;
 			while ( ++i < l ) {
 				var type = handlers[ i ];
-				if ( _handlers[ type ] && _handlers[ type ].indexOf( dispatcher ) > -1 ) break;
+				if ( _handlers[ type ] && _handlers[ type ].indexOf( dispatcher ) > -1 ) continue;
 				if ( !_handlers[ type ] ) _handlers[ type ] = [];
 				_handlers[ type ].push( dispatcher );
 			}
@@ -49,14 +49,15 @@ createSingletonClass( ASJS.NotificationHandler, ASJS.BaseClass, null,
 		}
 
 		_scope.sendNotification = function( type, data ) {
-			if ( !_handlers[ type ] ) return;
+			var handlers = _handlers[ type ];
+			if ( !handlers ) return;
 			var i = -1;
-			var l = _handlers[ type ].length;
+			var l = handlers.length;
 			while ( ++i < l ) {
-				if ( _handlers[ type ][ i ] ) {
-					_handlers[ type ][ i ].reciveNotification( type, data );
+				if ( handlers[ i ] ) {
+					handlers[ i ].reciveNotification( type, data );
 				} else {
-					_handlers[ type ].splice( i, 1 );
+					handlers.splice( i, 1 );
 					l--;
 				}
 			}

@@ -31,10 +31,10 @@ var NotificationWindowView = createClass( AbstractView, null,
 
 			_title.height = 50;
 			_title.setCSS( "line-height", _title.height + "px" );
-			_title.addClass( "notification-window-view--title-label" );
+			_title.addClass( "title-label" );
 			_scope.addChild( _title );
 
-			_content.addClass( "notification-window-view--content-label" );
+			_content.addClass( "content-label" );
 			_scope.addChild( _content );
 
 			_okButton.addEventListener( ASJS.MouseEvent.CLICK, function() {
@@ -136,7 +136,7 @@ var NotificationWindowView = createClass( AbstractView, null,
 		}
 		
 		function drawButtonStyle( target ) {
-			target.addClass( "notification-window-view--button" );
+			target.addClass( "button" );
 			target.height = 42;
 		}
 	}

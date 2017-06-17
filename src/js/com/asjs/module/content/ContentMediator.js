@@ -86,9 +86,9 @@ var ContentMediator = createClass( AbstractResizeMediator, null,
 	}
 );
 // public static const
-cnst( ContentMediator, "SHOW",                         "ContentMediator-show" );
-cnst( ContentMediator, "ON_SHOW_EXTERNAL_APPLICATION", "ContentMediator-onShowExternalApplication" );
-cnst( ContentMediator, "ON_SHOW_NOTIFICATION_WINDOW",  "ContentMediator-onShowNotificationWindow" );
+msg( ContentMediator, "SHOW",                         "show" );
+msg( ContentMediator, "ON_SHOW_EXTERNAL_APPLICATION", "onShowExternalApplication" );
+msg( ContentMediator, "ON_SHOW_NOTIFICATION_WINDOW",  "onShowNotificationWindow" );
 
 // public static variable
 

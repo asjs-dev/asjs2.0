@@ -28,6 +28,7 @@ var ContentView = createClass( AbstractView, null,
 		
 		// constructor
 		_scope.new = function() {
+			_scope.addClass( "content-view" );
 			_scope.addEventListener( ASJS.Stage.ADDED_TO_STAGE, addedToStage );
 			_scope.addEventListener( ASJS.Stage.REMOVED_FROM_STAGE, removedFromStage );
 		}
@@ -50,7 +51,7 @@ var ContentView = createClass( AbstractView, null,
 		}
 
 		_scope.init = function( data ) {
-			_background.addClass( "content-view--background" );
+			_background.addClass( "background" );
 			_background.setCSS( "position", "fixed" );
 			_background.alpha = 0.5;
 			_scope.addChild( _background );
@@ -68,7 +69,7 @@ var ContentView = createClass( AbstractView, null,
 			_animatedSprite.addEventListener( ASJS.MouseEvent.MOUSE_DOWN + " " + ASJS.MouseEvent.TOUCH_START, onAnimatedSpriteMouseDown );
 			
 			_externalApplicationButton.label = _language.getText( "show_external_application_button_label" );
-			_externalApplicationButton.addClass( "content-view--show-external-application-button" );
+			_externalApplicationButton.addClass( "show-external-application-button" );
 			_externalApplicationButton.setSize( 320, 40 );
 			_externalApplicationButton.addEventListener( ASJS.MouseEvent.CLICK, onExternalApplicationButtonClick );
 			_scope.addChild( _externalApplicationButton );

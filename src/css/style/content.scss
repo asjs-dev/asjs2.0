@@ -1,12 +1,12 @@
 .content-view {
-	&--background {
+	.background {
 		background-position: center center;
 		background-repeat: no-repeat;
 		background-size: cover;
 		background-image: url(../images/background.jpg);
 	}
 	
-	&--show-external-application-button {
+	.show-external-application-button {
 		font-size: 0.16rem;
 		font-weight: 500;
 		line-height: 40px;
@@ -28,14 +28,14 @@
 		}
 	}
 	
-	&--box {
+	.box {
 		background-color: rgba( 255, 255, 255, $alpha2 );
 		
 		@include border-radius(5px, 5px, 5px, 5px);
 		
 		box-shadow: 0px 0px 60px rgba( 0, 0, 0, $alpha2 );
 		
-		&--label {
+		.label {
 			font-size: 0.24rem;
 			font-weight: 500;
 			line-height: 30px;
@@ -43,7 +43,7 @@
 			color: #393939;
 		}
 
-		&--button {
+		.button {
 			font-size: 0.16rem;
 			font-weight: 500;
 			line-height: 40px;
