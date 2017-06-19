@@ -85,16 +85,16 @@ ASJS.ScriptLoader = createClass( ASJS.Loader, null,
 			var prep = h.shift() + "return ";
 				h = h.shift().split( ");" );
 				prep += h.shift() + "; " + h.join( ");" );
+			if ( prep.indexOf( "(function(){" ) == 0 ) {
+				prep = prep.substring( 1, prep.length - 4 );
+			}
 			return prep;
 		}
 		
 		function getScript() {
 			try {
-				var ps = "return " + getPreparateScript();
-				var s = Function( ps )();
-					ps = "";
-					ps = null;
-				return s;
+				var ps = Function( "return " + getPreparateScript() )();
+				return ps();
 			} catch ( e ) {
 				trace( "The external script must be wrapped" );
 			}
