@@ -58,12 +58,15 @@ var ContentMediator = createClass( AbstractResizeMediator, null,
 		
 		// private function
 		function onLoadAnimation( data ) {
-			_contentView.init( data );
+			var animationParser = new ASJS.AnimationParser();
+			var animationDescriptorList = animationParser.parse( data );
+			
+			_contentView.init( animationDescriptorList );
 			if ( !_protected.view.contains( _contentView ) ) _protected.view.addChild( _contentView );
 		}
 
 		function onShow() {
-			_dataProxy.loadAnimation( "json/animation/contentAnimation.json" ).done( onLoadAnimation );
+			_dataProxy.loadJSON( "json/animation/contentAnimation.json" ).done( onLoadAnimation );
 			
 			_protected.showView();
 		}

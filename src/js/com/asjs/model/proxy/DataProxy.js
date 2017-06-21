@@ -33,19 +33,17 @@ createSingletonClass( DataProxy, ASJS.BaseClass, null,
 				loader.method = ASJS.RequestMethod.GET;
 				loader.addEventListener( ASJS.LoaderEvent.LOAD, function( e ) {
 					dfd.resolve( loader.content );
+					loader.unload();
 				});
 				loader.addEventListener( ASJS.LoaderEvent.ERROR, function( e ) {
 					dfd.reject( loader.content );
+					loader.unload();
 				});
 				loader.load( url );
 	
 			return dfd;
 		}
 
-		_scope.loadAnimation = function( url ) {
-			return ( new ASJS.AnimationLoader() ).load( url );
-		}
-		
 		// protected read only function
 		
 		// protected function

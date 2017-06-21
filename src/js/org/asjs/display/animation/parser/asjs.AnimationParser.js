@@ -1,7 +1,3 @@
-includeOnce( "org/asjs/net/asjs.Loader.js" );
-includeOnce( "org/asjs/net/asjs.RequestMethod.js" );
-includeOnce( "org/asjs/event/asjs.LoaderEvent.js" );
-
 includeOnce( "org/asjs/utils/asjs.Promise.js" );
 
 includeOnce( "org/asjs/display/animation/vo/asjs.AnimationDescriptorVo.js" );
@@ -9,7 +5,7 @@ includeOnce( "org/asjs/display/animation/vo/asjs.AnimationDescriptorVo.js" );
 includeOnce( "org/asjs/geom/asjs.Rectangle.js" );
 includeOnce( "org/asjs/geom/asjs.Point.js" );
 
-ASJS.AnimationLoader = createClass( ASJS.BaseClass, null, 
+ASJS.AnimationParser = createClass( ASJS.BaseClass, null, 
 	function( _scope ) {
 		// private object
 		
@@ -20,8 +16,6 @@ ASJS.AnimationLoader = createClass( ASJS.BaseClass, null,
 		// protected variable
 		
 		// private variable
-		var _dfd;
-		var _loader;
 		
 		// constructor
 		
@@ -36,17 +30,13 @@ ASJS.AnimationLoader = createClass( ASJS.BaseClass, null,
 		// public read only function
 		
 		// public function
-		_scope.load = function( url ) {
-			_dfd = new ASJS.Promise();
+		_scope.parse = function( json ) {
+			var i = -1;
+			var l = json.length;
+			var animationDescriptorList = [];
+			while ( ++i < l ) animationDescriptorList.push( parseAnimationDescriptor( json[ i ] ) );
 	
-			_loader = new ASJS.Loader();
-			_loader.addEventListener( ASJS.LoaderEvent.LOAD, onLoad );
-			_loader.addEventListener( ASJS.LoaderEvent.ERROR, onLoadError );
-			_loader.method = ASJS.RequestMethod.GET;
-			_loader.responseType = "json";
-			_loader.load( url );
-	
-			return _dfd;
+			return animationDescriptorList;
 		}
 		
 		// protected read only function
@@ -77,30 +67,10 @@ ASJS.AnimationLoader = createClass( ASJS.BaseClass, null,
 			}
 	
 			animationDescriptor.sequenceList = frames;
+			
 			return animationDescriptor;
 		}
 
-		function onLoad() {
-			_loader.removeEventListeners();
-	
-			try {
-				var i = -1;
-				var l = _loader.content.length;
-				var animationDescriptorList = [];
-				while ( ++i < l ) animationDescriptorList.push( parseAnimationDescriptor( _loader.content[ i ] ) );
-		
-				_dfd.resolve( animationDescriptorList );
-			} catch ( e ) {
-				trace( e );
-				throw new Error( "Invalid animation descriptor file: " + _loader.url );
-				_dfd.reject();
-			}
-		}
-
-		function onLoadError() {
-			_loader.removeEventListeners();
-			_dfd.reject();
-		}
 	}
 );
 // public static const
