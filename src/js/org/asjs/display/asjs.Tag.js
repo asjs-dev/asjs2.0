@@ -24,7 +24,7 @@ ASJS.Tag = createClass( ASJS.BaseClass, null,
 		
 		// constructor
 		_scope.new = function( tag ) {
-			_el = !tag || typeof tag == "string" ? document.createElement(tag || "div") : tag;
+			_el = !tag || typeof tag == "string" ? document.createElement( tag || "div" ) : tag;
 		}
 		
 		// public property

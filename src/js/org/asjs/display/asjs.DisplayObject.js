@@ -28,8 +28,11 @@ ASJS.DisplayObject = createClass( ASJS.PrimitiveDisplayObject, null,
 			_scope.setCSS( "position", "absolute" );
 			_scope.setCSS( "display", _cssDisplay );
 			
-			_scope.move( 0, 0 );
-			_scope.setSize( 0, 0 );
+			if ( _scope.getCSS( "left" ) == "" ) _scope.x = 0;
+			if ( _scope.getCSS( "top" ) == "" ) _scope.y = 0;
+			
+			if ( _scope.getCSS( "width" ) == "" ) _scope.width = 0;
+			if ( _scope.getCSS( "height" ) == "" ) _scope.height = 0;
 		}
 		
 		// public property
@@ -120,12 +123,12 @@ ASJS.DisplayObject = createClass( ASJS.PrimitiveDisplayObject, null,
 		});
 
 		prop( _scope, "width", {
-			get: function() { return parseFloat( _scope.getCSS( "width" ) ) * _scaleX; },
+			get: function() { return parseFloat( _scope.getCSS( "width" ) || 0 ) * _scaleX; },
 			set: function( v ) { _scope.setCSS( "width", typeof v != "number" ? v : ( parseFloat( v ) / _scaleX ) ); }
 		});
 
 		prop( _scope, "height", {
-			get: function() { return parseFloat( _scope.getCSS( "height" ) ) * _scaleY; },
+			get: function() { return parseFloat( _scope.getCSS( "height" ) || 0 ) * _scaleY; },
 			set: function( v ) { _scope.setCSS( "height", typeof v != "number" ? v : ( parseFloat( v ) / _scaleY ) ); }
 		});
 
