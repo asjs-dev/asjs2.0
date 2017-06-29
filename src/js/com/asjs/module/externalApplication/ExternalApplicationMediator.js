@@ -71,7 +71,7 @@ var ExternalApplicationMediator = createClass( AbstractResizeMediator, null,
 		
 		function loadExternalApplication() {
 			unloadExternalApplication();
-			_loader.load( "js/external/application.js" );
+			_loader.load( "js/external/application.js?v={{version}}" );
 		}
 		
 		function unloadExternalApplication() {

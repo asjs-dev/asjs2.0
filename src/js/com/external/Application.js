@@ -17,26 +17,20 @@ var Application = createClass( ASJS.Sprite, null,
 		// private variable
 		var _language = Language.instance();
 		var _config = Config.instance();
-		var _contentView = new ASJS.Sprite();
 		var _styleLoader = new ASJS.StyleLoader();
 		var _languageLoaded = false;
 		
 		// constructor
 		_scope.new = function() {
-			trace( "<AS/JS> External Application" );
+			trace( "<AS/JS> External Application {{version}}" );
 			
 			_styleLoader.addEventListener( ASJS.LoaderEvent.LOAD, onStyleLoaded );
 			_styleLoader.load( "css/external/application.css" );
 			
 			_language.addEventListener( ASJS.AbstractModel.CHANGED, onLanguageChanged );
-			
-			_scope.addChild( _scope.contentView );
 		}
 		
 		// public property
-		prop( _scope, "contentView", {
-			get: function() { return _contentView; }
-		});
 		
 		prop( _scope, "title", {
 			get: function() { return _language.getText( "title" ); }

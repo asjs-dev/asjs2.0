@@ -1,6 +1,6 @@
 includeOnce( "com/asjs/mediator/AbstractResizeMediator.js" );
 includeOnce( "com/asjs/model/Language.js" );
-includeOnce( "com/asjs/model/proxy/DataProxy.js" );
+includeOnce( "com/asjs/controller/service/LoadJSONServiceCommand.js" );
 
 includeOnce( "com/asjs/module/content/view/ContentView.js" );
 
@@ -21,7 +21,6 @@ var ContentMediator = createClass( AbstractResizeMediator, null,
 		_protected.handlers.push( ContentMediator.SHOW );
 		
 		// private variable
-		var _dataProxy = DataProxy.instance();
 		var _language = Language.instance();
 		var _contentView = new ContentView();
 		
@@ -66,7 +65,7 @@ var ContentMediator = createClass( AbstractResizeMediator, null,
 		}
 
 		function onShow() {
-			_dataProxy.loadJSON( "json/animation/contentAnimation.json" ).done( onLoadAnimation );
+			( new LoadJSONServiceCommand() ).execute( "json/animation/contentAnimation.json" ).done( onLoadAnimation );
 			
 			_protected.showView();
 		}

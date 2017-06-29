@@ -28,9 +28,11 @@ var ViewPrepCommand = createClass( ASJS.AbstractCommand, null,
 		
 		// public function
 		_scope.execute = function( app ) {
-			new ContentMediator( app.contentView );
-			new ExternalApplicationMediator( app.externalApplicationView );
-			new NotificationWindowMediator( app.notificationWindowView );
+			new ContentMediator( app );
+			new ExternalApplicationMediator( app );
+			new NotificationWindowMediator( app );
+			
+			_scope.sendNotification( ContentMediator.SHOW );
 		}
 		
 		// protected read only function

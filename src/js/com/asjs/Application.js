@@ -2,7 +2,7 @@ sourcePath( "./" );
 
 includeOnce( "com/asjs/controller/StartupCommand.js" );
 
-var Application = createClass( ASJS.BaseClass, null, 
+var Application = createClass( ASJS.Sprite, null, 
 	function( _scope ) {
 		// private object
 		
@@ -13,33 +13,15 @@ var Application = createClass( ASJS.BaseClass, null,
 		// protected variable
 		
 		// private variable
-		var _contentView = new ASJS.Sprite();
-		var _externalApplicationView = new ASJS.Sprite();
-		var _notificationWindowView = new ASJS.Sprite();
 		
 		// constructor
 		_scope.new = function() {
 			trace( "<AS/JS> Application 2.{{version}}" );
 			
-			stage.addChild( _scope.contentView );
-			stage.addChild( _scope.externalApplicationView );
-			stage.addChild( _scope.notificationWindowView );
-			
 			( new StartupCommand() ).execute( _scope );
 		}
 		
 		// public property
-		prop( _scope, "contentView", {
-			get: function() { return _contentView; }
-		});
-		
-		prop( _scope, "externalApplicationView", {
-			get: function() { return _externalApplicationView; }
-		});
-		
-		prop( _scope, "notificationWindowView", {
-			get: function() { return _notificationWindowView; }
-		});
 		
 		// protected property
 		

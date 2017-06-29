@@ -9,13 +9,13 @@ ASJS.AbstractMediator = createClass( ASJS.NotificationDispatcher, null,
 		// public variable
 		
 		// protected variable
-		_protected.view;
+		_protected.view = new ASJS.Sprite();
 		
 		// private variable
 		
 		// constructor
-		_scope.new = function( view ) {
-			_protected.view = view;
+		_scope.new = function( root ) {
+			root.addChild( _protected.view );
 		}
 		
 		// public property

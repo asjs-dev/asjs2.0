@@ -1,7 +1,4 @@
-includeOnce( "com/asjs/services/JSONLoader.js" );
-
-var DataProxy = {};
-createSingletonClass( DataProxy, ASJS.BaseClass, null, 
+var LoadJSONServiceCommand = createClass( ASJS.AbstractCommand, null, 
 	function( _scope ) {
 		// private object
 		
@@ -26,10 +23,11 @@ createSingletonClass( DataProxy, ASJS.BaseClass, null,
 		// public read only function
 		
 		// public function
-		_scope.loadJSON = function( url ) {
+		_scope.execute = function( url ) {
 			var dfd = new ASJS.Promise();
 	
-			var loader = new JSONLoader();
+			var loader = new ASJS.Loader();
+				loader.responseType = "json";
 				loader.method = ASJS.RequestMethod.GET;
 				loader.addEventListener( ASJS.LoaderEvent.LOAD, function( e ) {
 					dfd.resolve( loader.content );

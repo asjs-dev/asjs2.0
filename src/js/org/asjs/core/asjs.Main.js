@@ -26,7 +26,7 @@ var ASJS = (function() {
 			trace( "<AS/JS> core version: 2.{{version}}" );
 			_initedClasses.push( b );
 			try {
-				new b();
+				stage.addChild( new b() );
 			} catch ( e ) {
 				trace( e );
 			}

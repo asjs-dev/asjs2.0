@@ -1,5 +1,5 @@
 <?php
-	include_once( "../builder/asjs-builder/builder.php" );
+	include_once( "../builder/builder.php" );
 	
 	$config = array();
 	

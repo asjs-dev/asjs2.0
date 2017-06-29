@@ -1,6 +1,5 @@
 includeOnce( "com/asjs/tools/Tools.js" );
 includeOnce( "com/asjs/model/Language.js" );
-includeOnce( "com/asjs/model/Config.js" );
 includeOnce( "com/asjs/model/Cookies.js" );
 
 var EnvironmentCommand = createClass( ASJS.AbstractCommand, null, 
@@ -14,12 +13,8 @@ var EnvironmentCommand = createClass( ASJS.AbstractCommand, null,
 		// protected variable
 		
 		// private variable
-		var _window = ASJS.Window.instance();
 		var _language = Language.instance();
 		var _cookies = Cookies.instance();
-		var _cycler = ASJS.Cycler.instance();
-		var _config = Config.instance();
-		var _sleepToResizeId;
 		
 		// constructor
 		
