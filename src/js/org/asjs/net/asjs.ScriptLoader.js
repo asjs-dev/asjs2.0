@@ -81,20 +81,12 @@ ASJS.ScriptLoader = createClass( ASJS.Loader, null,
 		
 		// private function
 		function getPreparateScript() {
-			var h = _super.content.split( "ASJS.start(" );
-			var prep = h.shift() + "return ";
-				h = h.shift().split( ");" );
-				prep += h.shift() + "; " + h.join( ");" );
-			if ( prep.indexOf( "(function(){" ) == 0 ) {
-				prep = prep.substring( 1, prep.length - 4 );
-			}
-			return prep;
+			return _super.content.split( "ASJS.start(" ).join( "return ASJS.start(" );
 		}
 		
 		function getScript() {
 			try {
-				var ps = Function( "return " + getPreparateScript() )();
-				return ps();
+				return Function( "return " + getPreparateScript() )();
 			} catch ( e ) {
 				trace( "The external script must be wrapped" );
 			}

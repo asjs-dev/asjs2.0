@@ -20,17 +20,19 @@ var ASJS = (function() {
 	}
 	
 	_scope.start = function( b ) {
-		ASJS.Polyfill.instance();
-		stage = ASJS.Stage.instance();
-		if ( _initedClasses.indexOf( b ) == -1 ) {
-			trace( "<AS/JS> core version: 2.{{version}}" );
-			_initedClasses.push( b );
-			try {
-				stage.addChild( new b() );
-			} catch ( e ) {
-				trace( e );
+		if ( !stage ) {
+			ASJS.Polyfill.instance();
+			stage = ASJS.Stage.instance();
+			if ( _initedClasses.indexOf( b ) == -1 ) {
+				trace( "<AS/JS> core version: 2.{{version}}" );
+				_initedClasses.push( b );
+				try {
+					stage.addChild( new b() );
+				} catch ( e ) {
+					trace( e );
+				}
 			}
-		}
+		} else return b;
 	}
 	
 	_scope.BaseClass = createClass( Object, null,
