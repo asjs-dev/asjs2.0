@@ -134,7 +134,7 @@ ASJS.Tag = createClass( ASJS.BaseClass, null,
 			for ( var type in _eventHandlers ) {
 				var t = _polyfill.convertEventType( type );
 				var handlers = _eventHandlers[ t ];
-				while ( handlers.length > 0 ) _scope.removeEventListener( t, handlers[ 0 ] );
+				while ( handlers && handlers.length > 0 ) _scope.removeEventListener( t, handlers[ 0 ] );
 			}
 		}
 
@@ -150,7 +150,10 @@ ASJS.Tag = createClass( ASJS.BaseClass, null,
 			} else {
 				while ( handlers.length > 0 ) _scope.removeEventListener( t, handlers[ 0 ] );
 			}
-			if ( handlers.length == 0 ) _eventHandlers[ t ] = null;
+			if ( handlers.length == 0 ) {
+				_eventHandlers[ t ] = null;
+				delete _eventHandlers[ t ];
+			}
 		}
 
 		_scope.hasEventListener = function( type, callback ) {
