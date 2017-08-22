@@ -51,7 +51,7 @@ ASJS.Promise = createClass( ASJS.BaseClass, null,
 		
 		_scope.fail = function( f ) {
 			if ( _rejectFunction.indexOf( f ) == -1 ) {
-				_rejectFunction = f;
+				_rejectFunction.push( f );
 				callReject();
 			}
 			return _scope;
