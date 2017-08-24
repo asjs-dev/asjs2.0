@@ -1,4 +1,4 @@
-includeOnce( "org/asjs/display/bitmap/filters/asjs.AbstractBitmapFilter.js" );
+//includeOnce( "org/asjs/display/bitmap/filters/asjs.AbstractBitmapFilter.js" );
 
 ASJS.ColorLimitBitmapFilter = createClass( ASJS.AbstractBitmapFilter, null, 
 	function( _scope ) {
@@ -33,9 +33,9 @@ ASJS.ColorLimitBitmapFilter = createClass( ASJS.AbstractBitmapFilter, null,
 			var i = -4;
 			var l = d.length;
 			while ( ( i += 4 ) < l ) {
-				d[ i ] = Math.floor( d[ i ] / _scope.threshold ) * _scope.threshold;
-				d[ i + 1 ] = Math.floor( d[ i + 1 ] / _scope.threshold ) * _scope.threshold;
-				d[ i + 2 ] = Math.floor( d[ i + 2 ] / _scope.threshold ) * _scope.threshold;
+				d[ i ] = Math.round( d[ i ] / _scope.threshold ) * _scope.threshold;
+				d[ i + 1 ] = Math.round( d[ i + 1 ] / _scope.threshold ) * _scope.threshold;
+				d[ i + 2 ] = Math.round( d[ i + 2 ] / _scope.threshold ) * _scope.threshold;
 			}
 			return pixels;
 		}
