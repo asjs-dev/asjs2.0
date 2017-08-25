@@ -1,4 +1,4 @@
-//includeOnce( "org/asjs/display/bitmap/filters/asjs.AbstractBitmapFilter.js" );
+includeOnce( "org/asjs/display/bitmap/filters/asjs.AbstractBitmapFilter.js" );
 
 ASJS.ColorLimitBitmapFilter = createClass( ASJS.AbstractBitmapFilter, null, 
 	function( _scope ) {

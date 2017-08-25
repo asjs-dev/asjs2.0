@@ -1,3 +1,4 @@
+includeOnce( "org/asjs/event/asjs.Event.js" );
 includeOnce( "org/asjs/display/form/asjs.FormElement.js" );
 includeOnce( "org/asjs/display/asjs.DisplayObject.js" );
 
@@ -51,7 +52,7 @@ ASJS.Checkbox = createClass( ASJS.FormElement, [ "label" ],
 			get: function() { return _checkbox.el.checked; },
 			set: function( v ) {
 				_checkbox.el.checked = v;
-				_checkbox.el.change();
+				_checkbox.dispatchEvent( ASJS.Event.CHANGE );
 			}
 		});
 		
