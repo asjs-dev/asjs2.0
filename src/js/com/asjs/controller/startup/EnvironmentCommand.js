@@ -53,6 +53,7 @@ var EnvironmentCommand = createClass( ASJS.AbstractCommand, null,
 			}
 			var selectedLanguage = Tools.getURLParams( 'lang' );
 			if ( validateLanguage( selectedLanguage ) ) selectedLanguage = _cookies.readCookie( 'language' );
+			if ( validateLanguage( selectedLanguage ) ) selectedLanguage = ( navigator.language || navigator.userLanguage ).split( "-" )[ 0 ];
 			if ( validateLanguage( selectedLanguage ) ) selectedLanguage = _language.selectedLanguage;
 			_language.set( "selectedLanguage", selectedLanguage );
 
