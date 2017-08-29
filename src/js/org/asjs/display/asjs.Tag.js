@@ -1,5 +1,3 @@
-includeOnce( "org/asjs/event/asjs.MouseEvent.js" );
-includeOnce( "org/asjs/window/asjs.Window.js" );
 includeOnce( "org/asjs/geom/asjs.Rectangle.js" );
 includeOnce( "org/asjs/core/asjs.Polyfill.js" );
 

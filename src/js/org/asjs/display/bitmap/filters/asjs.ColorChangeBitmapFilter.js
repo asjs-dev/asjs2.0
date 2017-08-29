@@ -1,7 +1,7 @@
 includeOnce( "org/asjs/display/bitmap/filters/asjs.AbstractBitmapFilter.js" );
 includeOnce( "org/asjs/display/bitmap/utils/asjs.Color.js" );
 
-ASJS.PaletteLimitBitmapFilter = createClass( ASJS.AbstractBitmapFilter, null, 
+ASJS.ColorChangeBitmapFilter = createClass( ASJS.AbstractBitmapFilter, null, 
 	function( _scope ) {
 		// private object
 		
@@ -16,12 +16,8 @@ ASJS.PaletteLimitBitmapFilter = createClass( ASJS.AbstractBitmapFilter, null,
 		// constructor
 		_scope.new = function( palette ) {
 			_scope.palette = [];
-			if ( palette.length <= 0 ) return;
-			
-			var i = -1;
-			var l = palette.length;
-			while ( ++i < l ) {
-				_scope.palette.push( ASJS.Color.hexToRgb( palette[ i ] ) );
+			for ( var key in palette ) {
+				_scope.palette.push( [ ASJS.Color.hexToRgb( key ), ASJS.Color.hexToRgb( palette[ key ] ) ] );
 			}
 		}
 		
@@ -46,16 +42,16 @@ ASJS.PaletteLimitBitmapFilter = createClass( ASJS.AbstractBitmapFilter, null,
 				var g = d[ i + 1 ];
 				var b = d[ i + 2 ];
 				
-				var minDist = 768;
-				var selectedColor = _scope.palette[ 0 ];
+				var selectedColor = new ASJS.Color( r, g, b );
 				
 				var j = -1;
 				while ( ++j < m ) {
-					var color = _scope.palette[ j ];
-					var dist = Math.abs( r - color.r ) + Math.abs( g - color.g ) + Math.abs( b - color.b );
-					if ( dist < minDist ) {
-						minDist = dist;
-						selectedColor = color;
+					var colorA = _scope.palette[ j ][ 0 ];
+					var colorB = _scope.palette[ j ][ 1 ];
+					if ( r == colorA.r && g == colorA.g && b == colorA.b ) {
+						selectedColor = colorB;
+						j = m;
+						break;
 					}
 				}
 				

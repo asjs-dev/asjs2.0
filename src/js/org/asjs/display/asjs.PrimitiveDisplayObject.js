@@ -1,7 +1,4 @@
 includeOnce( "org/asjs/display/asjs.Tag.js" );
-includeOnce( "org/asjs/event/asjs.MouseEvent.js" );
-includeOnce( "org/asjs/window/asjs.Window.js" );
-includeOnce( "org/asjs/geom/asjs.Rectangle.js" );
 includeOnce( "org/asjs/utils/asjs.CSS.js" );
 
 ASJS.PrimitiveDisplayObject = createClass( ASJS.Tag, null, 

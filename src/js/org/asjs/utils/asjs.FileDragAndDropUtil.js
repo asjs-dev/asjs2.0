@@ -8,8 +8,9 @@ roFunc( ASJS.FileDragAndDropUtil, "getFilesByEvent", function( e ) {
 	var l = dt[ type ].length;
 	while ( ++i < l ) {
 		var f = dt[ type ][ i ];
-		if ( type == "items" && f.kind == "file" ) files.push( f.getAsFile() );
-		else files.push( f );
+		if ( type == "items" ) {
+			if ( f.kind == "file" ) files.push( f.getAsFile() );
+		} else files.push( f );
 	}
 	
 	return files;
