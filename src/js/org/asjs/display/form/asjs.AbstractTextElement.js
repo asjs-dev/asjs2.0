@@ -44,7 +44,6 @@ ASJS.AbstractTextElement = createClass( ASJS.FormElement, null,
 		
 		// constructor
 		_scope.new = function() {
-			_scope.addEventListener( ASJS.KeyboardEvent.KEY_PRESS, onKeyPress );
 			_scope.addEventListener( ASJS.KeyboardEvent.KEY_UP, onKeyUp );
 			_scope.addEventListener( ASJS.Event.CHANGE, onChange );
 		}
@@ -103,20 +102,15 @@ ASJS.AbstractTextElement = createClass( ASJS.FormElement, null,
 		// private read only function
 		
 		// private function
-		function onKeyPress( e ) {
-			if ( _restrict ) {
-				var charCode = e.which ? e.which : e.keyCode;
-				if ( _protectedChars.indexOf( e.keyCode ) > -1 || ( e.ctrlKey && _controlChars.indexOf( charCode ) > -1 ) ) return;
-				if ( !new RegExp( _restrict, "i" ).test( String.fromCharCode( e.which ) ) ) return false;
-			}
-		}
-
 		function onKeyUp( e ) {
-			var charCode = e.which ? e.which : e.keyCode;
-			if ( e.ctrlKey && _controlChars.indexOf( charCode ) > -1 ) onChange( e );
+			checkRestrict();
 		}
 
 		function onChange() {
+			checkRestrict();
+		}
+		
+		function checkRestrict() {
 			if ( _restrict ) _scope.val = _scope.val.replace( new RegExp( "(?!" + _restrict + ").", "g" ), '' );
 		}
 	}
