@@ -34,7 +34,7 @@ ASJS.AbstractModel = createClass( ASJS.EventDispatcher, null,
 		
 		// public function
 		_scope.get = function( k ) {
-			return _data && _data[ k ] ? _data[ k ] : null;
+			return _data && _data[ k ] != undefined ? _data[ k ] : null;
 		}
 
 		_scope.set = function( k, v ) {

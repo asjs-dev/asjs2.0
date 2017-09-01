@@ -12,7 +12,7 @@ var Task = createClass( ASJS.BaseClass, null,
 		
 		// constructor
 		_scope.new = function() {
-			self.addEventListener( 'message', _protected.onMessage, false);
+			self.addEventListener( ASJS.WindowEvent.MESSAGE, _protected.onMessage, false);
 		}
 		
 		// public property

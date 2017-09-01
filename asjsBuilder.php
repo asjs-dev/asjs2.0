@@ -1,17 +1,15 @@
 <?php
 	include_once( "../builder/builder.php" );
 	
-	function postBuildCallback() {
-		
-	}
-	
 	$config = array();
 	
 	/* Common config */
 	$config[ "minimize" ]           = true; // optional (boolean)
 	$config[ "compress" ]           = true; // optional (boolean)
 	$config[ "watching" ]           = true; // optional (boolean)
-	$config[ "postBuildCallback" ]  = postBuildCallback; // optional (function)
+	$config[ "postBuildCallback" ]  = function() {
+		
+	}; // optional (function)
 	
 	/* Watcher config */
 	$config[ "watcherPath" ]        = array( "src/" ); // required, when use watcher (array(folder, folder, ... ))

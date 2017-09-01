@@ -18,6 +18,7 @@ ASJS.Bitmap = createClass( ASJS.DisplayObject, [ "canvas" ],
 		// protected variable
 		
 		// private variable
+		var _filtersReady = true;
 		var _context;
 		var _drawLine = false;
 		var _drawFill = false;
@@ -320,6 +321,9 @@ ASJS.Bitmap = createClass( ASJS.DisplayObject, [ "canvas" ],
 		}
 
 		function executeFilters() {
+			if ( !_filtersReady ) return;
+			_filtersReady = false;
+			
 			var l = _scope.bitmapFilters.length;
 	
 			if ( l == 0 ) return;
@@ -341,6 +345,7 @@ ASJS.Bitmap = createClass( ASJS.DisplayObject, [ "canvas" ],
 				pixels = filter.execute( pixels );
 			}
 			_scope.putImageData( pixels, 0, 0 );
+			_filtersReady = true;
 		}
 	}
 );
