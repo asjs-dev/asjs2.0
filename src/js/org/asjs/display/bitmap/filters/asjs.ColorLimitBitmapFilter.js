@@ -11,6 +11,7 @@ ASJS.ColorLimitBitmapFilter = createClass( ASJS.AbstractBitmapFilter, null,
 		// protected variable
 		
 		// private variable
+		var _map = {};
 		
 		// constructor
 		_scope.new = function( threshold ) {
@@ -33,10 +34,14 @@ ASJS.ColorLimitBitmapFilter = createClass( ASJS.AbstractBitmapFilter, null,
 			var i = -4;
 			var l = d.length;
 			while ( ( i += 4 ) < l ) {
-				d[ i ] = Math.round( d[ i ] / _scope.threshold ) * _scope.threshold;
-				d[ i + 1 ] = Math.round( d[ i + 1 ] / _scope.threshold ) * _scope.threshold;
-				d[ i + 2 ] = Math.round( d[ i + 2 ] / _scope.threshold ) * _scope.threshold;
+				d[ i ] = convert( d[ i ] );
+				d[ i + 1 ] = convert( d[ i + 1 ] );
+				d[ i + 2 ] = convert( d[ i + 2 ] );
+				d[ i + 3 ] = convert( d[ i + 3 ] );
 			}
+			
+			_map = {};
+			
 			return pixels;
 		}
 		
@@ -47,6 +52,12 @@ ASJS.ColorLimitBitmapFilter = createClass( ASJS.AbstractBitmapFilter, null,
 		// private read only function
 		
 		// private function
+		function convert( value ) {
+			if ( !_map[ value ] ) {
+				_map[ value ] = Math.round( value / _scope.threshold ) * _scope.threshold;
+			}
+			return _map[ value ];
+		}
 	}
 );
 // public static const

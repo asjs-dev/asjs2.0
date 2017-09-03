@@ -11,10 +11,13 @@ ASJS.CutoutBitmapFilter = createClass( ASJS.AbstractBitmapFilter, null,
 		// protected variable
 		
 		// private variable
+		var _map = {};
+		var _average = 1;
 		
 		// constructor
 		_scope.new = function( adjustment ) {
 			_scope.adjustment = adjustment;
+			_average = 255 / _scope.adjustment;
 		}
 		
 		// public property
@@ -30,14 +33,17 @@ ASJS.CutoutBitmapFilter = createClass( ASJS.AbstractBitmapFilter, null,
 		// public function
 		_scope.execute = function( pixels ) {
 			var d = pixels.data;
-			var average = 255 / _scope.adjustment;
 			var i = -4;
 			var l = d.length;
 			while ( ( i += 4 ) < l ) {
-				d[ i ]     = Math.floor( d[ i ] / average ) * average;
-				d[ i + 1 ] = Math.floor( d[ i + 1 ] / average ) * average;
-				d[ i + 2 ] = Math.floor( d[ i + 2 ] / average ) * average;
+				d[ i ]     = convert( d[ i ] );
+				d[ i + 1 ] = convert( d[ i + 1 ] );
+				d[ i + 2 ] = convert( d[ i + 2 ] );
+				d[ i + 3 ] = convert( d[ i + 3 ] );
 			}
+			
+			_map = {};
+		
 			return pixels;
 		}
 		
@@ -48,6 +54,12 @@ ASJS.CutoutBitmapFilter = createClass( ASJS.AbstractBitmapFilter, null,
 		// private read only function
 		
 		// private function
+		function convert( value ) {
+			if ( !_map[ value ] ) {
+				_map[ value ] = Math.floor( value / _average ) * _average;
+			}
+			return _map[ value ];
+		}
 	}
 );
 // public static const

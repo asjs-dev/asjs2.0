@@ -11,6 +11,7 @@ ASJS.ContrastBitmapFilter = createClass( ASJS.AbstractBitmapFilter, null,
 		// protected variable
 		
 		// private variable
+		var _map = {};
 		
 		// constructor
 		_scope.new = function( adjustment ) {
@@ -33,10 +34,14 @@ ASJS.ContrastBitmapFilter = createClass( ASJS.AbstractBitmapFilter, null,
 			var i = -4;
 			var l = d.length;
 			while ( ( i += 4 ) < l ) {
-				d[ i ]     = 128 - ( ( 128 - d[ i ] ) * _scope.adjustment );
-				d[ i + 1 ] = 128 - ( ( 128 - d[ i + 1 ] ) * _scope.adjustment );
-				d[ i + 2 ] = 128 - ( ( 128 - d[ i + 2 ] ) * _scope.adjustment );
+				d[ i ]     = convert( d[ i ] );
+				d[ i + 1 ] = convert( d[ i + 1 ] );
+				d[ i + 2 ] = convert( d[ i + 2 ] );
+				d[ i + 3 ] = convert( d[ i + 3 ] );
 			}
+			
+			_map = {};
+		
 			return pixels;
 		}
 		
@@ -47,6 +52,12 @@ ASJS.ContrastBitmapFilter = createClass( ASJS.AbstractBitmapFilter, null,
 		// private read only function
 		
 		// private function
+		function convert( value ) {
+			if ( !_map[ value ] ) {
+				_map[ value ] = 128 - ( ( 128 - value ) * _scope.adjustment );
+			}
+			return _map[ value ];
+		}
 	}
 );
 // public static const

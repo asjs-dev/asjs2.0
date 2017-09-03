@@ -11,6 +11,7 @@ ASJS.ThresholdBitmapFilter = createClass( ASJS.AbstractBitmapFilter, null,
 		// protected variable
 		
 		// private variable
+		var _map = {};
 		
 		// constructor
 		_scope.new = function( threshold ) {
@@ -33,12 +34,23 @@ ASJS.ThresholdBitmapFilter = createClass( ASJS.AbstractBitmapFilter, null,
 			var i = -4;
 			var l = d.length;
 			while ( ( i += 4 ) < l ) {
-				var r = d[ i ];
-				var g = d[ i + 1 ];
-				var b = d[ i + 2 ];
-				var v = ( 0.2126 * r + 0.7152 * g + 0.0722 * b >= _scope.threshold ) ? 255 : 0;
-				d[ i ] = d[ i + 1 ] = d[ i + 2 ] = v;
+				var originalColor = new ASJS.Color( d[ i ], d[ i + 1 ], d[ i + 2 ], d[ i + 3 ] );
+				var hexValue = originalColor.hex;
+				
+				if ( !_map[ hexValue ] ) {
+					_map[ hexValue ] = 
+						0.2126 * originalColor.r + 
+						0.7152 * originalColor.g + 
+						0.0722 * originalColor.b >= _scope.threshold 
+							? 255 
+							: 0;
+				}
+				
+				d[ i ] = d[ i + 1 ] = d[ i + 2 ] = _map[ hexValue ];
 			}
+			
+			_map = {};
+			
 			return pixels;
 		}
 		

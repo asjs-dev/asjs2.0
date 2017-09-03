@@ -15,9 +15,10 @@ ASJS.ColorChangeBitmapFilter = createClass( ASJS.AbstractBitmapFilter, null,
 		
 		// constructor
 		_scope.new = function( palette ) {
-			_scope.palette = [];
+			_scope.palette = {};
 			for ( var key in palette ) {
-				_scope.palette.push( [ ASJS.Color.hexToRgb( key ), ASJS.Color.hexToRgb( palette[ key ] ) ] );
+				var color = ASJS.Color.hexToRgb( key );
+				_scope.palette[ color.hex ] = ASJS.Color.hexToRgb( palette[ key ] );
 			}
 		}
 		
@@ -38,27 +39,21 @@ ASJS.ColorChangeBitmapFilter = createClass( ASJS.AbstractBitmapFilter, null,
 			var l = d.length;
 			var m = _scope.palette.length;
 			while ( ( i += 4 ) < l ) {
-				var r = d[ i ];
-				var g = d[ i + 1 ];
-				var b = d[ i + 2 ];
+				var originalColor = new ASJS.Color( d[ i ], d[ i + 1 ], d[ i + 2 ], d[ i + 3 ] );
+				var hexValue = originalColor.hex;
 				
-				var selectedColor = new ASJS.Color( r, g, b );
+				if ( _scope.palette[ hexValue ] ) {
+					var selectedColor = _scope.palette[ hexValue ];
 				
-				var j = -1;
-				while ( ++j < m ) {
-					var colorA = _scope.palette[ j ][ 0 ];
-					var colorB = _scope.palette[ j ][ 1 ];
-					if ( r == colorA.r && g == colorA.g && b == colorA.b ) {
-						selectedColor = colorB;
-						j = m;
-						break;
-					}
+					d[ i ] = selectedColor.r;
+					d[ i + 1 ] = selectedColor.g;
+					d[ i + 2 ] = selectedColor.b;
+					d[ i + 3 ] = selectedColor.a;
 				}
-				
-				d[ i ] = selectedColor.r;
-				d[ i + 1 ] = selectedColor.g;
-				d[ i + 2 ] = selectedColor.b;
 			}
+			
+			_scope.palette = {};
+			
 			return pixels;
 		}
 		
