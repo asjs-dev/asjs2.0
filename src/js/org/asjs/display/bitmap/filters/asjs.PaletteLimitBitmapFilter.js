@@ -50,10 +50,9 @@ ASJS.PaletteLimitBitmapFilter = createClass( ASJS.AbstractBitmapFilter, null,
 				if ( _map[ hexValue ] ) selectedColor = _map[ hexValue ];
 				else {
 					var minDist = 768;
-					
 					selectedColor = _scope.palette[ 0 ];
 				
-					var j = -1;
+					var j = 0;
 					while ( ++j < m ) {
 						var color = _scope.palette[ j ];
 						var dist = ASJS.Color.twoColorDistance( originalColor, color );
