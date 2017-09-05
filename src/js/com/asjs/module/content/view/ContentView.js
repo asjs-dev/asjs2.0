@@ -46,8 +46,8 @@ var ContentView = createClass( AbstractView, null,
 		// public function
 		_scope.render = function() {
 			_background.setSize( stage.stageWidth, stage.stageHeight );
+			_externalApplicationButton.x = 
 			_box.x = ( stage.stageWidth - _box.width ) * 0.5;
-			_externalApplicationButton.move( _box.x, _box.y + _box.height + 20 );
 		}
 
 		_scope.init = function( data ) {
@@ -56,9 +56,7 @@ var ContentView = createClass( AbstractView, null,
 			_background.alpha = 0.5;
 			_scope.addChild( _background );
 	
-			_box.setSize( 320, 130 );
 			_box.y = 100;
-			_box.render();
 			_scope.addChild( _box );
 	
 			_animatedSprite.addAnimationDescriptorList( data );
@@ -71,6 +69,7 @@ var ContentView = createClass( AbstractView, null,
 			_externalApplicationButton.label = _language.getText( "show_external_application_button_label" );
 			_externalApplicationButton.addClass( "show-external-application-button" );
 			_externalApplicationButton.setSize( 320, 40 );
+			_externalApplicationButton.y = _box.y + _box.height + 20;
 			_externalApplicationButton.addEventListener( ASJS.MouseEvent.CLICK, onExternalApplicationButtonClick );
 			_scope.addChild( _externalApplicationButton );
 			

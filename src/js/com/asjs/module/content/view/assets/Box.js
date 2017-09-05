@@ -19,13 +19,19 @@ var Box = createClass( ASJS.Sprite, null,
 		// constructor
 		_scope.new = function() {
 			_scope.addClass( "box" );
+			_scope.setSize( 320, 130 );
 			
 			_label.text = _language.getText( "new_asjs_base_site" );
 			_label.addClass( "label" );
+			_label.setSize( _scope.width, 30 );
+			_label.y = 34;
 			_scope.addChild( _label );
 	
 			_button.label = _language.getText( "show_notification_window" );
 			_button.addClass( "button" );
+			_button.setSize( _scope.width, 40 );
+			_button.y = _scope.height - _button.height;
+			
 			_button.addEventListener( ASJS.MouseEvent.CLICK, onButtonClick );
 			_scope.addChild( _button );
 		}
@@ -44,13 +50,6 @@ var Box = createClass( ASJS.Sprite, null,
 		// public read only function
 		
 		// public function
-		_scope.render = function() {
-			_label.setSize( 320, 30 );
-			_label.move( 0, 34 );
-			
-			_button.setSize( 320, 40 );
-			_button.move( 0, _scope.height - _button.height );
-		}
 		
 		// protected read only function
 		

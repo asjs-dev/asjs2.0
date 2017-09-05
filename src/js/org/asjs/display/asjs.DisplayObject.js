@@ -27,12 +27,6 @@ ASJS.DisplayObject = createClass( ASJS.PrimitiveDisplayObject, null,
 			_scope.setCSS( "pointer-events", "auto" );
 			_scope.setCSS( "position", "absolute" );
 			_scope.setCSS( "display", _cssDisplay );
-			
-			if ( _scope.getCSS( "left" ) == "" ) _scope.x = 0;
-			if ( _scope.getCSS( "top" ) == "" ) _scope.y = 0;
-			
-			if ( _scope.getCSS( "width" ) == "" ) _scope.width = 0;
-			if ( _scope.getCSS( "height" ) == "" ) _scope.height = 0;
 		}
 		
 		// public property

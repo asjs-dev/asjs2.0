@@ -24,7 +24,6 @@ var NotificationWindowView = createClass( AbstractView, null,
 			_scope.addClass( "notification-window-view" );
 			_scope.setCSS( "position", "fixed" );
 	
-			_window.size = new ASJS.Point( 30, 80 );
 			_window.rect = new ASJS.Rectangle( 13, 60, 4, 7 );
 			_window.backgroundImage = "images/window.png";
 			_scope.addChild( _window );

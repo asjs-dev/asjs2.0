@@ -28,12 +28,17 @@ var ExternalApplicationView = createClass( AbstractView, null,
 			_scope.setCSS( "position", "fixed" );
 			
 			_container.addClass( "container" );
+			_container.move( 20, 20 );
 			_scope.addChild( _container );
 			
 			_title.addClass( "title-label" );
+			_title.height = 30;
+			_title.move( 10, 10 );
 			_container.addChild( _title );
 			
 			_closeButton.addClass( "close-button" );
+			_closeButton.setSize( 30, 30 );
+			_closeButton.y = 10;
 			_closeButton.addEventListener( ASJS.MouseEvent.CLICK, onCloseClick );
 			_container.addChild( _closeButton );
 		}
@@ -54,14 +59,11 @@ var ExternalApplicationView = createClass( AbstractView, null,
 		// public function
 		_scope.render = function() {
 			_scope.setSize( stage.stageWidth, stage.stageHeight );
-			_container.move( 20, 20 );
 			_container.setSize( _scope.width - _container.x * 2, _scope.height - _container.y * 2 );
 			
-			_closeButton.setSize( 30, 30 );
-			_closeButton.move( _container.width - _closeButton.width - 10, 10 );
+			_closeButton.x = _container.width - _closeButton.width - 10;
 			
-			_title.move( 10, 10 );
-			_title.setSize( _closeButton.x - _title.x * 2, _closeButton.height );
+			_title.width = _closeButton.x - _title.x * 2;
 			
 			if ( _externalApplication && _container.contains( _externalApplication ) ) {
 				_externalApplication.move( 10, _closeButton.y * 2 + _closeButton.height );

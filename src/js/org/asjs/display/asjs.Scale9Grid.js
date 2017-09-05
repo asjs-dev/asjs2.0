@@ -34,33 +34,19 @@ ASJS.Scale9Grid = createClass( ASJS.Sprite, null,
 		}
 		
 		// public property
-		prop( _scope, "x", {
-			set: function( v ) { _super.x = v; }
-		});
-
-		prop( _scope, "y", {
-			set: function( v ) { _super.y = v; }
-		});
-
-		prop( _scope, "width", {
-			set: function( v ) { _super.width = v; }
-		});
-
-		prop( _scope, "height", {
-			set: function( v ) { _super.height = v; }
-		});
-
 		prop( _scope, "backgroundImage", {
 			set: function( v ) {
 				var i = -1;
 				var l = 9;
 				while ( ++i < l ) _blocks[ i ].setCSS( "background-image", "url(" + v + ")" );
+				var image = new ASJS.Image();
+					image.addEventListener( ASJS.LoaderEvent.LOAD, function() {
+						_size.x = image.imageWidth;
+						_size.y = image.imageHeight;
+						_scope.render();
+					});
+					image.src = v;
 			}
-		});
-
-		prop( _scope, "size", {
-			get: function() { return _size; },
-			set: function( v ) { _size = v; }
 		});
 
 		prop( _scope, "rect", {

@@ -16,8 +16,6 @@ var ContentMediator = createClass( AbstractResizeMediator, null,
 		var _contentView = new ContentView();
 		
 		// constructor
-		_scope.new = function() {
-		}
 		
 		// public property
 		
