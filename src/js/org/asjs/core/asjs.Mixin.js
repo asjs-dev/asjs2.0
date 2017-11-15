@@ -97,10 +97,7 @@ var createClass = function( p, a, n ) {
 }
 var c0 = createClass;
 
-var createSingletonClass = function( sc, p, a, n ) {
-	roFunc( sc, "instance", function() {
-		if ( !sc.$i ) cnst( sc, "$i", new ( c0( p, a, n ) )() );
-		return sc.$i;
-	});
+var createSingletonClass = function( p, a, n ) {
+	return new ( c0( p, a, n ) )();
 }
 var c1 = createSingletonClass;

@@ -85,7 +85,7 @@ ASJS.EventDispatcher = createClass( ASJS.BaseClass, null,
 roFunc( ASJS.EventDispatcher, "createEvent", function( event, data, bubble ) {
 	return typeof event != "string" ? 
 		event :
-		new CustomEvent( ASJS.Polyfill.instance().convertEventType( event ), {
+		new CustomEvent( ASJS.Polyfill.convertEventType( event ), {
 			detail: data, 
 			cancelable: true, 
 			bubbles: bubble == undefined ? true : bubble

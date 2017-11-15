@@ -29,7 +29,7 @@ roFunc( Tools, "isValidEmailAddress", function( email ) {
 });
 
 roFunc( Tools, "getURLParams", function( param ) {
-	var url = decodeURIComponent( ASJS.Window.instance().location.href ).split( "#" );
+	var url = decodeURIComponent( ASJS.Window.location.href ).split( "#" );
 	if ( url[ 1 ] == '' || url[ 1 ] == undefined ) return [];
 	var params = url[ 1 ].split( '&' );
 	var i = -1;
@@ -48,11 +48,11 @@ roFunc( Tools, "createUrlParams", function( params, reload ) {
 		if ( url != "" ) url += "&";
 		url += k + "=" + params[ k ];
 	}
-	var window = ASJS.Window.instance();
+	var window = ASJS.Window;
 		window.location.href = window.location.href.split( window.location.hash ).join( "" ) + "#" + url;
 	if ( reload ) Tools.reload();
 });
 
 roFunc( Tools, "reload", function() {
-	ASJS.Window.instance().location.reload( true );
+	ASJS.Window.location.reload( true );
 });

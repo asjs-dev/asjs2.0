@@ -37,7 +37,7 @@ var EmptyClass = createClass( [ASJS.BaseClass | parentClass], [null | [p1, p2, .
 );
 // SINGLETON
 var EmptyClass = {};
-createSingletonClass( EmptyClass, [ASJS.BaseClass | parentClass], [null | [p1, p2, ..., pn]],
+EmpyClass = createSingletonClass( [ASJS.BaseClass | parentClass], [null | [p1, p2, ..., pn]],
 	function( _scope[, _super, _protected] ) {
 		// private object
 		
@@ -74,7 +74,7 @@ createSingletonClass( EmptyClass, [ASJS.BaseClass | parentClass], [null | [p1, p
 		// internal classes
 	}
 );
-// var ec = EmptyClass.instance();
+// var ec = EmptyClass;
 
 // public static const
 
@@ -153,7 +153,7 @@ var BaseClass = createClass( [ASJS.BaseClass | parentClass], [null | [p1, p2, ..
 );
 // SINGLETON
 var BaseClass = {};
-createSingletonClass( BaseClass, [ASJS.BaseClass | parentClass], [null | [p1, p2, ..., pn]],
+BaseClass = createSingletonClass( [ASJS.BaseClass | parentClass], [null | [p1, p2, ..., pn]],
 	function( _scope[, _super, _protected] ) {
 		// private object
 		var priv = {};
@@ -219,7 +219,7 @@ createSingletonClass( BaseClass, [ASJS.BaseClass | parentClass], [null | [p1, p2
 		);
 	}
 );
-// var bc = BaseClass.instance();
+// var bc = BaseClass;
 
 // public static const
 cnst( BaseClass, "PUBLIC_STATIC_CONST", 10 );

@@ -1,7 +1,7 @@
 includeOnce( "org/asjs/window/asjs.Window.js" );
 
 ASJS.Cycler = {};
-createSingletonClass( ASJS.Cycler, ASJS.BaseClass, null, 
+ASJS.Cycler = createSingletonClass( ASJS.BaseClass, null, 
 	function( _scope ) {
 		// private object
 		
@@ -12,7 +12,7 @@ createSingletonClass( ASJS.Cycler, ASJS.BaseClass, null,
 		// protected variable
 		
 		// private variable
-		var _window = ASJS.Window.instance();
+		var _window = ASJS.Window;
 		var _isPlaying = false;
 		var _fps = 24;
 		var _interval = getIntervalByFps();

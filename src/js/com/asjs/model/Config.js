@@ -1,5 +1,5 @@
 var Config = {};
-createSingletonClass( Config, ASJS.AbstractModel );
+Config = createSingletonClass( ASJS.AbstractModel );
 // public static const
 
 // public static variable

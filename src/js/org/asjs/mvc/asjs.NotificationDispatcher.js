@@ -12,7 +12,7 @@ ASJS.NotificationDispatcher = createClass( ASJS.BaseClass, null,
 		_protected.handlers = [];
 		
 		// private variable
-		var _nHandler = ASJS.NotificationHandler.instance();
+		var _nHandler = ASJS.NotificationHandler;
 		
 		// constructor
 		_scope.new = function() {

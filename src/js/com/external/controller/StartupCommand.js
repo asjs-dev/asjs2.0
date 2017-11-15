@@ -17,8 +17,8 @@ var StartupCommand = createClass( ASJS.AbstractCommand, null,
 		// protected variable
 		
 		// private variable
-		var _config = Config.instance();
-		var _language = Language.instance();
+		var _config = Config;
+		var _language = Language;
 		var _app;
 		
 		// constructor

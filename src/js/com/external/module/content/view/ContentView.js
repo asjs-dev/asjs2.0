@@ -13,7 +13,7 @@ var ContentView = createClass( AbstractView, null,
 		// protected variable
 		
 		// private variable
-		var _language = Language.instance();
+		var _language = Language;
 		var _parent;
 		
 		var _background = new ASJS.DisplayObject();

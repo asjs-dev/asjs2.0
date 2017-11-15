@@ -2,7 +2,7 @@ includeOnce( "org/asjs/event/asjs.EventDispatcher.js" );
 includeOnce( "org/asjs/event/asjs.WindowEvent.js" );
 
 ASJS.Window = {};
-createSingletonClass( ASJS.Window, ASJS.EventDispatcher, null, 
+ASJS.Window = createSingletonClass( ASJS.EventDispatcher, null, 
 	function( _scope, _super ) {
 		// private object
 		
@@ -19,9 +19,11 @@ createSingletonClass( ASJS.Window, ASJS.EventDispatcher, null,
 		// constructor
 		_scope.new = function() {
 			for ( var key in _el ) {
-				if( key.search( 'on' ) === 0 ) _el.addEventListener( key.slice( 2 ), function( e ) {
-					_scope.dispatchEvent( e );
-				});
+				if( key.search( 'on' ) === 0 ) {
+					_el.addEventListener( key.slice( 2 ), function( e ) {
+						_scope.dispatchEvent( e );
+					});
+				}
 			}
 			
 			_browserStatus = _scope.navigator.onLine ? ASJS.WindowEvent.ONLINE : ASJS.WindowEvent.OFFLINE;

@@ -12,7 +12,7 @@ var Box = createClass( ASJS.Sprite, null,
 		// protected variable
 		
 		// private variable
-		var _language = Language.instance();
+		var _language = Language;
 		var _label = new ASJS.Label();
 		var _button = new ASJS.Button();
 		

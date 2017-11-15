@@ -3,7 +3,7 @@ includeOnce( "org/asjs/event/asjs.MouseEvent.js" );
 includeOnce( "org/asjs/window/asjs.Window.js" );
 
 ASJS.Mouse = {};
-createSingletonClass( ASJS.Mouse, ASJS.BaseClass, null, 
+ASJS.Mouse = createSingletonClass( ASJS.BaseClass, null, 
 	function( _scope ) {
 		// private object
 		var priv = {};
@@ -16,7 +16,7 @@ createSingletonClass( ASJS.Mouse, ASJS.BaseClass, null,
 		// protected variable
 		
 		// private variable
-		var _window   = ASJS.Window.instance();
+		var _window   = ASJS.Window;
 		var _mousePos = new ASJS.Point();
 		
 		// constructor

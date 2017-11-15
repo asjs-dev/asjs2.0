@@ -14,7 +14,7 @@ ASJS.AnimatedSprite = createClass( ASJS.DisplayObject, null,
 		// protected variable
 		
 		// private variable
-		var _cycler	= ASJS.Cycler.instance();
+		var _cycler	= ASJS.Cycler;
 		var _animations = {};
 		var _isPlaying = false;
 		var _selectedAnimationName = "";

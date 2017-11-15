@@ -15,8 +15,8 @@ var Application = createClass( ASJS.Sprite, null,
 		// protected variable
 		
 		// private variable
-		var _language = Language.instance();
-		var _config = Config.instance();
+		var _language = Language;
+		var _config = Config;
 		var _styleLoader = new ASJS.StyleLoader();
 		var _languageLoaded = false;
 		

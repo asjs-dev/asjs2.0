@@ -1,5 +1,5 @@
 var MobileUtils = {};
-createSingletonClass( MobileUtils, ASJS.BaseClass, null, 
+MobileUtils = createSingletonClass( ASJS.BaseClass, null, 
 	function( _scope ) {
 		// private object
 		
@@ -10,7 +10,7 @@ createSingletonClass( MobileUtils, ASJS.BaseClass, null,
 		// protected variable
 		
 		// private variable
-		var _window = ASJS.Window.instance();
+		var _window = ASJS.Window;
 		var _dpi;
 		var _baseSize;
 		var _type;
@@ -28,7 +28,6 @@ createSingletonClass( MobileUtils, ASJS.BaseClass, null,
 			_useDPI = false;
 			_useScreenSize = false;
 			
-			var _window = ASJS.Window.instance();
 			var navigator = _window.navigator;
 			var isIOS = new RegExp( "iPad", "i" ).test( navigator.userAgent ) || new RegExp( "iPhone", "i" ).test( navigator.userAgent );
 			_isDesktop = !isIOS && ( navigator.maxTouchPoints == null || navigator.maxTouchPoints == 0 );

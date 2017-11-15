@@ -21,7 +21,7 @@ var ContentMediator = createClass( AbstractResizeMediator, null,
 		_protected.handlers.push( ContentMediator.SHOW );
 		
 		// private variable
-		var _language = Language.instance();
+		var _language = Language;
 		var _contentView = new ContentView();
 		
 		// constructor

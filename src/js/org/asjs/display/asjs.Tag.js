@@ -14,7 +14,7 @@ ASJS.Tag = createClass( ASJS.BaseClass, null,
 		// protected variable
 		
 		// private variable
-		var _polyfill = ASJS.Polyfill.instance();
+		var _polyfill = ASJS.Polyfill;
 		var _el;
 		var _parent = null;
 		var _state = priv.CREATED;
@@ -61,6 +61,11 @@ ASJS.Tag = createClass( ASJS.BaseClass, null,
 			get: function() { return _scope.parent ? _scope.parent.stage : null; }
 		});
 		
+		prop( _scope, "classList", {
+			get: function() { return _el.classList; },
+			set: function( v ) { _el.classList = v; }
+		});
+		
 		// protected property
 		
 		// private property
@@ -71,7 +76,7 @@ ASJS.Tag = createClass( ASJS.BaseClass, null,
 		
 		// public function
 		_scope.hasClass = function( v ) {
-			var classList = _scope.getClassList();
+			var classList = _scope.classList;
 			if ( classList ) return classList.contains( v );
 			return !!_el.className.match( new RegExp( '(\\s|^)' + v + '(\\s|$)' ) );
 		}
@@ -81,13 +86,9 @@ ASJS.Tag = createClass( ASJS.BaseClass, null,
 		}
 		
 		_scope.removeClass = function( v ) {
-			var classList = _scope.getClassList();
+			var classList = _scope.classList;
 			if ( classList ) classList.remove( v );
 			else if ( _scope.hasClass( v ) ) _el.className = _el.className.replace( new RegExp( '(\\s|^)' + v + '(\\s|$)' ), ' ' );
-		}
-		
-		_scope.getClassList = function( v ) {
-			return _el.classList;
 		}
 		
 		_scope.getAttr = function( k ) {

@@ -6,10 +6,7 @@
 	/* Common config */
 	$config[ "minimize" ]           = true; // optional (boolean)
 	$config[ "compress" ]           = true; // optional (boolean)
-	$config[ "watching" ]           = true; // optional (boolean)
-	$config[ "postBuildCallback" ]  = function() {
-		
-	}; // optional (function)
+	$config[ "watching" ]           = false; // optional (boolean)
 	
 	/* Watcher config */
 	$config[ "watcherPath" ]        = array( "src/" ); // required, when use watcher (array(folder, folder, ... ))

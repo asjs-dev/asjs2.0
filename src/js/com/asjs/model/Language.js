@@ -1,5 +1,5 @@
 var Language = {};
-createSingletonClass( Language, ASJS.AbstractModel, null, 
+Language = createSingletonClass( ASJS.AbstractModel, null, 
 	function( _scope, _super ) {
 		// private object
 		

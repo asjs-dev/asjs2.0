@@ -16,13 +16,13 @@ var ASJS = (function() {
 		var script = ASJS.Tag( "script" );
 			script.setAttr( "type", "text/javascript" );
 			script.setAttr( "src",  _sourcePath + f );
-		( ASJS.Head.instance() ).addChild( script );
+		( ASJS.Head ).addChild( script );
 	}
 	
 	_scope.start = function( b ) {
 		if ( !stage ) {
-			ASJS.Polyfill.instance();
-			stage = ASJS.Stage.instance();
+			ASJS.Polyfill;
+			stage = ASJS.Stage;
 			if ( _initedClasses.indexOf( b ) == -1 ) {
 				trace( "<AS/JS> core version: 2.{{version}}" );
 				_initedClasses.push( b );

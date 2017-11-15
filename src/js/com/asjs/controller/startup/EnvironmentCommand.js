@@ -14,11 +14,11 @@ var EnvironmentCommand = createClass( ASJS.AbstractCommand, null,
 		// protected variable
 		
 		// private variable
-		var _window = ASJS.Window.instance();
-		var _language = Language.instance();
-		var _cookies = Cookies.instance();
-		var _cycler = ASJS.Cycler.instance();
-		var _config = Config.instance();
+		var _window = ASJS.Window;
+		var _language = Language;
+		var _cookies = Cookies;
+		var _cycler = ASJS.Cycler;
+		var _config = Config;
 		var _sleepToResizeId;
 		
 		// constructor

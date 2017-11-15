@@ -14,7 +14,7 @@ ASJS.DisplayObject = createClass( ASJS.PrimitiveDisplayObject, null,
 		// protected variable
 		
 		// private variable
-		var _mouse = ASJS.Mouse.instance();
+		var _mouse = ASJS.Mouse;
 		var _filters = [];
 		var _rotation = 0;
 		var _scaleX = 1;

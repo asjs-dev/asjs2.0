@@ -11,7 +11,7 @@ var WS = createClass( ASJS.EventDispatcher, null,
 		// protected variable
 		
 		// private variable
-		var _window = ASJS.Window.instance();
+		var _window = ASJS.Window;
 		var _reconnectCounter = 0;
 		var _tryToReconnect;
 		var _reconnectTimeoutId;

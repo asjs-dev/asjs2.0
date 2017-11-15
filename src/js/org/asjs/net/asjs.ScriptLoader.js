@@ -40,7 +40,7 @@ ASJS.ScriptLoader = createClass( ASJS.Loader, null,
 		// protected variable
 		
 		// private variable
-		var _head = ASJS.Head.instance();
+		var _head = ASJS.Head;
 		var _content;
 		
 		// constructor

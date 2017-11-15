@@ -1,5 +1,5 @@
 var Media = {};
-createSingletonClass( Media, ASJS.BaseClass, null, 
+Media = createSingletonClass( ASJS.BaseClass, null, 
 	function( _scope ) {
 		// private object
 		
@@ -10,7 +10,7 @@ createSingletonClass( Media, ASJS.BaseClass, null,
 		// protected variable
 		
 		// private variable
-		var _window = ASJS.Window.instance();
+		var _window = ASJS.Window;
 		
 		// constructor
 		

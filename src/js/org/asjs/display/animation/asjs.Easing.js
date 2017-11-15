@@ -12,7 +12,7 @@ ASJS.Easing = createClass( ASJS.BaseClass, null,
 		// protected variable
 		
 		// private variable
-		var _cycler	= ASJS.Cycler.instance();
+		var _cycler	= ASJS.Cycler;
 		var _isPlaying;
 		var _id;
 		var _step;

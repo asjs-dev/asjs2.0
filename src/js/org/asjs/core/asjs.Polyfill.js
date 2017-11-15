@@ -1,5 +1,5 @@
 ASJS.Polyfill = {};
-createSingletonClass( ASJS.Polyfill, ASJS.BaseClass, null,
+ASJS.Polyfill = createSingletonClass( ASJS.BaseClass, null,
 	function( _scope ) {
 		var _vendors = [ 'ms', 'moz', 'webkit', 'o' ];
 		var _doc = document;

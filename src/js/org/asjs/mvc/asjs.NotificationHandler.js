@@ -1,5 +1,5 @@
 ASJS.NotificationHandler = {};
-createSingletonClass( ASJS.NotificationHandler, ASJS.BaseClass, null, 
+ASJS.NotificationHandler = createSingletonClass( ASJS.BaseClass, null, 
 	function( _scope ) {
 		// private object
 		

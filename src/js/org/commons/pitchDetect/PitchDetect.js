@@ -11,8 +11,8 @@ var PitchDetect = createClass( ASJS.EventDispatcher, null,
 		// protected variable
 		
 		// private variable
-		var _window = ASJS.Window.instance();
-		var _media = Media.instance();
+		var _window = ASJS.Window;
+		var _media = Media;
 		
 		var _isPlaying = false;
 		

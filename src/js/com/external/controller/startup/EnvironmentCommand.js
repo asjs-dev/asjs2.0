@@ -13,8 +13,8 @@ var EnvironmentCommand = createClass( ASJS.AbstractCommand, null,
 		// protected variable
 		
 		// private variable
-		var _language = Language.instance();
-		var _cookies = Cookies.instance();
+		var _language = Language;
+		var _cookies = Cookies;
 		
 		// constructor
 		

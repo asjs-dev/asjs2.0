@@ -4,7 +4,7 @@ includeOnce( "org/asjs/utils/asjs.Mouse.js" );
 includeOnce( "org/asjs/window/asjs.Window.js" );
 
 ASJS.Stage = {};
-createSingletonClass( ASJS.Stage, ASJS.Sprite, [ document.body ], 
+ASJS.Stage = createSingletonClass( ASJS.Sprite, [ document.body ], 
 	function( _scope ) {
 		// private object
 		
@@ -15,7 +15,7 @@ createSingletonClass( ASJS.Stage, ASJS.Sprite, [ document.body ],
 		// protected variable
 		
 		// private variable
-		var _window = ASJS.Window.instance();
+		var _window = ASJS.Window;
 		var _stageWidth = 0;
 		var _stageHeight = 0;
 		
@@ -26,7 +26,7 @@ createSingletonClass( ASJS.Stage, ASJS.Sprite, [ document.body ],
 			_window.addEventListener( ASJS.WindowEvent.RESIZE, recalcStageSize );
 			recalcStageSize();
 	
-			ASJS.Mouse.instance().init();
+			ASJS.Mouse.init();
 		}
 		
 		// public property

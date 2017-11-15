@@ -17,8 +17,8 @@ var ContentView = createClass( AbstractView, null,
 		// protected variable
 		
 		// private variable
-		var _language = Language.instance();
-		var _mouse = ASJS.Mouse.instance();
+		var _language = Language;
+		var _mouse = ASJS.Mouse;
 		var _background = new ASJS.Sprite();
 		var _box = new Box();
 		var _externalApplicationButton = new ASJS.Button();

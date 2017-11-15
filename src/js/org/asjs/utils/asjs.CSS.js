@@ -4,7 +4,7 @@ includeOnce( "org/asjs/display/asjs.PrimitiveDisplayObject.js" );
 includeOnce( "org/asjs/core/asjs.Polyfill.js" );
 
 ASJS.CSS = {};
-createSingletonClass( ASJS.CSS, ASJS.BaseClass, null,
+ASJS.CSS = createSingletonClass( ASJS.BaseClass, null,
 	function( _scope ) {
 		// private object
 		
@@ -15,8 +15,8 @@ createSingletonClass( ASJS.CSS, ASJS.BaseClass, null,
 		// protected variable
 		
 		// private variable
-		var _window = ASJS.Window.instance();
-		var _head = ASJS.Head.instance();
+		var _window = ASJS.Window;
+		var _head = ASJS.Head;
 		var _runTimeStyle;
 		var _merged;
 		
@@ -202,32 +202,32 @@ cnst( ASJS.CSS, "VALUE", [
 
 // public static property
 prop( ASJS.CSS, "styles", {
-	get: function() { return ( ASJS.CSS.instance() ).styles; }
+	get: function() { return ( ASJS.CSS ).styles; }
 });
 
 // public static function
 roFunc( ASJS.CSS, "getRuleBySelector", function( s ) {
-	return ( ASJS.CSS.instance() ).getRuleBySelector( s );
+	return ( ASJS.CSS ).getRuleBySelector( s );
 });
 
 roFunc( ASJS.CSS, "getRuleExists", function( s ) {
-	return ( ASJS.CSS.instance() ).getRuleExists( s );
+	return ( ASJS.CSS ).getRuleExists( s );
 });
 
 roFunc( ASJS.CSS, "getPropertyFromRule", function( s, t ) {
-	return ( ASJS.CSS.instance() ).getPropertyFromRule( s, t );
+	return ( ASJS.CSS ).getPropertyFromRule( s, t );
 });
 
 roFunc( ASJS.CSS, "setPropertyToRule", function( s, t, v ) {
-	( ASJS.CSS.instance() ).setPropertyToRule( s, t, v );
+	( ASJS.CSS ).setPropertyToRule( s, t, v );
 });
 
 roFunc( ASJS.CSS, "addRule", function( s, t ) {
-	( ASJS.CSS.instance() ).addRule( s, t );
+	( ASJS.CSS ).addRule( s, t );
 });
 
 roFunc( ASJS.CSS, "removeRule", function( s ) {
-	( ASJS.CSS.instance() ).removeRule( s );
+	( ASJS.CSS ).removeRule( s );
 });
 
 roFunc( ASJS.CSS, "replaceHyphen", function( s ) {
@@ -237,12 +237,12 @@ roFunc( ASJS.CSS, "replaceHyphen", function( s ) {
 });
 
 roFunc( ASJS.CSS, "convertProperty", function( k ) {
-	var nk = ASJS.Polyfill.instance().stylePrefixCSS + nk;
+	var nk = ASJS.Polyfill.stylePrefixCSS + nk;
 	var i = -1;
 	var l = ASJS.CSS.SELECTOR.length;
 	while ( ++i < l ) {
 		if ( nk.indexOf( ":" + ASJS.CSS.SELECTOR[ i ] ) > -1 ) {
-			nk = nk.replace( ":" + ASJS.CSS.SELECTOR[ i ], ":" + ASJS.Polyfill.instance().stylePrefixCSS + ASJS.CSS.SELECTOR[ i ] );
+			nk = nk.replace( ":" + ASJS.CSS.SELECTOR[ i ], ":" + ASJS.Polyfill.stylePrefixCSS + ASJS.CSS.SELECTOR[ i ] );
 			i = l;
 			break;
 		}
@@ -255,7 +255,7 @@ roFunc( ASJS.CSS, "convertValue", function( v ) {
 	var i = -1;
 	var l = ASJS.CSS.VALUE.length;
 	while ( ++i < l ) {
-		if ( String( v ).indexOf( ASJS.CSS.VALUE[ i ] ) > -1 ) return ASJS.Polyfill.instance().stylePrefixCSS + v;
+		if ( String( v ).indexOf( ASJS.CSS.VALUE[ i ] ) > -1 ) return ASJS.Polyfill.stylePrefixCSS + v;
 	}
 	return v;
 });

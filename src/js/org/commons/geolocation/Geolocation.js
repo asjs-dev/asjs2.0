@@ -1,7 +1,7 @@
 includeOnce( "org/commons/geolocation/GeolocationData.js" );
 
 var Geolocation = {};
-createSingletonClass( Geolocation, ASJS.EventDispatcher, null, 
+Geolocation = createSingletonClass( ASJS.EventDispatcher, null, 
 	function( _scope ) {
 		// private object
 		
@@ -12,7 +12,7 @@ createSingletonClass( Geolocation, ASJS.EventDispatcher, null,
 		// protected variable
 		
 		// private variable
-		var _window = ASJS.Window.instance();
+		var _window = ASJS.Window;
 		var _geolocation;
 		var _watchID;
 		var _location = new GeolocationData();

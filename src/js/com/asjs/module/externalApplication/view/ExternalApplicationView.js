@@ -14,8 +14,8 @@ var ExternalApplicationView = createClass( AbstractView, null,
 		// protected variable
 		
 		// private variable
-		var _language = Language.instance();
-		var _mouse = ASJS.Mouse.instance();
+		var _language = Language;
+		var _mouse = ASJS.Mouse;
 		
 		var _container = new ASJS.Sprite();
 		var _title = new ASJS.Label();

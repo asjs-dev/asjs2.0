@@ -13,7 +13,7 @@ ASJS.Keyboard = createClass( ASJS.BaseClass, null,
 		// protected variable
 		
 		// private variable
-		var _window = ASJS.Window.instance();
+		var _window = ASJS.Window;
 		var _pressedKeys = {};
 		var _downCallback;
 		var _upCallback;

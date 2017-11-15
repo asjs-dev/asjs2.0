@@ -9,7 +9,7 @@ var Oscillator = createClass( ASJS.BaseClass, null,
 		// protected variable
 		
 		// private variable
-		var _window = ASJS.Window.instance();
+		var _window = ASJS.Window;
 		
 		var _isPlaying = false;
 		

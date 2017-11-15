@@ -1,5 +1,5 @@
 var Facebook = {};
-createSingletonClass( Facebook, ASJS.DisplayObject, null, 
+Facebook = createSingletonClass( ASJS.DisplayObject, null, 
 	function( _scope ) {
 		// private object
 		
@@ -10,7 +10,7 @@ createSingletonClass( Facebook, ASJS.DisplayObject, null,
 		// protected variable
 		
 		// private variable
-		var _window = ASJS.Window.instance();
+		var _window = ASJS.Window;
 		var _facebookAppId;
 		var _version;
 		

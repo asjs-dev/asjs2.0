@@ -15,7 +15,7 @@ var NotificationWindowMediator = createClass( AbstractResizeMediator, null,
 		_protected.handlers.push( NotificationWindowMediator.SHOW );
 		
 		// private variable
-		var _language = Language.instance();
+		var _language = Language;
 		
 		var _pool = [];
 		var _showed = false;
