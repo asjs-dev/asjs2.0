@@ -144,6 +144,14 @@ ASJS.Bitmap = createClass( ASJS.DisplayObject, [ "canvas" ],
 		_scope.lineTo = function( x, y ) {
 			getContext().lineTo( x, y );
 		}
+		
+    _scope.quadraticCurveTo = function( cp1x, cp1y, x, y ) {
+			getContext().quadraticCurveTo( cp1x, cp1y, x, y );
+    }
+    
+    _scope.bezierCurveTo = function( cp1x, cp1y, cp2x, cp2y, x, y ) {
+			getContext().bezierCurveTo( cp1x, cp1y, cp2x, cp2y, x, y );
+    }
 
 		_scope.drawRect = function( x, y, w, h ) {
 			var ctx = getContext();

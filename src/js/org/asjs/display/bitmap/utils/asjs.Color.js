@@ -5,7 +5,7 @@ ASJS.Color = createClass( ASJS.BaseClass, null,
 			_scope.r = r || 0;
 			_scope.g = g || 0;
 			_scope.b = b || 0;
-			_scope.a = a || 255;
+			_scope.a = a === null || a === undefined ? 1 : a;
 		}
 		
 		prop( _scope, "hex", {
