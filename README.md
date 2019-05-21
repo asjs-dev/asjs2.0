@@ -1,6 +1,8 @@
 # asjs2.0
 &lt;AS/JS> is a JavaScript framework, for ActionScript3 like display list handling
 
+* **Not supported anymore**
+
 Try it: https://plnkr.co/edit/fgxKemyuYWpJwXRojXi9?p=preview
 
 Examples:
